@@ -17,7 +17,6 @@ import { IoHome } from "react-icons/io5";
 
 const Login = () => {
 
-  const navigate = useNavigate()
 
   const [info, setInfo] = useState({
     email: "",
@@ -42,26 +41,11 @@ const Login = () => {
     })
   }
 
-  const handleKeyPress = (e) => {
-
-    // e.preventDefault()
-
-    if (e.key === 'Enter') {
-      login(info)
-
-      setInfo({
-        email: "",
-        password: ""
-      })
-    }
-  }
-
-
   return (
 
     <Container maxWidth="lg" >
 
-      <Typography variant='h4' align='center' p={3} fontWeight={700} color='#ae0707'>Bonna Aktivite</Typography>
+      <Typography variant='h4' align='center' p={3} fontWeight={700} color='#ae0707'>Bonna Feedback</Typography>
 
       <Grid
         container
@@ -88,19 +72,12 @@ const Login = () => {
 
           </Avatar>
           
-          {/* <Typography
-            variant="h4"
-            align="center"
-            mb={4}
-            color="secondary.light"
-          >
-            Login
-          </Typography> */}
 
-          <form onKeyUp={handleKeyPress}>
+          <form  onSubmit={handleSubmit}>
             <Box sx={{ display: "flex", flexDirection: "column", gap: 2 ,mt:5}}>
 
               <TextField
+              required
                 label="Email"
                 name="email"
                 id="email"
@@ -111,6 +88,7 @@ const Login = () => {
                 
               />
               <TextField
+              required
                 label="Password"
                 name="password"
                 id="password"
@@ -119,17 +97,16 @@ const Login = () => {
                 value={info.password}
                 onChange={handleChange}
               />
-              <Button variant="contained" type="button" onClick={handleSubmit} sx={{letterSpacing:3,textTransform:'none'}}>
+              <Button variant="contained" type="submit" sx={{letterSpacing:3,textTransform:'none'}}>
                 Giriş
               </Button>
 
             </Box>
           </form>
 
-          <Box sx={{mt: 5,display:'flex',flexDirection:'column'}}>
+          {/* <Box sx={{mt: 5,display:'flex',flexDirection:'column'}}>
             <IoHome size={30} color='green' style={{margin:'auto'}} onClick={()=>navigate('/')} cursor={'pointer'}/>
-            {/* <Link to="/" style={{color:'green',textDecoration:'underline',letterSpacing:5,textAlign:'center'}}>Ana Sayfa</Link>              */}
-          </Box>
+          </Box> */}
 
         </Grid>
 

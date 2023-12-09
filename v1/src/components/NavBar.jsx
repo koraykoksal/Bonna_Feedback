@@ -15,15 +15,16 @@ import logoBonna from "../assets/img/logobonna.png"
 import { CardMedia, ListItemButton, ListItemText } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router';
-import { RiLogoutCircleRLine } from "react-icons/ri";
+import { IoIosLogOut } from "react-icons/io";
+import { IoHomeOutline } from "react-icons/io5";
 import useAuthCall from '../hooks/useAuthCall';
 import { SiGooglehome } from "react-icons/si";
 
 
 const pages = [
   {
-    title: "Ana Sayfa",
-    url: "/"
+    title: "Rapor",
+    url: "/reports"
   },
 
 ];
@@ -79,7 +80,7 @@ const NavBar = () => {
           {
             currentUser ?
               (
-                <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
                   <IconButton
                     size="large"
                     aria-label="account of current user"
@@ -187,20 +188,19 @@ const NavBar = () => {
           </Box> */}
 
 
-          <Box sx={{ display: { xs: 'flex', md: 'flex' }, justifyContent: 'center', gap: 3, mr: 1 }}>
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'center', gap: 1, mr: 1 }}>
 
             {
               currentUser && (<Box sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'center', gap: 3, mr: 1 }}>
                 <Typography>{currentUser || null}</Typography>
-                <RiLogoutCircleRLine size={22} color='#B31312' cursor='pointer' onClick={() => logout()} />
+                <IoIosLogOut size={25} color='#B31312' cursor='pointer' onClick={() => logout()} />
 
               </Box>)
             }
+
+            <IoHomeOutline size={25} color='#527853' onClick={() => navigate('/')} cursor='pointer' />
           </Box>
 
-          <Box>
-            <SiGooglehome size={25} color='#527853' onClick={()=>navigate('/')} cursor='pointer'/>
-          </Box>
 
         </Toolbar>
 

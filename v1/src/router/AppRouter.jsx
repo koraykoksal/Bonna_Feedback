@@ -8,6 +8,7 @@ import Login from '../pages/Login'
 import Tesekkur from '../pages/Tesekkur'
 import OneriTalep from '../pages/OneriTalep'
 import Sikayet from '../pages/Sikayet'
+import Reports from '../pages/Reports'
 
 
 
@@ -27,6 +28,7 @@ export const AppRouter = () => {
           <Route path='oneritalep' element={<OneriTalep/>}/>
           <Route path='sikayet' element={<Sikayet/>}/>
           <Route element={<PrivateRouter />}>
+            <Route path='reports' element={<Reports/>}/>
           </Route>
           <Route path='*' element={<NotFound />} />
         </Routes>

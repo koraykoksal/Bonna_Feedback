@@ -120,6 +120,21 @@ const Sikayet = () => {
               />
             </Box>
 
+            <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3 }}>
+              <TextField
+                fullWidth
+                label='Şikayet Konusu'
+                name='topic'
+                id='topic'
+                type='text'
+                value={info.topic}
+                inputProps={{
+                  maxLength: 35
+                }}
+                onChange={handleChange}
+              />
+            </Box>
+
 
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
               <TextField
