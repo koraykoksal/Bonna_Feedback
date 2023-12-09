@@ -1,16 +1,16 @@
 import React from 'react'
 import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
-import tesekkurImg from "../assets/img/tesekkurImg.png"
 import { FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { oneriKonusu, katkiKonusu } from '../helper/data';
+import useFeedbackCall from '../hooks/useFeedbackCall';
 
 
 const OneriTalep = () => {
 
+  const {postFireData} = useFeedbackCall()
 
   const now = new Date()
 
@@ -34,7 +34,7 @@ const OneriTalep = () => {
     phone: "",
     email: "",
     topic: "",
-    katkiKonusu:"",
+    katkiKonusu: "",
     detail: "",
     detatime: formattedDate
 
@@ -44,15 +44,26 @@ const OneriTalep = () => {
     setInfo({ ...info, [e.target.name]: e.target.value })
   }
 
-  // const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
 
-  //   e.preventDefault()
+    e.preventDefault()
 
-  //   handleClose()
+    postFireData('oneri-talep',info)
 
-  // }
+    setInfo({
+      name: "",
+      surname: "",
+      phone: "",
+      email: "",
+      topic: "",
+      katkiKonusu: "",
+      detail: "",
+      detatime: formattedDate
+    })
 
-  console.log(info)
+  }
+
+
 
   return (
     <div>
@@ -61,13 +72,13 @@ const OneriTalep = () => {
 
       <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 5, p: 2 }}>
 
-        <form>
+        <form onSubmit={handleSubmit}>
 
-          <Box sx={{flexDirection:'column',display:'flex', gap: 3, p: 3 }}>
+          <Box sx={{ flexDirection: 'column', display: 'flex', gap: 3, p: 3 }}>
 
-            <Box sx={{ display: 'flex', justifyContent: 'center',flexWrap:'wrap', gap: 3 }}>
+            <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3 }}>
               <TextField
-              fullWidth
+                fullWidth
                 required
                 label='İsim'
                 name='name'
@@ -80,7 +91,7 @@ const OneriTalep = () => {
                 onChange={handleChange}
               />
               <TextField
-              fullWidth
+                fullWidth
                 required
                 label='Soyisim'
                 name='surname'
@@ -94,9 +105,9 @@ const OneriTalep = () => {
               />
             </Box>
 
-            <Box sx={{ display: 'flex', justifyContent: 'center',flexWrap:'wrap', gap: 3 }}>
+            <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3 }}>
               <TextField
-              fullWidth
+                fullWidth
                 label='Telefon'
                 name='phone'
                 id='phone'
@@ -108,7 +119,7 @@ const OneriTalep = () => {
                 onChange={handleChange}
               />
               <TextField
-              fullWidth
+                fullWidth
                 required
                 label='Eposta'
                 name='email'
@@ -122,7 +133,7 @@ const OneriTalep = () => {
               />
             </Box>
 
-            <Box sx={{ display: 'flex', justifyContent: 'center',flexWrap:'wrap', gap: 3 }}>
+            <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3 }}>
 
               <FormControl fullWidth>
                 <InputLabel id="topic">Öneri & Talep Konusu</InputLabel>
@@ -168,7 +179,7 @@ const OneriTalep = () => {
 
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
               <TextField
-              fullWidth
+                fullWidth
                 required
                 multiline
                 rows={4}

@@ -8,7 +8,7 @@ import {
     fetchOneriTalepData,
     fetchSikayetData,
 
-} from '../features/raffleSlice'
+} from '../features/feedbackSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 import { toastInfoNotify, toastSuccessNotify, toastErrorNotify } from '../helper/ToastNotify'
@@ -21,7 +21,7 @@ import { useNavigate } from "react-router-dom"
 import { bonnaPersonels } from '../helper/personels'
 
 
-const useRaffleCall = () => {
+const useFeedbackCall = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -36,7 +36,7 @@ const useRaffleCall = () => {
             const uID = uid()
             const db = getDatabase();
             set(ref(db, `${address}/` + uID), info);
-            toastSuccessNotify('✅ Talebiniz alınmıştır teşekkür ederiz.')
+            toastSuccessNotify('Talebiniz alınmıştır teşekkür ederiz.')
             navigate('/')
 
         } catch (error) {
@@ -64,7 +64,7 @@ const useRaffleCall = () => {
                     console.log("firebase data null geliyor:", data)
                 }
                 else {
-                    dispatch(fetchActivityData(data))
+                    // dispatch(fetchActivityData(data))
 
                 }
 
@@ -113,30 +113,14 @@ const useRaffleCall = () => {
 
             const res = bonnaPersonels.map((item) => item)
             // console.log("personel tcno: ",res)
-            dispatch(fetchBonnaPersonelData(res))
+            // dispatch(fetchBonnaPersonelData(res))
 
         } catch (error) {
             console.log("get_bonnaPersonel: ", error)
         }
     }
 
-    const post_userWinners = (address, info) => {
 
-        dispatch(fetchStart())
-
-        try {
-
-            const uID = uid()
-            const db = getDatabase()
-
-            set(ref(db, `${address}/` + uID), info)
-            toastSuccessNotify('Data Added ✅')
-
-        } catch (error) {
-            console.log("post userWinners", error)
-        }
-
-    }
 
     const get_userWinners = (address) => {
 
@@ -155,7 +139,7 @@ const useRaffleCall = () => {
                     console.log("activity user-winners data null geliyor:", data)
                 }
                 else {
-                    dispatch(fetchUserWinnersData(data))
+                    // dispatch(fetchUserWinnersData(data))
 
                 }
 
@@ -174,14 +158,13 @@ const useRaffleCall = () => {
         getFireData,
         removeFirebaseData,
         get_bonnaPersonel,
-        post_userWinners,
         get_userWinners
 
     }
 
 }
 
-export default useRaffleCall
+export default useFeedbackCall
 
 
 

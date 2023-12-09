@@ -1,14 +1,14 @@
 import React from 'react'
 import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
-import tesekkurImg from "../assets/img/tesekkurImg.png"
 import { TextField } from '@mui/material';
+import useFeedbackCall from '../hooks/useFeedbackCall';
 
 const Sikayet = () => {
 
+  const { postFireData } = useFeedbackCall()
 
   const now = new Date()
 
@@ -41,15 +41,25 @@ const Sikayet = () => {
     setInfo({ ...info, [e.target.name]: e.target.value })
   }
 
-  // const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
 
-  //   e.preventDefault()
+    e.preventDefault()
 
-  //   handleClose()
+    postFireData('sikayet', info)
 
-  // }
+    setInfo({
+      name: "",
+      surname: "",
+      phone: "",
+      email: "",
+      topic: "",
+      detail: "",
+      detatime: formattedDate
+    })
 
-  console.log(info)
+  }
+
+
 
   return (
     <div>
@@ -59,7 +69,7 @@ const Sikayet = () => {
 
       <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 5, p: 2 }}>
 
-        <form>
+        <form onSubmit={handleSubmit}>
 
           <Box sx={{ flexDirection: 'column', display: 'flex', gap: 3, p: 3 }}>
 

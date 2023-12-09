@@ -1,14 +1,17 @@
 import React from 'react'
 import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
-import tesekkurImg from "../assets/img/tesekkurImg.png"
 import { TextField } from '@mui/material';
+import useFeedbackCall from '../hooks/useFeedbackCall';
+
+
 
 const Tesekkur = () => {
 
+
+  const {postFireData} = useFeedbackCall()
 
   const now = new Date()
 
@@ -45,6 +48,8 @@ const Tesekkur = () => {
 
     e.preventDefault()
 
+    postFireData('tesekkur',info)
+
     setInfo({
       name: "",
       surname: "",
@@ -57,7 +62,7 @@ const Tesekkur = () => {
 
   }
 
-  console.log(info)
+ 
 
   return (
     <div>
