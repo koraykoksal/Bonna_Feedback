@@ -1,5 +1,5 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-import raffleReducer from '../features/raffleSlice'
+import feedbackReducer from '../features/feedbackSlice'
 import authReducer from "../features/authSlice"
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
@@ -17,7 +17,7 @@ export const store = configureStore({
 
   reducer: {
     auth:persistedReducer,
-    raffle: raffleReducer,
+    feedback: feedbackReducer,
   },
 
 

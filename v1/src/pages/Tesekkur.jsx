@@ -41,13 +41,21 @@ const Tesekkur = () => {
     setInfo({ ...info, [e.target.name]: e.target.value })
   }
 
-  // const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
 
-  //   e.preventDefault()
+    e.preventDefault()
 
-  //   handleClose()
+    setInfo({
+      name: "",
+      surname: "",
+      phone: "",
+      email: "",
+      topic: "",
+      detail: "",
+      detatime: formattedDate
+    })
 
-  // }
+  }
 
   console.log(info)
 
@@ -59,7 +67,7 @@ const Tesekkur = () => {
 
       <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 5, p: 2 }}>
 
-        <form>
+        <form onSubmit={handleSubmit}>
 
           <Box sx={{ flexDirection: 'column', display: 'flex', gap: 3, p: 3 }}>
 
@@ -139,7 +147,7 @@ const Tesekkur = () => {
               />
             </Box>
 
-            <Button variant='contained' type='submit'>
+            <Button variant='contained' type='submit' sx={{ letterSpacing: 3, textTransform: 'none' }}>
               Gönder
             </Button>
 

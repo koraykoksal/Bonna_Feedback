@@ -8,17 +8,15 @@ import moment from "moment";
 const initialState = {
     loading:false,
     error:false,
-    sameTCNO:false,
+    tesekkurData:[],
+    oneriTalepData:[],
+    sikayetData:[]
 
-    userApplyData:[],
-    firebase_activityData:[],
-    bonnaPersonel:[],
-    userWinners:[],
 }
 
-const raffleSlice = createSlice({
+const feedbackSlice = createSlice({
 
-    name: "raffle",
+    name: "feedback",
     initialState,
     reducers: {
 
@@ -31,23 +29,19 @@ const raffleSlice = createSlice({
             state.loading = false;
             state.error = true;
         },
-        fetchApplyData:(state,{payload})=>{
+        fetchTesekkurData:(state,{payload})=>{
             state.loading=false
             state.sameTCNO=false
             state.userApplyData=payload
         },
-        fetchActivityData:(state,{payload})=>{
+        fetchOneriTalepData:(state,{payload})=>{
             state.loading=false
             state.firebase_activityData=payload
         },
-        fetchBonnaPersonelData:(state,{payload})=>{
+        fetchSikayetData:(state,{payload})=>{
             state.loading=false
             state.bonnaPersonel=payload
         },
-        fetchUserWinnersData:(state,{payload})=>{
-            state.loading=false
-            state.userWinners=payload
-        }
 
 
 
@@ -62,15 +56,14 @@ export const {
     
     fetchStart,
     fetchFail,
-    fetchApplyData,
-    fetchActivityData,
-    fetchBonnaPersonelData,
-    fetchUserWinnersData
+    fetchTesekkurData,
+    fetchOneriTalepData,
+    fetchSikayetData,
 
-} = raffleSlice.actions
+} = feedbackSlice.actions
 
 //slice oluşturulduktan sonra export default olarak export edilmeli ve reducer ifadesi belirtilmelidir.
-export default raffleSlice.reducer
+export default feedbackSlice.reducer
 
 
 

@@ -4,9 +4,9 @@ import {
     fetchStart,
     fetchFail,
     fetchApplyData,
-    fetchActivityData,
-    fetchBonnaPersonelData,
-    fetchUserWinnersData
+    fetchTesekkurData,
+    fetchOneriTalepData,
+    fetchSikayetData,
 
 } from '../features/raffleSlice'
 import { useDispatch, useSelector } from 'react-redux'
@@ -25,7 +25,6 @@ const useRaffleCall = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const { firebase_activityData, bonnaPersonel } = useSelector((state) => state.raffle)
 
 
     const postFireData = async (address, info) => {
@@ -34,40 +33,14 @@ const useRaffleCall = () => {
 
         try {
 
-            get_bonnaPersonel()
-            await getFireData('bonna-activity')
-
-
-            const findPersonel = bonnaPersonel.find((item) => item.TCKIMLIKNO == info.tcNo)
-
-            if (findPersonel) {
-
-                const dizi = Object.keys(firebase_activityData).map(key => { return { id: key, ...firebase_activityData[key] } })
-
-                const sameData = dizi.find((item) => item.tcNo === info.tcNo);
-
-                if (sameData) {
-                    toastErrorNotify(`${info.tcNo} kimlik nuraması ile kayıt bulunmaktadır. Tekrar kayıt yapamazsınız !`)
-                }
-                else {
-                    const uID = uid()
-                    const db = getDatabase();
-                    set(ref(db, `${address}/` + uID), info);
-                    toastSuccessNotify('Başvuru Yapıldı ✅')
-                    navigate('/')
-                }
-            }
-            else {
-
-                toastErrorNotify(`Bonna firmasında ${info.tcNo} TC No ve ${info.name} ${info.surname} isimli personel bulunmaktadır. Kayıt yapamazsınız !`)
-            }
-
-
-
-
+            const uID = uid()
+            const db = getDatabase();
+            set(ref(db, `${address}/` + uID), info);
+            toastSuccessNotify('✅ Talebiniz alınmıştır teşekkür ederiz.')
+            navigate('/')
 
         } catch (error) {
-            toastErrorNotify('Başvuru Yapılamadı ❌')
+            toastErrorNotify('❌ İşem başarısız, lütfen tekrar deneyiniz.')
         }
 
     }
@@ -88,7 +61,7 @@ const useRaffleCall = () => {
                 // console.log(data)
 
                 if (data == null || data == undefined) {
-                    console.log("activity data null geliyor:", data)
+                    console.log("firebase data null geliyor:", data)
                 }
                 else {
                     dispatch(fetchActivityData(data))
