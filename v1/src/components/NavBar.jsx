@@ -11,13 +11,13 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import logoBonna from "../assets/img/logobonna.png"
 import { CardMedia, ListItemButton, ListItemText } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router';
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import useAuthCall from '../hooks/useAuthCall';
+import { SiGooglehome } from "react-icons/si";
 
 
 const pages = [
@@ -25,18 +25,7 @@ const pages = [
     title: "Ana Sayfa",
     url: "/"
   },
-  {
-    title: "Çekiliş",
-    url: "raffle"
-  },
-  {
-    title: "Başvurular",
-    url: "userapplications"
-  },
-  {
-    title: "Sonuçlar",
-    url: "userwinners"
-  }
+
 ];
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -75,7 +64,7 @@ const NavBar = () => {
       <Container maxWidth="xl">
         <Toolbar disableGutters sx={{ display: 'flex', justifyContent: 'space-between' }}>
 
-          <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 5 }} >
+          <Box sx={{ display: { xs: 'flex', md: 'flex' }, mr: 5 }} >
             <img
               src={logoBonna}
               alt="bonnaLogo"
@@ -199,16 +188,18 @@ const NavBar = () => {
 
 
           <Box sx={{ display: { xs: 'flex', md: 'flex' }, justifyContent: 'center', gap: 3, mr: 1 }}>
-            
+
             {
-              currentUser ? 
-              (<Box sx={{ display: { xs: 'flex', md: 'flex' }, justifyContent: 'center', gap: 3, mr: 1 }}>
+              currentUser && (<Box sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'center', gap: 3, mr: 1 }}>
                 <Typography>{currentUser || null}</Typography>
                 <RiLogoutCircleRLine size={22} color='#B31312' cursor='pointer' onClick={() => logout()} />
+
               </Box>)
-              :
-              (<Button variant='contained' onClick={()=>navigate('/login')} sx={{textTransform:'none',letterSpacing:3}}>Giriş</Button>)
             }
+          </Box>
+
+          <Box>
+            <SiGooglehome size={25} color='#527853' onClick={()=>navigate('/')} cursor='pointer'/>
           </Box>
 
         </Toolbar>

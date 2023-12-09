@@ -1,5 +1,5 @@
-export const bonnaDepartments=[
-    {name: "ArGe&Proses"},
+export const oneriKonusu=[
+    {name: "ArGe & Proses"},
     {name: "Bakım ve Enerji"},
     {name: "Bilgi Teknolojileri"},
     {name: "Dış Ticaret"},
@@ -21,5 +21,18 @@ export const bonnaDepartments=[
     {name: "Tedarik Zinciri"},
     {name: "Ticari Pazarlama"},
     {name: "Üretim"},
-    {name: "Yurtiçi Satış"}
+    {name: "Yurtiçi Satış"},
+    {name: "Diğer"}
+]
+
+
+export const katkiKonusu=[
+    {name: "Ürün Geliştirme"},
+    {name: "Kalite İyileştirme"},
+    {name: "Proses Geliştirme"},
+    {name: "Çalışma Ortamında Gelişim"},
+    {name: "Parasal Tasarruf Getirisi"},
+    {name: "Moral/Motivasyon Artışı"},
+    {name: "Çevre/Güvenlik/Sağlık"},
+
 ]
