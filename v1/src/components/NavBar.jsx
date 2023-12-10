@@ -23,6 +23,10 @@ import { SiGooglehome } from "react-icons/si";
 
 const pages = [
   {
+    title: "Ana Sayfa",
+    url: "/"
+  },
+  {
     title: "Rapor",
     url: "/reports"
   },
@@ -71,121 +75,81 @@ const NavBar = () => {
               alt="bonnaLogo"
               width='130px'
             />
-
           </Box>
 
 
-          {/* PAGE MENU */}
+          {/* mobile PAGE MENU */}
 
           {
-            currentUser ?
-              (
-                <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
-                  <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="menu-appbar"
-                    aria-haspopup="true"
-                    onClick={handleOpenNavMenu}
-                    color="inherit"
-                  >
-                    <MenuIcon />
-                  </IconButton>
-                  <Menu
-                    id="menu-appbar"
-                    anchorEl={anchorElNav}
-                    anchorOrigin={{
-                      vertical: 'bottom',
-                      horizontal: 'left',
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                      vertical: 'top',
-                      horizontal: 'left',
-                    }}
-                    open={Boolean(anchorElNav)}
-                    onClose={handleCloseNavMenu}
-                    sx={{
-                      display: { xs: 'block', md: 'none' },
-                    }}
-                  >
-                    {pages.map((page, index) => (
-                      <MenuItem key={index} onClick={() => {
-                        navigate(page.url)
-                        handleCloseNavMenu()
-                      }}>
-                        <ListItemButton sx={{ textTransform: 'none' }}>
-                          <ListItemText sx={{ textTransform: 'none' }}>{page.title}</ListItemText>
-                        </ListItemButton>
-
-                      </MenuItem>
-                    ))}
-                  </Menu>
-                </Box>
-              ) :
-              (
-                ""
-              )
-          }
-
-
-          {/* MOBILE PAGES MENU */}
-
-          {
-            currentUser ?
-              (
-                <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            currentUser &&
+            (
+              <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleOpenNavMenu}
+                  color="inherit"
+                >
+                  <MenuIcon />
+                </IconButton>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorElNav}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  open={Boolean(anchorElNav)}
+                  onClose={handleCloseNavMenu}
+                  sx={{
+                    display: { xs: 'block', md: 'none' },
+                  }}
+                >
                   {pages.map((page, index) => (
-                    <Button
-                      key={index}
-                      onClick={() => {
-                        navigate(page.url)
-                        handleCloseNavMenu()
-                      }}
-                      sx={{ my: 2, color: 'white', display: 'block', textTransform: 'none' }}
-                    >
-                      {page.title}
-                    </Button>
-                  ))}
-                </Box>
-              ) :
+                    <MenuItem key={index} onClick={() => {
+                      navigate(page.url)
+                      handleCloseNavMenu()
+                    }}>
+                      <ListItemButton sx={{ textTransform: 'none' }}>
+                        <ListItemText sx={{ textTransform: 'none' }}>{page.title}</ListItemText>
+                      </ListItemButton>
 
-              (
-                ""
-              )
+                    </MenuItem>
+                  ))}
+                </Menu>
+              </Box>
+            )
           }
 
-          {/* SETTINGS MENU */}
 
-          {/* <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box> */}
+          {/* PAGES MENU */}
+
+          {
+            currentUser &&
+            (
+              <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                {pages.map((page, index) => (
+                  <Button
+                    key={index}
+                    onClick={() => {
+                      navigate(page.url)
+                      handleCloseNavMenu()
+                    }}
+                    sx={{ my: 2, color: 'white', display: 'block', textTransform: 'none' }}
+                  >
+                    {page.title}
+                  </Button>
+                ))}
+              </Box>
+            )
+          }
 
 
           <Box sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'center', gap: 1, mr: 1 }}>
@@ -200,9 +164,13 @@ const NavBar = () => {
 
           </Box>
 
-          <Box sx={{ display: { xs: 'flex', md: 'flex' } }}>
-            <IoHomeOutline size={25} color='#527853' onClick={() => navigate('/')} cursor='pointer' />
-          </Box>
+          {
+            currentUser ? ("")
+              :
+              (<Box sx={{ display: { xs: 'flex', md: 'flex' } }}>
+              <IoHomeOutline size={25} color='#527853' onClick={() => navigate('/')} cursor='pointer' />
+            </Box>)
+          }
 
 
         </Toolbar>

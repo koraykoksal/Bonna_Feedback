@@ -33,7 +33,7 @@ const Sikayet = () => {
     email: "",
     topic: "",
     detail: "",
-    detatime: formattedDate
+    datetime: formattedDate
 
   })
 
@@ -54,7 +54,7 @@ const Sikayet = () => {
       email: "",
       topic: "",
       detail: "",
-      detatime: formattedDate
+      datetime: formattedDate
     })
 
   }

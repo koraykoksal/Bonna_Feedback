@@ -1,29 +1,28 @@
+import { Box, Typography } from '@mui/material'
 import React from 'react'
 import { DataGrid, GridToolbar, GridActionsCellItem } from '@mui/x-data-grid';
+import { useEffect, useState } from 'react';
 
 
-const UserWinners_Table = ({winnersData}) => {
+
+const Sikayet_Table = ({ sikayetData }) => {
+
+
+    const [sikayet, setSikayet] = useState([])
+
 
     const dataGrid_Columns = [
-        {
-            field: "id",
-            headerName: "id",
-            minWidth: 150,
-            headerAlign: "center",
-            align: "center",
-            flex: 1,
-        },
-        {
-            field: "rowNumber",
-            headerName: "Numara",
-            minWidth: 150,
-            headerAlign: "center",
-            align: "center",
-            flex: 1,
-        },
+        // {
+        //   field: "id",
+        //   headerName: "ID",
+        //   minWidth: 150,
+        //   headerAlign: "center",
+        //   align: "center",
+        //   flex: 1,
+        // },
         {
             field: "name",
-            headerName: "Ad",
+            headerName: "İsim",
             minWidth: 150,
             headerAlign: "center",
             align: "center",
@@ -32,15 +31,15 @@ const UserWinners_Table = ({winnersData}) => {
 
         {
             field: "surname",
-            headerName: "Soyad",
+            headerName: "Soyisim",
             minWidth: 150,
             headerAlign: "center",
             align: "center",
             flex: 1,
         },
         {
-            field: "department",
-            headerName: "Departman",
+            field: "email",
+            headerName: "Email",
             minWidth: 150,
             headerAlign: "center",
             align: "center",
@@ -55,16 +54,24 @@ const UserWinners_Table = ({winnersData}) => {
             flex: 1,
         },
         {
-            field: "status",
-            headerName: "Durum",
+            field: "topic",
+            headerName: "Konu",
             minWidth: 150,
             headerAlign: "center",
             align: "center",
             flex: 1,
         },
         {
-            field: "activityName",
-            headerName: "Aktivite",
+            field: "detail",
+            headerName: "Detay",
+            minWidth: 150,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "datetime",
+            headerName: "Tarih",
             minWidth: 150,
             headerAlign: "center",
             align: "center",
@@ -75,12 +82,27 @@ const UserWinners_Table = ({winnersData}) => {
     ];
 
 
-    return (
-        <div>
 
+
+    useEffect(() => {
+
+        const dizi = Object.keys(sikayetData).map(key => { return { id: key, ...sikayetData[key] } })
+        setSikayet(dizi)
+
+    }, [sikayetData])
+
+
+
+
+    return (
+
+
+
+
+        <Box p={3}>
             <DataGrid
                 columns={dataGrid_Columns}
-                rows={winnersData}
+                rows={sikayet}
                 initialState={{
                     pagination: {
                         paginationModel: {
@@ -95,9 +117,10 @@ const UserWinners_Table = ({winnersData}) => {
                     boxShadow: 4,
                 }}
             />
+        </Box>
 
-        </div>
+
     )
 }
 
-export default UserWinners_Table
+export default Sikayet_Table

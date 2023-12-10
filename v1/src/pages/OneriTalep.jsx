@@ -36,7 +36,7 @@ const OneriTalep = () => {
     topic: "",
     katkiKonusu: "",
     detail: "",
-    detatime: formattedDate
+    datetime: formattedDate
 
   })
 
@@ -58,7 +58,7 @@ const OneriTalep = () => {
       topic: "",
       katkiKonusu: "",
       detail: "",
-      detatime: formattedDate
+      datetime: formattedDate
     })
 
   }

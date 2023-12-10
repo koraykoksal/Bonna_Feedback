@@ -36,7 +36,7 @@ const Tesekkur = () => {
     email: "",
     topic: "",
     detail: "",
-    detatime: formattedDate
+    datetime: formattedDate
 
   })
 
@@ -57,7 +57,7 @@ const Tesekkur = () => {
       email: "",
       topic: "",
       detail: "",
-      detatime: formattedDate
+      datetime: formattedDate
     })
 
   }
@@ -135,6 +135,7 @@ const Tesekkur = () => {
 
 
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          
               <TextField
                 fullWidth
                 required

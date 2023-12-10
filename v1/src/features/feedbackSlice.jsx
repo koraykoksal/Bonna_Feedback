@@ -31,16 +31,15 @@ const feedbackSlice = createSlice({
         },
         fetchTesekkurData:(state,{payload})=>{
             state.loading=false
-            state.sameTCNO=false
-            state.userApplyData=payload
+            state.tesekkurData=payload
         },
         fetchOneriTalepData:(state,{payload})=>{
             state.loading=false
-            state.firebase_activityData=payload
+            state.oneriTalepData=payload
         },
         fetchSikayetData:(state,{payload})=>{
             state.loading=false
-            state.bonnaPersonel=payload
+            state.sikayetData=payload
         },
 
 

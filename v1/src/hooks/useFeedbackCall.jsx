@@ -18,7 +18,6 @@ import { getDatabase, onValue, ref, remove, set, update } from "firebase/databas
 import { uid } from "uid";
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom"
-import { bonnaPersonels } from '../helper/personels'
 
 
 const useFeedbackCall = () => {
@@ -27,6 +26,7 @@ const useFeedbackCall = () => {
     const navigate = useNavigate()
 
 
+    //! firebase data gönder
     const postFireData = async (address, info) => {
 
         dispatch(fetchStart())
@@ -46,8 +46,9 @@ const useFeedbackCall = () => {
     }
 
 
+
     //! firebase data çek
-    const getFireData = async (address) => {
+    const getFireData_Tesekkur = async (address) => {
 
         dispatch(fetchStart())
 
@@ -64,8 +65,7 @@ const useFeedbackCall = () => {
                     console.log("firebase data null geliyor:", data)
                 }
                 else {
-                    // dispatch(fetchActivityData(data))
-
+                    dispatch(fetchTesekkurData(data))
                 }
 
 
@@ -80,49 +80,8 @@ const useFeedbackCall = () => {
     }
 
 
-    //! firebase data silme
-    const removeFirebaseData = async (address, id) => {
 
-        try {
-            const db = getDatabase();
-            remove(ref(db, `${address}/${id}`))
-            toastSuccessNotify('Data Deleted ✅')
-        } catch (error) {
-            toastErrorNotify('No Delete Data ❌')
-        }
-    }
-
-
-    const get_bonnaPersonel = () => {
-
-        dispatch(fetchStart())
-
-        try {
-
-            // const options = {
-            //     method: 'GET',
-            //     url: `${process.env.REACT_APP_bonnaUsers_BaseAddress}`,
-            //     headers: {
-            //         'APIKEY': `${process.env.REACT_APP_bonnaApiKey}`
-
-            //     }
-            // }
-
-            // const res = await axios(options)
-            // dispatch(fetchBonnaPersonelData(res?.data))
-
-            const res = bonnaPersonels.map((item) => item)
-            // console.log("personel tcno: ",res)
-            // dispatch(fetchBonnaPersonelData(res))
-
-        } catch (error) {
-            console.log("get_bonnaPersonel: ", error)
-        }
-    }
-
-
-
-    const get_userWinners = (address) => {
+    const getFireData_OneriTalep = async (address) => {
 
         dispatch(fetchStart())
 
@@ -136,11 +95,10 @@ const useFeedbackCall = () => {
                 // console.log(data)
 
                 if (data == null || data == undefined) {
-                    console.log("activity user-winners data null geliyor:", data)
+                    console.log("firebase data null geliyor:", data)
                 }
                 else {
-                    // dispatch(fetchUserWinnersData(data))
-
+                    dispatch(fetchOneriTalepData(data))
                 }
 
 
@@ -149,16 +107,66 @@ const useFeedbackCall = () => {
         } catch (error) {
             toastErrorNotify('No Get Izo Press Data ❌')
         }
+
+
+
+    }
+
+
+
+    const getFireData_Sikayet = async (address) => {
+
+        dispatch(fetchStart())
+
+        try {
+
+            const db = getDatabase();
+            const starCountRef = ref(db, `${address}/`);
+            onValue(starCountRef, (snapshot) => {
+                const data = snapshot.val();
+
+                // console.log(data)
+
+                if (data == null || data == undefined) {
+                    console.log("firebase data null geliyor:", data)
+                }
+                else {
+                    dispatch(fetchSikayetData(data))
+                }
+
+
+            });
+
+        } catch (error) {
+            toastErrorNotify('No Get Izo Press Data ❌')
+        }
+
+
+
+    }
+
+
+    
+    //! firebase data silme
+    const removeFirebaseData = async (address, id) => {
+
+        try {
+            const db = getDatabase();
+            remove(ref(db, `${address}/${id}`))
+            toastSuccessNotify('Data Deleted ✅')
+        } catch (error) {
+            toastErrorNotify('No Delete Data ❌')
+        }
     }
 
 
     return {
 
         postFireData,
-        getFireData,
+        getFireData_Tesekkur,
         removeFirebaseData,
-        get_bonnaPersonel,
-        get_userWinners
+        getFireData_OneriTalep,
+        getFireData_Sikayet
 
     }
 
