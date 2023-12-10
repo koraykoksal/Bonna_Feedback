@@ -3,9 +3,9 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { homeBgPattern } from '../styles/theme';
 import { useNavigate } from "react-router-dom"
-import thanks_img from "../assets/img/thanks_img.png"
-import feedback_img from "../assets/img/feedback_img.png"
-import complaint_img from "../assets/img/complaint_img.png"
+import thanks from "../assets/img/thanks.png"
+import feedback from "../assets/img/feedback.png"
+import complaint from "../assets/img/complaint.png"
 
 export const Home = () => {
 
@@ -14,17 +14,17 @@ export const Home = () => {
 
   return (
 
-    <div >
+    <div>
 
-      <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', py: 5, gap: 5 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', py:10, gap: 10}}>
 
 
         <Card sx={{maxWidth:'350px',boxShadow:'none'}}>
           <CardMedia
           component='img'
-          image={thanks_img}
-          height='194'
-          sx={{objectFit:'cover',width:'100%'}}
+          image={thanks}
+          height='185'
+          sx={{objectFit:'cover',width:'75%',margin:'auto'}}
           />
           <CardContent>
           <Button fullWidth variant='outlined' color='primary' sx={{ textTransform: 'none', fontSize: '26px' }} onClick={() => navigate('/tesekkur')}>Teşekkür</Button>
@@ -34,9 +34,9 @@ export const Home = () => {
         <Card sx={{maxWidth:'350px',boxShadow:'none'}}>
           <CardMedia
           component='img'
-          image={feedback_img}
-          height='194'
-          sx={{objectFit:'cover',width:'100%'}}
+          image={feedback}
+          height='185'
+          sx={{objectFit:'cover',width:'75%',margin:'auto'}}
           />
           <CardContent>
           <Button fullWidth variant='outlined' color='secondary' sx={{ textTransform: 'none', fontSize: '26px' }} onClick={() => navigate('/oneritalep')}>Öneri & Talep</Button>
@@ -46,9 +46,9 @@ export const Home = () => {
         <Card sx={{maxWidth:'350px',boxShadow:'none'}}>
           <CardMedia
           component='img'
-          image={complaint_img}
-          height='194'
-          sx={{objectFit:'cover',width:'1005'}}
+          image={complaint}
+          height='185'
+          sx={{objectFit:'cover',width:'75%',margin:'auto'}}
           />
           <CardContent>
           <Button fullWidth variant='outlined' color='warning' sx={{textTransform: 'none', fontSize: '26px' }} onClick={() => navigate('/sikayet')}>Şikayet</Button>

@@ -198,6 +198,9 @@ const NavBar = () => {
               </Box>)
             }
 
+          </Box>
+
+          <Box sx={{ display: { xs: 'flex', md: 'flex' } }}>
             <IoHomeOutline size={25} color='#527853' onClick={() => navigate('/')} cursor='pointer' />
           </Box>
 
