@@ -3,7 +3,7 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import { Typography, Grid } from "@mui/material"
 import bonnaLogo from "../../assets/img/logobonna_b.png"
-
+import { IoMdCloseCircle } from "react-icons/io";
 
 const style = {
     position: 'absolute',
@@ -23,7 +23,7 @@ const style = {
 
 const Tesekkur_View = ({ handleClose_tesekkur, open_tesekkur, info }) => {
 
-    console.log(info)
+  
 
     return (
         <div>
@@ -35,6 +35,8 @@ const Tesekkur_View = ({ handleClose_tesekkur, open_tesekkur, info }) => {
 
             >
                 <Box sx={style}>
+
+                <IoMdCloseCircle size={25} cursor={'pointer'} color='red' onClick={handleClose_tesekkur}/>
 
                     <img src={bonnaLogo} style={{ width: '125px', margin: 'auto' }} />
 

@@ -2,14 +2,25 @@ import { Box, Typography } from '@mui/material'
 import React from 'react'
 import { DataGrid, GridToolbar, GridActionsCellItem } from '@mui/x-data-grid';
 import { useEffect, useState } from 'react';
+import { FaEye } from "react-icons/fa";
+import Sikayet_View from '../modals/Sikayet_View';
 
 
-
-const Sikayet_Table = ({ sikayetData }) => {
+const Sikayet_Table = ({ sikayetData, handleClose_sikayet, handleOpen_sikayet, open_sikayet }) => {
 
 
     const [sikayet, setSikayet] = useState([])
 
+    const [info, setInfo] = useState({
+        name: "",
+        surname: "",
+        phone: "",
+        email: "",
+        topic: "",
+        detail: "",
+        datetime: ""
+
+    })
 
     const dataGrid_Columns = [
         // {
@@ -20,6 +31,52 @@ const Sikayet_Table = ({ sikayetData }) => {
         //   align: "center",
         //   flex: 1,
         // },
+        {
+            field: "actions",
+            headerName: "#",
+            minWidth: 120,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+            renderCell: ({
+                id,
+                row: {
+                    name,
+                    surname,
+                    phone,
+                    email,
+                    topic,
+                    detail,
+                    datetime
+
+                }
+            }) => {
+                return [
+
+                    <GridActionsCellItem
+                        key={'show'}
+                        label='Show'
+                        icon={<FaEye size={23} style={{ cursor: 'pointer', color: 'darkblue' }} />}
+                        onClick={() => {
+                            handleOpen_sikayet()
+                            setInfo({
+                                id,
+                                name,
+                                surname,
+                                phone,
+                                email,
+                                topic,
+                                detail,
+                                datetime
+                            })
+
+                        }}
+                    />
+
+
+                ]
+            },
+        },
         {
             field: "name",
             headerName: "İsim",
@@ -100,6 +157,8 @@ const Sikayet_Table = ({ sikayetData }) => {
 
 
         <Box p={3}>
+
+
             <DataGrid
                 columns={dataGrid_Columns}
                 rows={sikayet}
@@ -117,6 +176,10 @@ const Sikayet_Table = ({ sikayetData }) => {
                     boxShadow: 4,
                 }}
             />
+
+            <Sikayet_View info={info} handleClose_sikayet={handleClose_sikayet} open_sikayet={open_sikayet}/>
+
+
         </Box>
 
 
