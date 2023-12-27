@@ -11,7 +11,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import logoBonna from "../assets/img/logobonna.png"
+import logoBonna from "../assets/img/logobonna_w.png"
 import { CardMedia, ListItemButton, ListItemText } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router';

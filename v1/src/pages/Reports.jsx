@@ -14,6 +14,7 @@ import Tesekkur_Table from '../components/tables/Tesekkur_Table'
 import { useSelector } from 'react-redux'
 import OneriTalep_Table from '../components/tables/OneriTalep_Table'
 import Sikayet_Table from '../components/tables/Sikayet_Table'
+import Tesekkur_View from '../components/modals/Tesekkur_View'
 
 
 const Reports = () => {
@@ -22,6 +23,30 @@ const Reports = () => {
 
   const {getFireData_Tesekkur,getFireData_OneriTalep,getFireData_Sikayet} = useFeedbackCall()
   const {tesekkurData,oneriTalepData,sikayetData} = useSelector((state)=>state.feedback)
+
+   // viewer modal handle state bilgisi
+   const [open_tesekkur, setOpen_tesekkur] = useState(false)
+   const handleOpen_tesekkur = () => setOpen_tesekkur(true);
+   const handleClose_tesekkur = () => {
+    setOpen_tesekkur(false)
+ 
+   }
+
+   // viewer modal handle state bilgisi
+   const [open_sikayet, setOpen_sikayet] = useState(false)
+   const handleOpen_sikayet = () => setOpen_sikayet(true);
+   const handleClose_sikayet = () => {
+    setOpen_sikayet(false)
+ 
+   }
+
+   // viewer modal handle state bilgisi
+   const [open_oneritalep, setOpen_oneritalep] = useState(false)
+   const handleOpen_oneritalep = () => setOpen_oneritalep(true);
+   const handleClose_oneritalep = () => {
+    setOpen_oneritalep(false)
+ 
+   }
 
 
   const handleChange = (event, newValue) => {
@@ -68,9 +93,11 @@ const Reports = () => {
 
       </Box>
 
-      {value == 1 && (<Tesekkur_Table tesekkurData={tesekkurData}/>)}
-      {value == 2 && (<OneriTalep_Table oneriTalepData={oneriTalepData}/>)}
-      {value == 3 && (<Sikayet_Table sikayetData={sikayetData}/>)}
+      {value == 1 && (<Tesekkur_Table handleOpen_tesekkur={handleOpen_tesekkur} handleClose_tesekkur={handleClose_tesekkur} open_tesekkur={open_tesekkur} tesekkurData={tesekkurData}/>)}
+      {value == 2 && (<OneriTalep_Table handleClose_oneritalep={handleClose_oneritalep} oneriTalepData={oneriTalepData}/>)}
+      {value == 3 && (<Sikayet_Table handleClose_sikayet={handleClose_sikayet} sikayetData={sikayetData}/>)}
+
+
 
     </div>
   )

@@ -96,8 +96,6 @@ const OneriTalep_Table = ({oneriTalepData}) => {
 
     
 
-    console.log(oneriTalep)
-
     return (
         <Box p={3}>
 

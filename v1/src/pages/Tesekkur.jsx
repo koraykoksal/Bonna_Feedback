@@ -119,8 +119,8 @@ const Tesekkur = () => {
                 onChange={handleChange}
               />
               <TextField
+              required
                 fullWidth
-                required
                 label='Eposta'
                 name='email'
                 id='email'

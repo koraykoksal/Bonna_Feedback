@@ -5,12 +5,23 @@ import { useSelector } from 'react-redux'
 import { AiFillEdit } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
 import { DataGrid, GridToolbar, GridActionsCellItem } from '@mui/x-data-grid';
+import { FaEye } from "react-icons/fa";
+import Tesekkur_View from '../modals/Tesekkur_View';
 
-
-const Tesekkur_Table = ({tesekkurData }) => {
+const Tesekkur_Table = ({ tesekkurData,handleOpen_tesekkur,handleClose_tesekkur,open_tesekkur }) => {
 
   const [tesekkur, settesekkur] = useState([])
 
+  const [info, setInfo] = useState({
+    name: "",
+    surname: "",
+    phone: "",
+    email: "",
+    topic: "",
+    detail: "",
+    datetime: ""
+
+  })
 
   const dataGrid_Columns = [
     // {
@@ -21,6 +32,52 @@ const Tesekkur_Table = ({tesekkurData }) => {
     //   align: "center",
     //   flex: 1,
     // },
+    {
+      field: "actions",
+      headerName: "#",
+      minWidth: 120,
+      headerAlign: "center",
+      align: "center",
+      flex: 1,
+      renderCell: ({
+        id,
+        row: {
+          name,
+          surname,
+          phone,
+          email,
+          topic,
+          detail,
+          datetime
+
+        }
+      }) => {
+        return [
+
+          <GridActionsCellItem
+            key={'show'}
+            label='Show'
+            icon={<FaEye size={23} style={{ cursor: 'pointer', color: 'darkblue' }} />}
+            onClick={() => {
+              handleOpen_tesekkur()
+              setInfo({
+                id,
+                name,
+                surname,
+                phone,
+                email,
+                topic,
+                detail,
+                datetime
+              })
+
+            }}
+          />
+
+
+        ]
+      },
+    },
     {
       field: "name",
       headerName: "İsim",
@@ -86,12 +143,12 @@ const Tesekkur_Table = ({tesekkurData }) => {
 
 
   useEffect(() => {
-    
+
     const dizi = Object.keys(tesekkurData).map(key => { return { id: key, ...tesekkurData[key] } })
     settesekkur(dizi)
 
   }, [tesekkurData])
-  
+
 
 
 
@@ -115,6 +172,8 @@ const Tesekkur_Table = ({tesekkurData }) => {
           boxShadow: 4,
         }}
       />
+
+      <Tesekkur_View handleClose_tesekkur={handleClose_tesekkur} open_tesekkur={open_tesekkur} info={info}/>
 
     </Box>
   )

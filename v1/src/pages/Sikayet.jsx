@@ -105,6 +105,7 @@ const Sikayet = () => {
             <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3 }}>
               <TextField
                 fullWidth
+                required
                 label='Telefon'
                 name='phone'
                 id='phone'
@@ -117,7 +118,6 @@ const Sikayet = () => {
               />
               <TextField
                 fullWidth
-                required
                 label='Eposta'
                 name='email'
                 id='email'
