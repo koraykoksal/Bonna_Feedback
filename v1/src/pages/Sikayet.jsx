@@ -76,7 +76,6 @@ const Sikayet = () => {
             <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3 }}>
               <TextField
                 fullWidth
-                required
                 label='İsim'
                 name='name'
                 id='name'
@@ -89,7 +88,6 @@ const Sikayet = () => {
               />
               <TextField
                 fullWidth
-                required
                 label='Soyisim'
                 name='surname'
                 id='surname'
@@ -105,7 +103,6 @@ const Sikayet = () => {
             <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3 }}>
               <TextField
                 fullWidth
-                required
                 label='Telefon'
                 name='phone'
                 id='phone'

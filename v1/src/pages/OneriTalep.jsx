@@ -120,7 +120,6 @@ const OneriTalep = () => {
               />
               <TextField
                 fullWidth
-                required
                 label='Eposta'
                 name='email'
                 id='email'
