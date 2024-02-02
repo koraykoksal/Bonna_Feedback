@@ -19,6 +19,7 @@ import { IoIosLogOut } from "react-icons/io";
 import { IoHomeOutline } from "react-icons/io5";
 import useAuthCall from '../hooks/useAuthCall';
 import { AiFillHome } from "react-icons/ai";
+import { IoLogOut } from "react-icons/io5";
 
 
 const pages = [
@@ -152,21 +153,21 @@ const NavBar = () => {
           }
 
 
-          <Box sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'center', gap: 1, mr: 1 }}>
+          {/* <Box sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'center', gap: 1, mr: 1 }}>
 
-            {/* {
+            {
               currentUser && (<Box sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'center', gap: 3, mr: 1 }}>
                 <Typography>{currentUser || null}</Typography>
                 <IoIosLogOut size={25} color='#B31312' cursor='pointer' onClick={() => logout()} />
 
               </Box>)
-            } */}
+            }
 
-          </Box>
+          </Box> */}
 
           {
             currentUser ? (<Box sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'center', gap: 3, mr: 1 }}>
-              <Typography>{currentUser || null}</Typography>
+              <Typography>{currentUser}</Typography>
               <IoIosLogOut size={25} color='#B31312' cursor='pointer' onClick={() => logout()} />
 
             </Box>)
