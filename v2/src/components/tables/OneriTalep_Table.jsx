@@ -33,7 +33,7 @@ const OneriTalep_Table = ({ oneriTalepData, handleClose_oneritalep, handleOpen_o
     // },
     {
       field: "actions",
-      headerName: "#",
+      headerName: "Aksiyon",
       minWidth: 120,
       headerAlign: "center",
       align: "center",

@@ -34,7 +34,7 @@ const Tesekkur_Table = ({ tesekkurData,handleOpen_tesekkur,handleClose_tesekkur,
     // },
     {
       field: "actions",
-      headerName: "#",
+      headerName: "Aksiyon",
       minWidth: 120,
       headerAlign: "center",
       align: "center",

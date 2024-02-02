@@ -36,3 +36,9 @@ export const katkiKonusu=[
     {name: "Çevre/Güvenlik/Sağlık"},
 
 ]
+
+export const actionTypes=[
+    "Değerlendirmeye Alındı",
+    "Değerlendirme Aşamasında",
+    "Değerlendirmeye Alınamadı"
+]

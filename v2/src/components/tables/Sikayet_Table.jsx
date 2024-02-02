@@ -1,15 +1,19 @@
-import { Box, Typography } from '@mui/material'
+import { Box, Button, FormControl, MenuItem, Select, Typography } from '@mui/material'
 import React from 'react'
 import { DataGrid, GridToolbar, GridActionsCellItem } from '@mui/x-data-grid';
 import { useEffect, useState } from 'react';
 import { FaEye } from "react-icons/fa";
 import Sikayet_View from '../modals/Sikayet_View';
+import InputLabel from '@mui/material/InputLabel';
+import { MdEdit } from "react-icons/md";
+import ActionType_Modal from '../modals/ActionType_Modal';
 
-
-const Sikayet_Table = ({ sikayetData, handleClose_sikayet, handleOpen_sikayet, open_sikayet }) => {
+const Sikayet_Table = ({ sikayetData, handleClose_sikayet, handleOpen_sikayet, open_sikayet, handleOpen_action, handleClose_action, open_action }) => {
 
 
     const [sikayet, setSikayet] = useState([])
+
+    const [actionValue, setActionValue] = useState("")
 
     const [info, setInfo] = useState({
         name: "",
@@ -33,7 +37,7 @@ const Sikayet_Table = ({ sikayetData, handleClose_sikayet, handleOpen_sikayet, o
         // },
         {
             field: "actions",
-            headerName: "#",
+            headerName: "Aksiyon",
             minWidth: 50,
             headerAlign: "center",
             align: "center",
@@ -52,27 +56,45 @@ const Sikayet_Table = ({ sikayetData, handleClose_sikayet, handleOpen_sikayet, o
                 }
             }) => {
                 return [
+                    <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1 }}>
+                        <GridActionsCellItem
+                            key={'show'}
+                            label='Show'
+                            icon={<FaEye size={23} style={{ cursor: 'pointer', color: 'darkblue' }} />}
+                            onClick={() => {
+                                handleOpen_sikayet()
+                                setInfo({
+                                    id,
+                                    name,
+                                    surname,
+                                    phone,
+                                    email,
+                                    topic,
+                                    detail,
+                                    datetime
+                                })
 
-                    <GridActionsCellItem
-                        key={'show'}
-                        label='Show'
-                        icon={<FaEye size={23} style={{ cursor: 'pointer', color: 'darkblue' }} />}
-                        onClick={() => {
-                            handleOpen_sikayet()
-                            setInfo({
-                                id,
-                                name,
-                                surname,
-                                phone,
-                                email,
-                                topic,
-                                detail,
-                                datetime
-                            })
+                            }}
+                        />
+                        <GridActionsCellItem
+                            key={'edit'}
+                            label='Edit'
+                            icon={<MdEdit size={23} style={{ cursor: 'pointer', color: '#E8C872' }} onClick={() => {
+                                handleOpen_action()
+                                setInfo({
+                                    id,
+                                    name,
+                                    surname,
+                                    phone,
+                                    email,
+                                    topic,
+                                    detail,
+                                    datetime
+                                })
+                            }} />}
 
-                        }}
-                    />
-
+                        />
+                    </Box>
 
                 ]
             },
@@ -113,7 +135,7 @@ const Sikayet_Table = ({ sikayetData, handleClose_sikayet, handleOpen_sikayet, o
         {
             field: "topic",
             headerName: "Konu",
-            minWidth: 150,
+            minWidth: 100,
             headerAlign: "center",
             align: "center",
             flex: 1,
@@ -149,6 +171,16 @@ const Sikayet_Table = ({ sikayetData, handleClose_sikayet, handleOpen_sikayet, o
     }, [sikayetData])
 
 
+    const handleChange = (e) => {
+        setActionValue(e.target.value)
+    }
+
+    const handleAction = (e) => {
+
+        setInfo(prevInfo => ({
+            ...prevInfo, actionType: actionValue
+        }))
+    }
 
 
     return (
@@ -177,8 +209,8 @@ const Sikayet_Table = ({ sikayetData, handleClose_sikayet, handleOpen_sikayet, o
                 }}
             />
 
-            <Sikayet_View info={info} handleClose_sikayet={handleClose_sikayet} open_sikayet={open_sikayet}/>
-
+            <Sikayet_View info={info} handleClose_sikayet={handleClose_sikayet} open_sikayet={open_sikayet} />
+            <ActionType_Modal handleClose_action={handleClose_action} open_action={open_action} info={info} />
 
         </Box>
 
