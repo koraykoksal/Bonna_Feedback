@@ -16,6 +16,7 @@ import OneriTalep_Table from '../components/tables/OneriTalep_Table'
 import Sikayet_Table from '../components/tables/Sikayet_Table'
 import Tesekkur_View from '../components/modals/Tesekkur_View'
 import Actions_Table from '../components/tables/Actions_Table'
+import { reportPageStyle } from '../styles/globalStlye'
 
 
 const Reports = () => {
@@ -97,7 +98,8 @@ const Reports = () => {
 
 
   return (
-    <div>
+
+    <div style={reportPageStyle}>
 
 
       <Box sx={{ display: 'flex', justifyContent: 'center', gap: 3, p: 2 }}>

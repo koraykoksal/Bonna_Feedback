@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom"
 import thanks from "../assets/img/thanks.png"
 import feedback from "../assets/img/feedback.png"
 import complaint from "../assets/img/complaint.png"
+import { homePageStyle } from '../styles/globalStlye';
 
 export const Home = () => {
 
@@ -14,7 +15,7 @@ export const Home = () => {
 
   return (
 
-    <div>
+    <div style={homePageStyle}>
 
       <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', py:10, gap: 10}}>
 

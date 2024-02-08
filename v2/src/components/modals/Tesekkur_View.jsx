@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import { Typography, Grid, Container } from "@mui/material"
 import bonnaLogo from "../../assets/img/logobonna_b.png"
 import { IoMdCloseCircle } from "react-icons/io";
-import { modalStyles } from '../../styles/globalStlye';
+import { modalStyles, viewModalStyle } from '../../styles/globalStlye';
 
 
 
