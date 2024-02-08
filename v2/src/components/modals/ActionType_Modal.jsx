@@ -1,7 +1,7 @@
 import React from 'react'
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
-import { Typography, Grid, FormControl, InputLabel, Select, Container, MenuItem, Button } from "@mui/material"
+import { Typography, Grid, FormControl, InputLabel, Select, Container, MenuItem, Button, TextField } from "@mui/material"
 import bonnaLogo from "../../assets/img/logobonna_b.png"
 import { IoMdCloseCircle } from "react-icons/io";
 import { actionTypes } from '../../helper/data';
@@ -16,10 +16,9 @@ const ActionType_Modal = ({ handleClose_action, open_action, info ,setInfo}) => 
 
     const handleChange=(e)=>{
 
-       const {name,value} = e.target
-
        setInfo(prevData=>({
-        ...prevData,actionType:value
+        ...prevData,
+        [e.target.name]:e.target.value
        }))
     }
 
@@ -73,8 +72,8 @@ const ActionType_Modal = ({ handleClose_action, open_action, info ,setInfo}) => 
 
                     <Container sx={{ display: 'flex', flexDirection: 'column', gap: 3, alignItems: 'center', mt: 10 }} component={'form'} onSubmit={handleSubmit}>
 
-                        <Box>
-                            <FormControl sx={{ width: '350px' }}>
+                        <Box sx={{display:'flex',justifyContent:'center',gap:3,flexWrap:'wrap'}}>
+                            <FormControl sx={{ width: '300px' }}>
                                 <InputLabel id="actionType">Aksiyon Tipi</InputLabel>
                                 <Select
                                     name='actionType'
@@ -91,6 +90,17 @@ const ActionType_Modal = ({ handleClose_action, open_action, info ,setInfo}) => 
                                     }
                                 </Select>
                             </FormControl>
+
+                            <TextField
+                            sx={{width:'300px'}}
+                            name='actionResult'
+                            id='actionResult'
+                            label='Akçıklama'
+                            onChange={handleChange}
+                            value={info.actionResult}
+                            >
+
+                            </TextField>
                         </Box>
 
                         <Button variant='contained' type='submit'>Kaydet</Button>

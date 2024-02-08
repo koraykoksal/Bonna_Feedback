@@ -56,7 +56,8 @@ const Sikayet_Table = ({ sikayetData, handleClose_sikayet, handleOpen_sikayet, o
                     topic,
                     detail,
                     datetime,
-                    actionType
+                    actionType,
+                    actionResult
 
                 }
             }) => {
@@ -77,7 +78,8 @@ const Sikayet_Table = ({ sikayetData, handleClose_sikayet, handleOpen_sikayet, o
                                     topic,
                                     detail,
                                     datetime,
-                                    actionType
+                                    actionType,
+                                    actionResult
                                 })
 
                             }}
@@ -96,7 +98,8 @@ const Sikayet_Table = ({ sikayetData, handleClose_sikayet, handleOpen_sikayet, o
                                     topic,
                                     detail,
                                     datetime,
-                                    actionType
+                                    actionType,
+                                    actionResult
                                 })
                             }} />}
 
@@ -115,7 +118,8 @@ const Sikayet_Table = ({ sikayetData, handleClose_sikayet, handleOpen_sikayet, o
                                     topic,
                                     detail,
                                     datetime,
-                                    actionType
+                                    actionType,
+                                    actionResult
                                 })
                             }} />}
 
@@ -176,7 +180,15 @@ const Sikayet_Table = ({ sikayetData, handleClose_sikayet, handleOpen_sikayet, o
         },
         {
             field: "actionType",
-            headerName: "Aksiyon",
+            headerName: "Aksiyon Tipi",
+            minWidth: 150,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "actionResult",
+            headerName: "Aksiyon Açıklaması",
             minWidth: 150,
             headerAlign: "center",
             align: "center",
