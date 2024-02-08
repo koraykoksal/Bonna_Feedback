@@ -4,25 +4,11 @@ import Box from '@mui/material/Box';
 import { Typography, Grid } from "@mui/material"
 import bonnaLogo from "../../assets/img/logobonna_b.png"
 import { IoMdCloseCircle } from "react-icons/io";
+import { modalStyles } from '../../styles/globalStlye';
 
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: '90%',
-    height: '90%',
-    overflow: 'scroll',
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 5,
-
-};
 
 
 const Sikayet_View = ({ handleClose_sikayet, open_sikayet, info }) => {
-
 
 
     return (
@@ -34,9 +20,9 @@ const Sikayet_View = ({ handleClose_sikayet, open_sikayet, info }) => {
                 aria-describedby="modal-modal-description"
 
             >
-                <Box sx={style}>
+                <Box sx={modalStyles}>
 
-                <IoMdCloseCircle size={25} cursor={'pointer'} color='red' onClick={handleClose_sikayet}/>
+                <IoMdCloseCircle size={30} cursor={'pointer'} color='red' onClick={handleClose_sikayet}/>
 
                     <img src={bonnaLogo} style={{ width: '125px', margin: 'auto' }} />
 
@@ -52,7 +38,7 @@ const Sikayet_View = ({ handleClose_sikayet, open_sikayet, info }) => {
 
 
 
-                    <Box display={'flex'} flexDirection={'column'} alignItems={'center'} gap={2} py={3}>
+                    <Box display={'flex'} flexDirection={'column'} alignItems={'center'} gap={5} py={3}>
 
                         <Typography align='center' fontWeight={700}>Ad Soyad : {info?.name} {info?.surname}</Typography>
                         <Typography align='center' fontWeight={700}>Telefon : {info?.phone}</Typography>
@@ -60,6 +46,9 @@ const Sikayet_View = ({ handleClose_sikayet, open_sikayet, info }) => {
                         <Typography align='center' fontWeight={700}>Konu : {info?.topic}</Typography>
                         <Typography align='center' fontWeight={700}>Detay : {info?.detail}</Typography>
                     </Box>
+
+                  
+                    <Typography align='center' fontWeight={700}>Aksiyon : {info?.actionType}</Typography>
 
                 </Box>
 

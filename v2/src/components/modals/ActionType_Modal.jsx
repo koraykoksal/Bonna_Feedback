@@ -1,31 +1,39 @@
 import React from 'react'
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
-import { Typography, Grid, FormControl, InputLabel, Select } from "@mui/material"
+import { Typography, Grid, FormControl, InputLabel, Select, Container, MenuItem, Button } from "@mui/material"
 import bonnaLogo from "../../assets/img/logobonna_b.png"
 import { IoMdCloseCircle } from "react-icons/io";
 import { actionTypes } from '../../helper/data';
-
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: '90%',
-    height: '90%',
-    overflow: 'scroll',
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 5,
-  
-  };
+import { modalStyles } from '../../styles/globalStlye';
+import useFeedbackCall from '../../hooks/useFeedbackCall';
 
 
-const ActionType_Modal = ({handleClose_action,open_action, info}) => {
+
+const ActionType_Modal = ({ handleClose_action, open_action, info ,setInfo}) => {
+
+    const {putFireData_Sikayet,getFireData_Sikayet} = useFeedbackCall()
+
+    const handleChange=(e)=>{
+
+       const {name,value} = e.target
+
+       setInfo(prevData=>({
+        ...prevData,actionType:value
+       }))
+    }
 
 
-    console.log(info)
+    const handleSubmit=(e)=>{
+
+        e.preventDefault()
+
+        putFireData_Sikayet('sikayet',info)
+        getFireData_Sikayet('sikayet')
+
+        handleClose_action()
+    }
+
 
     return (
         <div>
@@ -37,40 +45,59 @@ const ActionType_Modal = ({handleClose_action,open_action, info}) => {
                 aria-describedby="modal-modal-description"
 
             >
-                <Box sx={style}>
+                <Box sx={modalStyles}>
 
-                    <Box display={'flex'} justifyContent={'space-between'}>
-                    <IoMdCloseCircle size={25} cursor={'pointer'} color='red' onClick={handleClose_action} />
-                    <Typography align={'center'} variant='subtitle1'>{info.datetime}</Typography>
-                    </Box>
-                    
+                    <IoMdCloseCircle size={30} cursor={'pointer'} color='red' onClick={handleClose_action} />
 
                     <img src={bonnaLogo} style={{ width: '125px', margin: 'auto' }} />
 
-                    
-                    <Box sx={{display:'flex',flexDirection:'column',gap:5,mt:10}}>
-                        <Typography align={'center'} variant='h7'>Ad Soyad : {info.name} {info.surname}</Typography>
-                        <Typography align={'center'} variant='h7'>Telefon : {info.phone}</Typography>
-                        <Typography align={'center'} variant='h7'>Email : {info.email}</Typography>
-                        <Typography align={'center'} variant='h7'>Konu : {info.topic}</Typography>
-                        <Typography align={'center'} variant='h7'>Detay : {info.detail}</Typography>
+
+                    <Box display={'flex'} justifyContent={'center'} gap={5} py={5}>
+
+                        <Typography align='center' fontWeight={700}>Konu : Şikayet</Typography>
+
+                        <Typography align='center' fontWeight={700}>Tarih : {info?.datetime}</Typography>
+
                     </Box>
 
-                    <Box>
-                        <FormControl>
-                            <InputLabel id="actionType">Aksiyon Tipi</InputLabel>
-                            <Select
-                            
-                            >
 
-                            </Select>
-                        </FormControl>
+
+                    <Box display={'flex'} flexDirection={'column'} alignItems={'center'} gap={5} py={3}>
+
+                        <Typography align='center' fontWeight={700}>Ad Soyad : {info?.name} {info?.surname}</Typography>
+                        <Typography align='center' fontWeight={700}>Telefon : {info?.phone}</Typography>
+                        <Typography align='center' fontWeight={700}>Email : {info?.email}</Typography>
+                        <Typography align='center' fontWeight={700}>Konu : {info?.topic}</Typography>
+                        <Typography align='center' fontWeight={700}>Detay : {info?.detail}</Typography>
                     </Box>
-                   
+
+                    <Container sx={{ display: 'flex', flexDirection: 'column', gap: 3, alignItems: 'center', mt: 10 }} component={'form'} onSubmit={handleSubmit}>
+
+                        <Box>
+                            <FormControl sx={{ width: '350px' }}>
+                                <InputLabel id="actionType">Aksiyon Tipi</InputLabel>
+                                <Select
+                                    name='actionType'
+                                    id='actionType'
+                                    label='actionType'
+                                    labelId='actionType'
+                                    onChange={handleChange}
+                                    value={info.actionType}
+                                >
+                                    {
+                                        actionTypes.map((item, index) => (
+                                            <MenuItem key={index} value={item}>{item}</MenuItem>
+                                        ))
+                                    }
+                                </Select>
+                            </FormControl>
+                        </Box>
+
+                        <Button variant='contained' type='submit'>Kaydet</Button>
+                    </Container>
+
 
                 </Box>
-
-
 
             </Modal>
 

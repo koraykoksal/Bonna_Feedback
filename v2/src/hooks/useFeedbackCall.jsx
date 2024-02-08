@@ -125,8 +125,6 @@ const useFeedbackCall = () => {
             onValue(starCountRef, (snapshot) => {
                 const data = snapshot.val();
 
-                // console.log(data)
-
                 if (data == null || data == undefined) {
                     console.log("firebase data null geliyor:", data)
                 }
@@ -145,6 +143,20 @@ const useFeedbackCall = () => {
 
     }
 
+
+    const putFireData_Sikayet=async (address,info)=>{
+
+
+        try {
+
+            const db = getDatabase()
+            await update(ref(db,`${address}/${info.id}`),info)
+            toastSuccessNotify('Updated Data')
+            
+        } catch (error) {
+            console.log("putFireData_Sikayet :",error)
+        }
+    }
 
     
     //! firebase data silme
@@ -166,7 +178,8 @@ const useFeedbackCall = () => {
         getFireData_Tesekkur,
         removeFirebaseData,
         getFireData_OneriTalep,
-        getFireData_Sikayet
+        getFireData_Sikayet,
+        putFireData_Sikayet
 
     }
 

@@ -54,6 +54,7 @@ const Sikayet = () => {
       email: "",
       topic: "",
       detail: "",
+      actionType:"",
       datetime: formattedDate
     })
 

@@ -7,8 +7,12 @@ import Sikayet_View from '../modals/Sikayet_View';
 import InputLabel from '@mui/material/InputLabel';
 import { MdEdit } from "react-icons/md";
 import ActionType_Modal from '../modals/ActionType_Modal';
+import { MdDeleteForever } from "react-icons/md";
+import Delete_Modal from '../modals/Delete_Modal';
 
-const Sikayet_Table = ({ sikayetData, handleClose_sikayet, handleOpen_sikayet, open_sikayet, handleOpen_action, handleClose_action, open_action }) => {
+
+
+const Sikayet_Table = ({ sikayetData, handleClose_sikayet, handleOpen_sikayet, open_sikayet, handleOpen_action, handleClose_action, open_action, handleOpen_delete, handleClose_delete, open_delete }) => {
 
 
     const [sikayet, setSikayet] = useState([])
@@ -51,7 +55,8 @@ const Sikayet_Table = ({ sikayetData, handleClose_sikayet, handleOpen_sikayet, o
                     email,
                     topic,
                     detail,
-                    datetime
+                    datetime,
+                    actionType
 
                 }
             }) => {
@@ -71,7 +76,8 @@ const Sikayet_Table = ({ sikayetData, handleClose_sikayet, handleOpen_sikayet, o
                                     email,
                                     topic,
                                     detail,
-                                    datetime
+                                    datetime,
+                                    actionType
                                 })
 
                             }}
@@ -89,7 +95,27 @@ const Sikayet_Table = ({ sikayetData, handleClose_sikayet, handleOpen_sikayet, o
                                     email,
                                     topic,
                                     detail,
-                                    datetime
+                                    datetime,
+                                    actionType
+                                })
+                            }} />}
+
+                        />
+                        <GridActionsCellItem
+                            key={'delete'}
+                            label='Delete'
+                            icon={<MdDeleteForever size={23} style={{ cursor: 'pointer', color: 'red' }} onClick={() => {
+                                handleOpen_delete()
+                                setInfo({
+                                    id,
+                                    name,
+                                    surname,
+                                    phone,
+                                    email,
+                                    topic,
+                                    detail,
+                                    datetime,
+                                    actionType
                                 })
                             }} />}
 
@@ -143,6 +169,14 @@ const Sikayet_Table = ({ sikayetData, handleClose_sikayet, handleOpen_sikayet, o
         {
             field: "detail",
             headerName: "Detay",
+            minWidth: 150,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "actionType",
+            headerName: "Aksiyon",
             minWidth: 150,
             headerAlign: "center",
             align: "center",
@@ -210,8 +244,8 @@ const Sikayet_Table = ({ sikayetData, handleClose_sikayet, handleOpen_sikayet, o
             />
 
             <Sikayet_View info={info} handleClose_sikayet={handleClose_sikayet} open_sikayet={open_sikayet} />
-            <ActionType_Modal handleClose_action={handleClose_action} open_action={open_action} info={info} />
-
+            <ActionType_Modal handleClose_action={handleClose_action} open_action={open_action} info={info} setInfo={setInfo} />
+            <Delete_Modal info={info} setInfo={setInfo} open_delete={open_delete} handleClose_delete={handleClose_delete} handleOpen_delete={handleOpen_delete} />
         </Box>
 
 

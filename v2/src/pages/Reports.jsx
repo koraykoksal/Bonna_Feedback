@@ -15,6 +15,7 @@ import { useSelector } from 'react-redux'
 import OneriTalep_Table from '../components/tables/OneriTalep_Table'
 import Sikayet_Table from '../components/tables/Sikayet_Table'
 import Tesekkur_View from '../components/modals/Tesekkur_View'
+import Actions_Table from '../components/tables/Actions_Table'
 
 
 const Reports = () => {
@@ -58,20 +59,40 @@ const Reports = () => {
   }
 
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+  // delete modal handle state bilgisi
+  const [open_delete, setOpen_delete] = useState(false)
+  const handleOpen_delete = () => setOpen_delete(true);
+  const handleClose_delete = () => {
+    setOpen_delete(false)
 
-  const style = {
-    textTransform: 'none',
-    fontSize: '18px'
   }
+
 
   useEffect(() => {
     getFireData_Tesekkur('tesekkur')
     getFireData_OneriTalep('oneri-talep')
     getFireData_Sikayet('sikayet')
   }, [])
+
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+
+  const style = {
+    textTransform: 'none',
+    fontSize: '18px'
+  }
+
+  const actionStyle = {
+    textTransform: 'none',
+    fontSize: '18px',
+    color: 'red',
+    fontWeight: 700
+  }
+
+
 
 
 
@@ -106,7 +127,10 @@ const Reports = () => {
 
       {value == 2 && (<OneriTalep_Table handleClose_oneritalep={handleClose_oneritalep} handleOpen_oneritalep={handleOpen_oneritalep} open_oneritalep={open_oneritalep} oneriTalepData={oneriTalepData} />)}
       {
-        value == 3 && (<Sikayet_Table handleClose_sikayet={handleClose_sikayet} handleOpen_sikayet={handleOpen_sikayet} open_sikayet={open_sikayet} sikayetData={sikayetData} open_action={open_action} handleClose_action={handleClose_action} handleOpen_action={handleOpen_action} />)}
+        value == 3 && (<Sikayet_Table handleClose_sikayet={handleClose_sikayet} handleOpen_sikayet={handleOpen_sikayet} open_sikayet={open_sikayet} sikayetData={sikayetData} open_action={open_action} handleClose_action={handleClose_action} handleOpen_action={handleOpen_action} open_delete={open_delete} handleClose_delete={handleClose_delete} handleOpen_delete={handleOpen_delete} />)
+      }
+
+
 
 
 
