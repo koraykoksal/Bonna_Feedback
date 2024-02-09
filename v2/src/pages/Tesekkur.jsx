@@ -11,7 +11,7 @@ import useFeedbackCall from '../hooks/useFeedbackCall';
 const Tesekkur = () => {
 
 
-  const {postFireData} = useFeedbackCall()
+  const { postFireData } = useFeedbackCall()
 
   const now = new Date()
 
@@ -36,6 +36,8 @@ const Tesekkur = () => {
     email: "",
     topic: "",
     detail: "",
+    actionType: "",
+    actionResult: "",
     datetime: formattedDate
 
   })
@@ -48,7 +50,7 @@ const Tesekkur = () => {
 
     e.preventDefault()
 
-    postFireData('tesekkur',info)
+    postFireData('tesekkur', info)
 
     setInfo({
       name: "",
@@ -57,12 +59,14 @@ const Tesekkur = () => {
       email: "",
       topic: "",
       detail: "",
+      actionType: "",
+      actionResult: "",
       datetime: formattedDate
     })
 
   }
 
- 
+
 
   return (
     <div>
@@ -134,7 +138,7 @@ const Tesekkur = () => {
 
 
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-          
+
               <TextField
                 fullWidth
                 required

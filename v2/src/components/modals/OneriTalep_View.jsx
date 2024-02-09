@@ -24,7 +24,7 @@ const OneriTalep_View = ({ handleClose_oneritalep, open_oneritalep, info }) => {
       >
         <Box sx={modalStyles}>
 
-          <IoMdCloseCircle size={30} cursor={'pointer'} color='red' onClick={handleClose_oneritalep}/>
+          <IoMdCloseCircle size={30} cursor={'pointer'} color='red' onClick={handleClose_oneritalep} />
 
           <img src={bonnaLogo} style={{ width: '125px', margin: 'auto' }} />
 
@@ -48,6 +48,13 @@ const OneriTalep_View = ({ handleClose_oneritalep, open_oneritalep, info }) => {
             <Typography align='center' fontWeight={700}>Konu : {info?.topic}</Typography>
             <Typography align='center' fontWeight={700}>Fayda : {info?.katkiKonusu}</Typography>
             <Typography align='center' fontWeight={700}>Detay : {info?.detail}</Typography>
+          </Box>
+
+          <Box display={'flex'} justifyContent={'center'} gap={10} py={5}>
+
+            <Typography align='center' fontWeight={700}>Aksiyon Tipi : {info?.actionType}</Typography>
+            <Typography align='center' fontWeight={700}>Aksiyon Açıklaması : {info?.actionResult}</Typography>
+
           </Box>
 
         </Box>

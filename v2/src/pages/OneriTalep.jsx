@@ -10,7 +10,7 @@ import useFeedbackCall from '../hooks/useFeedbackCall';
 
 const OneriTalep = () => {
 
-  const {postFireData} = useFeedbackCall()
+  const { postFireData } = useFeedbackCall()
 
   const now = new Date()
 
@@ -36,6 +36,8 @@ const OneriTalep = () => {
     topic: "",
     katkiKonusu: "",
     detail: "",
+    actionType: "",
+    actionResult: "",
     datetime: formattedDate
 
   })
@@ -48,7 +50,7 @@ const OneriTalep = () => {
 
     e.preventDefault()
 
-    postFireData('oneri-talep',info)
+    postFireData('oneri-talep', info)
 
     setInfo({
       name: "",
@@ -58,6 +60,8 @@ const OneriTalep = () => {
       topic: "",
       katkiKonusu: "",
       detail: "",
+      actionType: "",
+      actionResult: "",
       datetime: formattedDate
     })
 

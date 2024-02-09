@@ -33,6 +33,8 @@ const Sikayet = () => {
     email: "",
     topic: "",
     detail: "",
+    actionType: "",
+    actionResult: "",
     datetime: formattedDate
 
   })
@@ -54,7 +56,8 @@ const Sikayet = () => {
       email: "",
       topic: "",
       detail: "",
-      actionType:"",
+      actionType: "",
+      actionResult: "",
       datetime: formattedDate
     })
 

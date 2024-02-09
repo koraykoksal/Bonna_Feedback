@@ -21,16 +21,35 @@ const style = {
 
 const Delete_Modal = ({ handleOpen_delete, handleClose_delete, open_delete, info, setInfo }) => {
 
-   const {getFireData_Sikayet,removeFirebaseData} = useFeedbackCall()
+    const { getFireData_Sikayet, removeFirebaseData } = useFeedbackCall()
 
-    const handleSubmit=(e)=>{
+    const handleSubmit = (e) => {
 
         e.preventDefault()
 
-        if(info.id){
-            removeFirebaseData('sikayet', info.id)
-            getFireData_Sikayet('sikayet')
+        if (info.type == "sikayet") {
+
+            if (info.id) {
+                removeFirebaseData('sikayet', info.id)
+                getFireData_Sikayet('sikayet')
+            }
         }
+        else if (info.type == "oneriTalep") {
+
+            if (info.id) {
+                removeFirebaseData('oneri-talep', info.id)
+                getFireData_Sikayet('oneri-talep')
+            }
+        }
+        else if (info.type == "tesekkur") {
+
+            if (info.id) {
+                removeFirebaseData('tesekkur', info.id)
+                getFireData_Sikayet('tesekkur')
+            }
+        }
+
+
 
         handleClose_delete()
     }
