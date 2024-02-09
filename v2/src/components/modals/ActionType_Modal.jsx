@@ -7,29 +7,31 @@ import { IoMdCloseCircle } from "react-icons/io";
 import { actionTypes } from '../../helper/data';
 import { modalStyles } from '../../styles/globalStlye';
 import useFeedbackCall from '../../hooks/useFeedbackCall';
-
+import { useEffect } from 'react';
 
 
 const ActionType_Modal = ({ handleClose_action, open_action, info, setInfo }) => {
 
     const { putFireData_Sikayet, getFireData_Sikayet } = useFeedbackCall()
 
+
+    useEffect(() => {
+
+        if (info.actionResult == undefined || info.actionType == undefined) {
+            setInfo({ ...info, ['actionResult']: "", ['actionType']: "" })
+        }
+
+    }, [info])
+
+
     const handleChange = (e) => {
 
         const { name, value } = e.target
 
-        // name değeri undifiend gelirse boş string değeri ile doldur
-        if (name == undefined) {
-            setInfo({ ...info, [name]: ""})
-        }
-        else {
-            setInfo(prevData => ({
-                ...prevData,
-                [name]: value
-            }))
-        }
-
-
+        setInfo(prevData => ({
+            ...prevData,
+            [name]: value
+        }))
 
     }
 
@@ -52,8 +54,6 @@ const ActionType_Modal = ({ handleClose_action, open_action, info, setInfo }) =>
         handleClose_action()
     }
 
-
-    console.log(info)
 
     return (
         <div>
