@@ -13,7 +13,7 @@ import { object, string } from "yup"
 import useAuthCall from '../hooks/useAuthCall'
 import { useState } from 'react'
 import { IoHome } from "react-icons/io5";
-
+import image from "../assets/img/loginImg.png"
 
 const Login = () => {
 
@@ -43,23 +43,21 @@ const Login = () => {
 
   return (
 
-    <Container maxWidth="lg" >
-
-      <Typography variant='h4' align='center' p={3} fontWeight={700} color='#ae0707'>Bonna Feedback</Typography>
+    <Container sx={{ mt: 15 }}>
 
       <Grid
         container
         justifyContent="center"
         direction="row-reverse"
         sx={{
-          height: "100vh",
+          alignItems: 'center',
           p: 2,
+          gap: 5,
         }}
       >
 
 
-
-        <Grid item xs={12} sm={10} md={6}>
+        <Grid item xs={10} sm={8} md={6}>
           <Avatar
             sx={{
               backgroundColor: "secondary.light",
@@ -69,52 +67,57 @@ const Login = () => {
             }}
           >
             <LockIcon size="30" />
-
           </Avatar>
-          
+          <Typography
+            variant="h4"
+            align="center"
+            mb={4}
+            color="secondary.light"
+          >
+            Login
+          </Typography>
 
-          <form  onSubmit={handleSubmit}>
-            <Box sx={{ display: "flex", flexDirection: "column", gap: 2 ,mt:5}}>
 
-              <TextField
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }} component='form' onSubmit={handleSubmit}>
+            <TextField
               required
-                label="Email"
-                name="email"
-                id="email"
-                type="email"
-                variant="outlined"
-                value={info.email}
-                onChange={handleChange}
-                
-              />
-              <TextField
+              label="E-Posta"
+              name="email"
+              id="email"
+              type="text"
+              variant="outlined"
+              value={info.email}
+              onChange={handleChange}
+            />
+            <TextField
               required
-                label="Password"
-                name="password"
-                id="password"
-                type="password"
-                variant="outlined"
-                value={info.password}
-                onChange={handleChange}
-              />
-              <Button variant="contained" type="submit" sx={{letterSpacing:3,textTransform:'none'}}>
-                Giriş
-              </Button>
+              label="Parola"
+              name="password"
+              id="password"
+              type="password"
+              variant="outlined"
+              value={info.password}
+              onChange={handleChange}
+            />
+            <Button variant="contained" type="submit" sx={{ letterSpacing: 5, textTransform: 'none' }}>
+              Giriş
+            </Button>
 
-            </Box>
-          </form>
+          </Box>
 
-          {/* <Box sx={{mt: 5,display:'flex',flexDirection:'column'}}>
-            <IoHome size={30} color='green' style={{margin:'auto'}} onClick={()=>navigate('/')} cursor={'pointer'}/>
-          </Box> */}
+
 
         </Grid>
 
+        <Grid item xs={10} sm={8} md={5}>
+          <Container>
+            <img src={image} alt="img" />
+          </Container>
+        </Grid>
 
       </Grid>
-
-
     </Container>
+
 
   )
 }
