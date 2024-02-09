@@ -31,7 +31,7 @@ const OneriTalep_View = ({ handleClose_oneritalep, open_oneritalep, info }) => {
 
           <Box display={'flex'} justifyContent={'center'} gap={5} py={5}>
 
-            <Typography align='center' fontWeight={700}>Konu : Öneri & Talep</Typography>
+            <Typography align='center' fontWeight={700}>Başlık : Öneri & Talep</Typography>
 
             <Typography align='center' fontWeight={700}>Tarih : {info?.datetime}</Typography>
 

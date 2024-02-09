@@ -29,7 +29,7 @@ const Sikayet_View = ({ handleClose_sikayet, open_sikayet, info }) => {
 
                     <Box display={'flex'} justifyContent={'center'} gap={5} py={5}>
 
-                        <Typography align='center' fontWeight={700}>Konu : Şikayet</Typography>
+                        <Typography align='center' fontWeight={700}>Başlık : Şikayet</Typography>
 
                         <Typography align='center' fontWeight={700}>Tarih : {info?.datetime}</Typography>
 

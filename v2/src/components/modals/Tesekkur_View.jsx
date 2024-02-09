@@ -10,7 +10,7 @@ import { modalStyles, viewModalStyle } from '../../styles/globalStlye';
 
 const Tesekkur_View = ({ handleClose_tesekkur, open_tesekkur, info }) => {
 
-  
+
 
     return (
         <div>
@@ -23,14 +23,14 @@ const Tesekkur_View = ({ handleClose_tesekkur, open_tesekkur, info }) => {
             >
                 <Box sx={modalStyles}>
 
-                <IoMdCloseCircle size={30} cursor={'pointer'} color='red' onClick={handleClose_tesekkur}/>
+                    <IoMdCloseCircle size={30} cursor={'pointer'} color='red' onClick={handleClose_tesekkur} />
 
                     <img src={bonnaLogo} style={{ width: '125px', margin: 'auto' }} />
 
 
                     <Box display={'flex'} justifyContent={'center'} gap={5} py={5}>
 
-                        <Typography align='center' fontWeight={700}>Konu : Teşekkür</Typography>
+                        <Typography align='center' fontWeight={700}>Başlık : Teşekkür</Typography>
 
                         <Typography align='center' fontWeight={700}>Tarih : {info?.datetime}</Typography>
 
@@ -46,6 +46,13 @@ const Tesekkur_View = ({ handleClose_tesekkur, open_tesekkur, info }) => {
                         <Typography align='center' fontWeight={700}>Email : {info?.email}</Typography>
                         <Typography align='center' fontWeight={700}>Konu : {info?.topic}</Typography>
                         <Typography align='center' fontWeight={700}>Detay : {info?.detail}</Typography>
+                    </Box>
+
+                    <Box display={'flex'} justifyContent={'center'} gap={10} py={5}>
+
+                        <Typography align='center' fontWeight={700}>Aksiyon Tipi : {info?.actionType}</Typography>
+                        <Typography align='center' fontWeight={700}>Aksiyon Açıklaması : {info?.actionResult}</Typography>
+
                     </Box>
 
                 </Box>

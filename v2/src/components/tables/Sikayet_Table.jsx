@@ -136,7 +136,7 @@ const Sikayet_Table = ({ sikayetData, handleClose_sikayet, handleOpen_sikayet, o
                 }
             }) => {
                 return [
-                    <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1 }}>
+         
                         <GridActionsCellItem
                             key={'show'}
                             label='Show'
@@ -157,7 +157,7 @@ const Sikayet_Table = ({ sikayetData, handleClose_sikayet, handleOpen_sikayet, o
                                 })
 
                             }}
-                        />
+                        />,
                         <GridActionsCellItem
                             key={'edit'}
                             label='Edit'
@@ -178,7 +178,7 @@ const Sikayet_Table = ({ sikayetData, handleClose_sikayet, handleOpen_sikayet, o
                                 })
                             }} />}
 
-                        />
+                        />,
                         <GridActionsCellItem
                             key={'delete'}
                             label='Delete'
@@ -200,7 +200,7 @@ const Sikayet_Table = ({ sikayetData, handleClose_sikayet, handleOpen_sikayet, o
                             }} />}
 
                         />
-                    </Box>
+                    
 
                 ]
             },

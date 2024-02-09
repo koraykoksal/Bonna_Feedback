@@ -50,10 +50,17 @@ const ActionType_Modal = ({ handleClose_action, open_action, info, setInfo }) =>
             putFireData_Sikayet('oneri-talep', info)
             getFireData_Sikayet('oneri-talep')
         }
+        else if (info.type == "tesekkur") {
+
+            putFireData_Sikayet('tesekkur', info)
+            getFireData_Sikayet('tesekkur')
+        }
 
         handleClose_action()
     }
 
+
+    console.log(info)
 
     return (
         <div>
@@ -89,6 +96,20 @@ const ActionType_Modal = ({ handleClose_action, open_action, info, setInfo }) =>
                             <Typography align='center' fontWeight={700}>Konu : {info?.topic}</Typography>
                             <Typography align='center' fontWeight={700}>Detay : {info?.detail}</Typography>
                         </Box>
+
+
+                        {
+
+                            info.type == "oneriTalep" && (
+
+                                <Box display={'flex'} flexDirection={'column'} gap={3}>
+                                    <Typography align='center' fontWeight={700}>Konu : {info?.topic}</Typography>
+                                    <Typography align='center' fontWeight={700}>Fayda : {info?.katkiKonusu}</Typography>
+                                </Box>
+
+                            )
+                        }
+
 
                         <Container sx={{ display: 'flex', flexDirection: 'column', gap: 3, alignItems: 'center', mt: 10 }} component={'form'} onSubmit={handleSubmit}>
 
