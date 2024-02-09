@@ -1,3 +1,4 @@
+import pattern1 from "../assets/img/bg1.png"
 import pattern2 from "../assets/img/bg2.png"
 import pattern3 from "../assets/img/bg3.png"
 import pattern4 from "../assets/img/bg4.png"
@@ -41,6 +42,16 @@ export const homePageStyle={
     height: "100vh",
     overflow:'auto',
     backgroundImage: `url(${pattern4})`,
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+}
+
+export const loginPageStyle={
+    width: "100%",
+    height: "100vh",
+    overflow:'auto',
+    backgroundImage: `url(${pattern1})`,
     backgroundPosition: "center",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
