@@ -8,55 +8,58 @@ import feedback from "../assets/img/feedback.png"
 import complaint from "../assets/img/complaint.png"
 import { homePageStyle } from '../styles/globalStlye';
 
+
+
+const urlData = [
+
+  {
+    title: "Teşekkür",
+    url: "/tesekkur",
+    icon: thanks,
+  },
+  {
+    title: "Öneri & Talep",
+    url: "/oneritalep",
+    icon: feedback,
+  },
+  {
+    title: "Şikayet",
+    url: "/sikayet",
+    icon: complaint,
+  }
+]
+
 export const Home = () => {
 
 
   const navigate = useNavigate()
 
-  
+
 
   return (
 
     <div style={homePageStyle}>
 
-      <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', py:10, gap: 10}}>
+      <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', py: 10, gap: 10 }}>
 
 
-        <Card sx={{maxWidth:'350px',boxShadow:'none'}}>
-          <CardMedia
-          component='img'
-          image={thanks}
-          height='185'
-          sx={{objectFit:'cover',width:'75%',margin:'auto'}}
-          />
-          <CardContent>
-          <Button fullWidth variant='outlined' color='primary' sx={{ textTransform: 'none', fontSize: '26px' }} onClick={() => navigate('/tesekkur')}>Teşekkür</Button>
-          </CardContent>
-        </Card>
+        {
+          urlData.map((item, index) => (
 
-        <Card sx={{maxWidth:'350px',boxShadow:'none'}}>
-          <CardMedia
-          component='img'
-          image={feedback}
-          height='185'
-          sx={{objectFit:'cover',width:'75%',margin:'auto'}}
-          />
-          <CardContent>
-          <Button fullWidth variant='outlined' color='secondary' sx={{ textTransform: 'none', fontSize: '26px' }} onClick={() => navigate('/oneritalep')}>Öneri & Talep</Button>
-          </CardContent>
-        </Card>
+            <Card sx={{ maxWidth: '350px', boxShadow: 'none', backgroundColor: 'transparent' }} key={index}>
+              <CardMedia
+                component='img'
+                image={item.icon}
+                height='185'
+                sx={{ objectFit: 'cover', width: '75%', margin: 'auto' }}
+              />
+              <CardContent>
+                <Button fullWidth variant='outlined' color='warning' sx={{ textTransform: 'none', fontSize: '26px' }} onClick={() => navigate(`${item.url}`)}>{item.title}</Button>
+              </CardContent>
+            </Card>
 
-        <Card sx={{maxWidth:'350px',boxShadow:'none'}}>
-          <CardMedia
-          component='img'
-          image={complaint}
-          height='185'
-          sx={{objectFit:'cover',width:'75%',margin:'auto'}}
-          />
-          <CardContent>
-          <Button fullWidth variant='outlined' color='warning' sx={{textTransform: 'none', fontSize: '26px' }} onClick={() => navigate('/sikayet')}>Şikayet</Button>
-          </CardContent>
-        </Card>
+          ))
+        }
 
 
       </Box>
