@@ -3,8 +3,9 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
-import { TextField } from '@mui/material';
 import useFeedbackCall from '../hooks/useFeedbackCall';
+import { location } from '../helper/data';
+import { FormControl, FormLabel, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 
 const Sikayet = () => {
 
@@ -35,6 +36,7 @@ const Sikayet = () => {
     detail: "",
     actionType: "",
     actionResult: "",
+    location:"",
     datetime: formattedDate
 
   })
@@ -58,6 +60,7 @@ const Sikayet = () => {
       detail: "",
       actionType: "",
       actionResult: "",
+      location:"",
       datetime: formattedDate
     })
 
@@ -144,6 +147,27 @@ const Sikayet = () => {
                 }}
                 onChange={handleChange}
               />
+            </Box>
+
+            <Box>
+              <FormControl fullWidth>
+                <InputLabel id="location">Lokasyon</InputLabel>
+                <Select
+                  required
+                  labelId='location'
+                  name='location'
+                  id='location'
+                  label='location'
+                  value={info.location}
+                  onChange={handleChange}
+                >
+                  {
+                    location.map((item, index) => (
+                      <MenuItem key={index} value={item}>{item}</MenuItem>
+                    ))
+                  }
+                </Select>
+              </FormControl>
             </Box>
 
 

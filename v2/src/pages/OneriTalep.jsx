@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import { FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
-import { oneriKonusu, katkiKonusu } from '../helper/data';
+import { oneriKonusu, katkiKonusu, location } from '../helper/data';
 import useFeedbackCall from '../hooks/useFeedbackCall';
 
 
@@ -38,6 +38,7 @@ const OneriTalep = () => {
     detail: "",
     actionType: "",
     actionResult: "",
+    location:"",
     datetime: formattedDate
 
   })
@@ -62,6 +63,7 @@ const OneriTalep = () => {
       detail: "",
       actionType: "",
       actionResult: "",
+      location:"",
       datetime: formattedDate
     })
 
@@ -179,6 +181,28 @@ const OneriTalep = () => {
               </FormControl>
 
             </Box>
+
+            <Box>
+              <FormControl fullWidth>
+                <InputLabel id="location">Lokasyon</InputLabel>
+                <Select
+                required
+                labelId='location'
+                name='location'
+                id='location'
+                label='location'
+                value={info.location}
+                onChange={handleChange}
+                >
+                  {
+                    location.map((item,index)=>(
+                      <MenuItem key={index} value={item}>{item}</MenuItem>
+                    ))
+                  }
+                </Select>
+              </FormControl>
+            </Box>
+
 
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
               <TextField

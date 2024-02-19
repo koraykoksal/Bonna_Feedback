@@ -42,3 +42,10 @@ export const actionTypes=[
     "Değerlendirme Aşamasında",
     "Değerlendirmeye Alınamadı"
 ]
+
+export const location=[
+    "Çayırova",
+    "Pazaryeri",
+    "Pendik",
+    "Diğer",
+]

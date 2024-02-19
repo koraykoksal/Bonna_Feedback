@@ -26,7 +26,8 @@ const Tesekkur_Table = ({ tesekkurData, handleOpen_tesekkur, handleClose_tesekku
     detail: "",
     datetime: "",
     actionType: "",
-    actionResult: ""
+    actionResult: "",
+    location:"",
 
   })
 
@@ -83,6 +84,14 @@ const Tesekkur_Table = ({ tesekkurData, handleOpen_tesekkur, handleClose_tesekku
       flex: 1,
     },
     {
+      field: "location",
+      headerName: "Lokasyon",
+      minWidth: 150,
+      headerAlign: "center",
+      align: "center",
+      flex: 1,
+    },
+    {
       field: "actionType",
       headerName: "Aksiyon Tipi",
       minWidth: 150,
@@ -124,7 +133,8 @@ const Tesekkur_Table = ({ tesekkurData, handleOpen_tesekkur, handleClose_tesekku
           detail,
           datetime,
           actionType,
-          actionResult
+          actionResult,
+          location
 
         }
       }) => {
@@ -146,7 +156,8 @@ const Tesekkur_Table = ({ tesekkurData, handleOpen_tesekkur, handleClose_tesekku
                 detail,
                 datetime,
                 actionType,
-                actionResult
+                actionResult,
+                location
               })
 
             }}
@@ -167,6 +178,7 @@ const Tesekkur_Table = ({ tesekkurData, handleOpen_tesekkur, handleClose_tesekku
                 datetime,
                 actionType,
                 actionResult,
+                location,
                 type: "tesekkur"
               })
             }} />}
@@ -188,6 +200,7 @@ const Tesekkur_Table = ({ tesekkurData, handleOpen_tesekkur, handleClose_tesekku
                 datetime,
                 actionType,
                 actionResult,
+                location,
                 type: "tesekkur"
               })
             }} />}

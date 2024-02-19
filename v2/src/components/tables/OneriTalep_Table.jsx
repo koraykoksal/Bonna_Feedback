@@ -25,6 +25,7 @@ const OneriTalep_Table = ({ oneriTalepData, handleClose_oneritalep, handleOpen_o
     datetime: "",
     actionType: "",
     actionResult: "",
+    location:""
 
   })
 
@@ -96,6 +97,14 @@ const OneriTalep_Table = ({ oneriTalepData, handleClose_oneritalep, handleOpen_o
       flex: 1,
     },
     {
+      field: "location",
+      headerName: "Lokasyon",
+      minWidth: 150,
+      headerAlign: "center",
+      align: "center",
+      flex: 1,
+    },
+    {
       field: "actionType",
       headerName: "Aksiyon Tipi",
       minWidth: 150,
@@ -138,7 +147,8 @@ const OneriTalep_Table = ({ oneriTalepData, handleClose_oneritalep, handleOpen_o
           detail,
           datetime,
           actionType,
-          actionResult
+          actionResult,
+          location,
 
         }
       }) => {
@@ -161,7 +171,8 @@ const OneriTalep_Table = ({ oneriTalepData, handleClose_oneritalep, handleOpen_o
                 detail,
                 datetime,
                 actionType,
-                actionResult
+                actionResult,
+                location
               })
 
             }}
@@ -183,6 +194,7 @@ const OneriTalep_Table = ({ oneriTalepData, handleClose_oneritalep, handleOpen_o
                 datetime,
                 actionType,
                 actionResult,
+                location,
                 type: "oneriTalep"
               })
             }} />}
@@ -205,6 +217,7 @@ const OneriTalep_Table = ({ oneriTalepData, handleClose_oneritalep, handleOpen_o
                 datetime,
                 actionType,
                 actionResult,
+                location,
                 type: "oneriTalep"
               })
             }} />}

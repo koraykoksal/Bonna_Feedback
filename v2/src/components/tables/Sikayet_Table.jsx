@@ -26,7 +26,8 @@ const Sikayet_Table = ({ sikayetData, handleClose_sikayet, handleOpen_sikayet, o
         detail: "",
         datetime: "",
         actionType: "",
-        actionResult: ""
+        actionResult: "",
+        location:""
 
     })
 
@@ -90,6 +91,14 @@ const Sikayet_Table = ({ sikayetData, handleClose_sikayet, handleOpen_sikayet, o
             flex: 1,
         },
         {
+            field: "location",
+            headerName: "Lokasyon",
+            minWidth: 150,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
             field: "actionType",
             headerName: "Aksiyon Tipi",
             minWidth: 150,
@@ -131,7 +140,8 @@ const Sikayet_Table = ({ sikayetData, handleClose_sikayet, handleOpen_sikayet, o
                     detail,
                     datetime,
                     actionType,
-                    actionResult
+                    actionResult,
+                    location
 
                 }
             }) => {
@@ -153,7 +163,8 @@ const Sikayet_Table = ({ sikayetData, handleClose_sikayet, handleOpen_sikayet, o
                                     detail,
                                     datetime,
                                     actionType,
-                                    actionResult
+                                    actionResult,
+                                    location
                                 })
 
                             }}
@@ -174,6 +185,7 @@ const Sikayet_Table = ({ sikayetData, handleClose_sikayet, handleOpen_sikayet, o
                                     datetime,
                                     actionType,
                                     actionResult,
+                                    location,
                                     type: "sikayet"
                                 })
                             }} />}
@@ -195,6 +207,7 @@ const Sikayet_Table = ({ sikayetData, handleClose_sikayet, handleOpen_sikayet, o
                                     datetime,
                                     actionType,
                                     actionResult,
+                                    location,
                                     type: "sikayet"
                                 })
                             }} />}
