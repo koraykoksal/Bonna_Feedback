@@ -191,28 +191,28 @@ const Sikayet_Table = ({ sikayetData, handleClose_sikayet, handleOpen_sikayet, o
                             }} />}
 
                         />,
-                        <GridActionsCellItem
-                            key={'delete'}
-                            label='Delete'
-                            icon={<MdDeleteForever size={23} style={{ cursor: 'pointer', color: 'red' }} onClick={() => {
-                                handleOpen_delete()
-                                setInfo({
-                                    id,
-                                    name,
-                                    surname,
-                                    phone,
-                                    email,
-                                    topic,
-                                    detail,
-                                    datetime,
-                                    actionType,
-                                    actionResult,
-                                    location,
-                                    type: "sikayet"
-                                })
-                            }} />}
+                        // <GridActionsCellItem
+                        //     key={'delete'}
+                        //     label='Delete'
+                        //     icon={<MdDeleteForever size={23} style={{ cursor: 'pointer', color: 'red' }} onClick={() => {
+                        //         handleOpen_delete()
+                        //         setInfo({
+                        //             id,
+                        //             name,
+                        //             surname,
+                        //             phone,
+                        //             email,
+                        //             topic,
+                        //             detail,
+                        //             datetime,
+                        //             actionType,
+                        //             actionResult,
+                        //             location,
+                        //             type: "sikayet"
+                        //         })
+                        //     }} />}
 
-                        />
+                        // />
                     
 
                 ]
