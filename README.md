@@ -1,13 +1,13 @@
 # Bonna Feedback
 
 #### About Project : 
-##### Uygulamaya qr kod üzerinden erişim yapılıyor.
-##### Uygulama içerisinde kullanıcılar teşekkür, geri bildirim ve şikayet kaydı oluşturabiliyor.
-##### Veriler firebase veritabanına kayıt ediliyor.
-##### Girilen verilerin kayıtlarına erişmek için bir rapor sayfası mevcut.
-##### Firebase veritabanı ile authentication entegrasyonu mevcut.
-##### Authentication ile rapor sonuçları görüntülenebilir.
-##### Şikayet kayıtları ile işleme alındı veya alınmadı gibi geri bildirim yapılabilir.
+##### The application is accessed via QR code.
+##### Within the application, users can create thank you, feedback and complaint records.
+##### The data is saved to the firebase database.
+##### A report page is available to access records of entered data.
+##### Authentication integration with Firebase database is available.
+##### Report results can be viewed with Authentication.
+##### Feedback such as whether it was processed or not can be provided through complaint records.
 
 
 ## Installation
