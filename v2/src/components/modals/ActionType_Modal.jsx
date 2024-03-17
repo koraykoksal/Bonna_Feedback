@@ -55,12 +55,16 @@ const ActionType_Modal = ({ handleClose_action, open_action, info, setInfo }) =>
             putFireData_Sikayet('tesekkur', info)
             getFireData_Sikayet('tesekkur')
         }
+        else if (info.type == "ramakkala") {
+
+            putFireData_Sikayet('ramakkala', info)
+            getFireData_Sikayet('ramakkala')
+        }
 
         handleClose_action()
     }
 
 
-    console.log(info)
 
     return (
         <div>
@@ -82,7 +86,7 @@ const ActionType_Modal = ({ handleClose_action, open_action, info, setInfo }) =>
 
                         <Box display={'flex'} justifyContent={'center'} gap={5} py={5}>
 
-                            <Typography align='center' fontWeight={700}>Konu : Şikayet</Typography>
+                            <Typography align='center' fontWeight={700}>Konu : Ramak Kala</Typography>
 
                             <Typography align='center' fontWeight={700}>Tarih : {info?.datetime}</Typography>
 
@@ -93,8 +97,18 @@ const ActionType_Modal = ({ handleClose_action, open_action, info, setInfo }) =>
                             <Typography align='center' fontWeight={700}>Ad Soyad : {info?.name} {info?.surname}</Typography>
                             <Typography align='center' fontWeight={700}>Telefon : {info?.phone}</Typography>
                             <Typography align='center' fontWeight={700}>Email : {info?.email}</Typography>
-                            <Typography align='center' fontWeight={700}>Konu : {info?.topic}</Typography>
-                            <Typography align='center' fontWeight={700}>Detay : {info?.detail}</Typography>
+                            <Typography align='center' fontWeight={700}>Lokasyon : {info?.location}</Typography>
+
+
+                            {
+                                info.type != "ramakkala" && (
+                                    <Box display={'flex'} flexDirection={'column'} gap={3}>
+                                        <Typography align='center' fontWeight={700}>Konu : {info?.topic}</Typography>
+                                        <Typography align='center' fontWeight={700}>Detay : {info?.detail}</Typography>
+                                    </Box>
+                                )
+                            }
+
                         </Box>
 
 
@@ -107,6 +121,16 @@ const ActionType_Modal = ({ handleClose_action, open_action, info, setInfo }) =>
                                     <Typography align='center' fontWeight={700}>Fayda : {info?.katkiKonusu}</Typography>
                                 </Box>
 
+                            )
+                        }
+
+                        {
+                            info.type == "ramakkala" && (
+                                <Box display={'flex'} flexDirection={'column'} gap={3}>
+                                    <Typography align='center' fontWeight={700}>Bonna Çalışanı : {info?.bonnaUser}</Typography>
+                                    <Typography align='center' fontWeight={700}>Ramak Kala Detay : {info?.ramakkaladetay}</Typography>
+                                    <Typography align='center' fontWeight={700}>Öneri Açıklaması : {info?.oneri}</Typography>
+                                </Box>
                             )
                         }
 

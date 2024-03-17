@@ -9,9 +9,7 @@ import ActionType_Modal from '../modals/ActionType_Modal';
 import Delete_Modal from '../modals/Delete_Modal';
 
 
-const OneriTalep_Table = ({ oneriTalepData, handleClose_oneritalep, handleOpen_oneritalep, open_oneritalep, handleOpen_action, handleOpen_delete, handleClose_action, handleClose_delete, open_action, open_delete }) => {
-
-  const [oneriTalep, setOneriTalep] = useState([])
+const OneriTalep_Table = ({ oneritalep, handleClose_oneritalep, handleOpen_oneritalep, open_oneritalep, handleOpen_action, handleOpen_delete, handleClose_action, handleClose_delete, open_action, open_delete }) => {
 
 
   const [info, setInfo] = useState({
@@ -232,12 +230,6 @@ const OneriTalep_Table = ({ oneriTalepData, handleClose_oneritalep, handleOpen_o
   ];
 
 
-  useEffect(() => {
-
-    const dizi = Object.keys(oneriTalepData).map(key => { return { id: key, ...oneriTalepData[key] } })
-    setOneriTalep(dizi)
-
-  }, [oneriTalepData])
 
 
 
@@ -246,7 +238,7 @@ const OneriTalep_Table = ({ oneriTalepData, handleClose_oneritalep, handleOpen_o
 
       <DataGrid
         columns={dataGrid_Columns}
-        rows={oneriTalep}
+        rows={oneritalep}
         initialState={{
           pagination: {
             paginationModel: {
@@ -262,7 +254,6 @@ const OneriTalep_Table = ({ oneriTalepData, handleClose_oneritalep, handleOpen_o
         }}
       />
 
-      <OneriTalep_View info={info} handleClose_oneritalep={handleClose_oneritalep} open_oneritalep={open_oneritalep} />
       <ActionType_Modal handleClose_action={handleClose_action} open_action={open_action} info={info} setInfo={setInfo} />
       <Delete_Modal info={info} setInfo={setInfo} open_delete={open_delete} handleClose_delete={handleClose_delete} handleOpen_delete={handleOpen_delete} />
 

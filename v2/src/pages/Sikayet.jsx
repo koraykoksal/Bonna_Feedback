@@ -1,206 +1,68 @@
 import React from 'react'
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import { useState } from 'react';
-import useFeedbackCall from '../hooks/useFeedbackCall';
-import { location } from '../helper/data';
-import { FormControl, FormLabel, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import Sikayet_Table from '../components/tables/Sikayet_Table'
+import useFeedbackCall from '../hooks/useFeedbackCall'
+import { useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { Typography } from '@mui/material'
 
 const Sikayet = () => {
 
-  const { postFireData } = useFeedbackCall()
+  const { getFireData } = useFeedbackCall()
+  const { feedbackData } = useSelector((state) => state.feedback)
+  const [sikayet, setsikayet] = useState([])
 
-  const now = new Date()
+  const [open_sikayet, setOpen_sikayet] = useState(false)
+  const handleOpen_sikayet = () => setOpen_sikayet(true);
+  const handleClose_sikayet = () => {
+    setOpen_sikayet(false)
 
-  // Gün, Ay ve Yıl için değerleri al
-  const day = String(now.getDate()).padStart(2, '0'); // Günü 2 basamaklı yap
-  const month = String(now.getMonth() + 1).padStart(2, '0'); // Ayı 2 basamaklı yap (0'dan başladığı için +1 ekliyoruz)
-  const year = now.getFullYear();
-
-  // Saat, Dakika ve Saniye için değerleri al
-  const hours = String(now.getHours()).padStart(2, '0');
-  const minutes = String(now.getMinutes()).padStart(2, '0');
-
-  // Düzenlenmiş tarih ve saati birleştir
-  const formattedDate = `${day}-${month}-${year} ${hours}:${minutes}`;
-
-
-
-  const [info, setInfo] = useState({
-    name: "",
-    surname: "",
-    phone: "",
-    email: "",
-    topic: "",
-    detail: "",
-    actionType: "",
-    actionResult: "",
-    location:"",
-    datetime: formattedDate
-
-  })
-
-  const handleChange = (e) => {
-    setInfo({ ...info, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e) => {
+  const [open_action, setOpen_action] = useState(false)
+  const handleOpen_action = () => setOpen_action(true);
+  const handleClose_action = () => {
+    setOpen_action(false)
 
-    e.preventDefault()
+  }
 
-    postFireData('sikayet', info)
+  const [open_delete, setOpen_delete] = useState(false)
+  const handleOpen_delete = () => setOpen_delete(true);
+  const handleClose_delete = () => {
+    setOpen_delete(false)
 
-    setInfo({
-      name: "",
-      surname: "",
-      phone: "",
-      email: "",
-      topic: "",
-      detail: "",
-      actionType: "",
-      actionResult: "",
-      location:"",
-      datetime: formattedDate
+  }
+
+
+  useEffect(() => {
+    getFireData('sikayet')
+  }, [])
+
+  useEffect(() => {
+
+    const dizi = Object.keys(feedbackData).map(key => { return { id: key, ...feedbackData[key] } })
+    const sortData = dizi.sort((a, b) => {
+        const [dayA, monthA, yearA, timeA] = a.datetime.split(/-| /);
+        const [hoursA, minutesA] = timeA.split(':');
+
+        const [dayB, monthB, yearB, timeB] = b.datetime.split(/-| /);
+        const [hoursB, minutesB] = timeB.split(':');
+
+        const dateA = new Date(yearA, monthA - 1, dayA, hoursA, minutesA);
+        const dateB = new Date(yearB, monthB - 1, dayB, hoursB, minutesB);
+
+        return dateB - dateA;
     })
 
-  }
+    setsikayet(sortData)
 
+}, [feedbackData])
 
 
   return (
     <div>
+      <Typography py={5} align='center' letterSpacing={3} fontWeight={700}>Şikayet</Typography>
 
-
-      <Typography align='center' color='#FFB534' p={3} fontWeight={700} fontSize={22}>Şikayet</Typography>
-
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 5, p: 2 }}>
-
-        <form onSubmit={handleSubmit}>
-
-          <Box sx={{ flexDirection: 'column', display: 'flex', gap: 3, p: 3 }}>
-
-            <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3 }}>
-              <TextField
-                fullWidth
-                label='İsim'
-                name='name'
-                id='name'
-                type='text'
-                value={info.name}
-                inputProps={{
-                  maxLength: 50
-                }}
-                onChange={handleChange}
-              />
-              <TextField
-                fullWidth
-                label='Soyisim'
-                name='surname'
-                id='surname'
-                type='text'
-                value={info.surname}
-                inputProps={{
-                  maxLength: 50
-                }}
-                onChange={handleChange}
-              />
-            </Box>
-
-            <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3 }}>
-              <TextField
-                fullWidth
-                label='Telefon'
-                name='phone'
-                id='phone'
-                type='text'
-                value={info.phone}
-                inputProps={{
-                  maxLength: 35
-                }}
-                onChange={handleChange}
-              />
-              <TextField
-                fullWidth
-                label='Eposta'
-                name='email'
-                id='email'
-                type='text'
-                value={info.email}
-                inputProps={{
-                  maxLength: 35
-                }}
-                onChange={handleChange}
-              />
-            </Box>
-
-            <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3 }}>
-              <TextField
-                fullWidth
-                label='Şikayet Konusu'
-                name='topic'
-                id='topic'
-                type='text'
-                value={info.topic}
-                inputProps={{
-                  maxLength: 35
-                }}
-                onChange={handleChange}
-              />
-            </Box>
-
-            <Box>
-              <FormControl fullWidth>
-                <InputLabel id="location">Lokasyon</InputLabel>
-                <Select
-                  required
-                  labelId='location'
-                  name='location'
-                  id='location'
-                  label='location'
-                  value={info.location}
-                  onChange={handleChange}
-                >
-                  {
-                    location.map((item, index) => (
-                      <MenuItem key={index} value={item}>{item}</MenuItem>
-                    ))
-                  }
-                </Select>
-              </FormControl>
-            </Box>
-
-
-            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-              <TextField
-                fullWidth
-                required
-                multiline
-                rows={4}
-                label='Açıklama'
-                name='detail'
-                id='detail'
-                type='text'
-                value={info.detail}
-                inputProps={{
-                  maxLength: 250
-                }}
-                onChange={handleChange}
-              />
-            </Box>
-
-            <Button variant='contained' type='submit'>
-              Gönder
-            </Button>
-
-          </Box>
-
-        </form>
-
-      </Box>
-
-
-
+      <Sikayet_Table handleClose_sikayet={handleClose_sikayet} handleOpen_sikayet={handleOpen_sikayet} open_sikayet={open_sikayet} sikayet={sikayet} open_action={open_action} handleClose_action={handleClose_action} handleOpen_action={handleOpen_action} open_delete={open_delete} handleClose_delete={handleClose_delete} handleOpen_delete={handleOpen_delete} />
     </div>
   )
 }

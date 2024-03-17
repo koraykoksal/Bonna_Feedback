@@ -8,6 +8,7 @@ import feedback from "../assets/img/feedback.png"
 import complaint from "../assets/img/complaint.png"
 import safety from "../assets/img/safety.png"
 import { homePageStyle } from '../styles/globalStlye';
+import FeedBacks from '../components/modals/FeedBacks';
 
 
 
@@ -33,14 +34,17 @@ const urlData = [
     url: "/ramakkala",
     icon: safety,
   }
- 
+
 ]
 
 export const Home = () => {
 
-
+  const [info, setInfo] = useState("")
   const navigate = useNavigate()
 
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
 
   return (
@@ -58,11 +62,19 @@ export const Home = () => {
                 component='img'
                 image={item.icon}
                 height='185'
-                sx={{ objectFit: 'cover', width: '75%', margin: 'auto',cursor:'pointer' }}
-                onClick={() => navigate(`${item.url}`)}
+                sx={{ objectFit: 'cover', width: '75%', margin: 'auto', cursor: 'pointer' }}
+                // onClick={() => navigate(`${item.url}`)}
+                onClick={() => {
+                  setInfo(item.title)
+                  handleOpen()
+                }}
               />
               <CardContent>
-                <Button fullWidth variant='outlined' color='warning' sx={{ textTransform: 'none', fontSize: '26px' }} onClick={() => navigate(`${item.url}`)}>{item.title}</Button>
+                <Button fullWidth variant='outlined' color='warning' sx={{ textTransform: 'none', fontSize: '26px' }}
+                  onClick={() => {
+                    setInfo(item.title)
+                    handleOpen()
+                  }}>{item.title}</Button>
               </CardContent>
             </Card>
 
@@ -72,7 +84,7 @@ export const Home = () => {
 
       </Box>
 
-
+      <FeedBacks open={open} handleClose={handleClose} info={info} />
 
     </div>
 

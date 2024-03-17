@@ -1,240 +1,71 @@
 import React from 'react'
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import { useState } from 'react';
-import { FormControl, FormControlLabel, FormLabel, InputLabel, MenuItem, Select, TextField } from '@mui/material';
-import useFeedbackCall from '../hooks/useFeedbackCall';
-import { location } from '../helper/data';
-import { department } from "../helper/data"
-import Checkbox from '@mui/material/Checkbox';
+import useFeedbackCall from '../hooks/useFeedbackCall'
+import { useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { Typography } from '@mui/material'
+import RamakKala_Table from '../components/tables/RamakKala_Table'
 
 const RamakKala = () => {
 
-    const { postFireData } = useFeedbackCall()
+  const { getFireData } = useFeedbackCall()
+  const { feedbackData } = useSelector((state) => state.feedback)
+  const [ramakkala, setramakkala] = useState([])
 
-    const now = new Date()
+  const [open_ramakkala, setOpen_ramakkala] = useState(false)
+  const handleOpen_ramakkala = () => setOpen_ramakkala(true);
+  const handleClose_ramakkala = () => {
+    setOpen_ramakkala(false)
 
-    // Gün, Ay ve Yıl için değerleri al
-    const day = String(now.getDate()).padStart(2, '0'); // Günü 2 basamaklı yap
-    const month = String(now.getMonth() + 1).padStart(2, '0'); // Ayı 2 basamaklı yap (0'dan başladığı için +1 ekliyoruz)
-    const year = now.getFullYear();
+  }
 
-    // Saat, Dakika ve Saniye için değerleri al
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
+  const [open_action, setOpen_action] = useState(false)
+  const handleOpen_action = () => setOpen_action(true);
+  const handleClose_action = () => {
+    setOpen_action(false)
 
-    // Düzenlenmiş tarih ve saati birleştir
-    const formattedDate = `${day}-${month}-${year} ${hours}:${minutes}`;
+  }
 
-    const [bonnaUser, setBonnaUser] = useState(false)
+  const [open_delete, setOpen_delete] = useState(false)
+  const handleOpen_delete = () => setOpen_delete(true);
+  const handleClose_delete = () => {
+    setOpen_delete(false)
 
-    const [info, setInfo] = useState({
-        name: "",
-        surname: "",
-        gorev: "",
-        birim: "",
-        location: "",
-        ramakkaladetay: "",
-        oneri: "",
-        actionType: "",
-        actionResult: "",
-        datetime: formattedDate
+  }
+
+
+  useEffect(() => {
+    getFireData('ramakkala')
+  }, [])
+
+  useEffect(() => {
+
+    const dizi = Object.keys(feedbackData).map(key => { return { id: key, ...feedbackData[key] } })
+    const sortData = dizi.sort((a, b) => {
+      const [dayA, monthA, yearA, timeA] = a.datetime.split(/-| /);
+      const [hoursA, minutesA] = timeA.split(':');
+
+      const [dayB, monthB, yearB, timeB] = b.datetime.split(/-| /);
+      const [hoursB, minutesB] = timeB.split(':');
+
+      const dateA = new Date(yearA, monthA - 1, dayA, hoursA, minutesA);
+      const dateB = new Date(yearB, monthB - 1, dayB, hoursB, minutesB);
+
+      return dateB - dateA;
     })
 
-    const handleChange = (e) => {
-        setInfo({ ...info, [e.target.name]: e.target.value })
-    }
+    setramakkala(sortData)
 
-    const handleIsCheck = (e) => {
-        const { checked } = e.target
-        checked ? setBonnaUser(true) : setBonnaUser(false)
-    }
+  }, [feedbackData])
 
-    const handleSubmit = (e) => {
+  return (
+    <div>
 
-        e.preventDefault()
+      <Typography py={5} align='center' letterSpacing={3} fontWeight={700}>Ramak Kala</Typography>
 
-        postFireData('ramakkala', info)
+      <RamakKala_Table handleClose_ramakkala={handleClose_ramakkala} handleOpen_ramakkala={handleOpen_ramakkala} open_ramakkala={open_ramakkala} ramakkala={ramakkala} open_action={open_action} handleClose_action={handleClose_action} handleOpen_action={handleOpen_action} open_delete={open_delete} handleClose_delete={handleClose_delete} handleOpen_delete={handleOpen_delete} />
 
-        setInfo({
-            name: "",
-            surname: "",
-            gorev: "",
-            birim: "",
-            location: "",
-            ramakkaladetay: "",
-            oneri: "",
-            actionType: "",
-            actionResult: "",
-            datetime: formattedDate
-        })
-
-    }
-
-
-    return (
-        <div>
-
-            <Typography align='center' color='#FFB534' p={3} fontWeight={700} fontSize={22}>Ramak Kala</Typography>
-
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 5, p: 2 }}>
-
-                <form onSubmit={handleSubmit}>
-
-                    <Box sx={{ flexDirection: 'column', display: 'flex', gap: 3, p: 3 }}>
-
-                        <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3 }}>
-                            <TextField
-                                fullWidth
-                                required
-                                label='İsim'
-                                name='name'
-                                id='name'
-                                type='text'
-                                value={info.name}
-                                inputProps={{
-                                    maxLength: 50
-                                }}
-                                onChange={handleChange}
-                            />
-                            <TextField
-                                fullWidth
-                                required
-                                label='Soyisim'
-                                name='surname'
-                                id='surname'
-                                type='text'
-                                value={info.surname}
-                                inputProps={{
-                                    maxLength: 50
-                                }}
-                                onChange={handleChange}
-                            />
-                        </Box>
-
-
-                        <Box>
-                            <FormControlLabel
-                                control={
-                                    <Checkbox onChange={handleIsCheck} name="gilad" />
-                                }
-                                label="Bonna Çalışanı mısın ?"
-                            />
-                        </Box>
-
-                        {/* bonna çalışanı ise burayı göster */}
-                        {
-                            bonnaUser &&
-                            (
-                                <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3,backgroundColor:'#bbeebb84' }}>
-                                    <TextField
-                                        fullWidth
-                                        label='Görev'
-                                        name='gorev'
-                                        id='gorev'
-                                        type='text'
-                                        value={info.gorev}
-                                        inputProps={{
-                                            maxLength: 35
-                                        }}
-                                        onChange={handleChange}
-                                    />
-                                    <FormControl fullWidth>
-                                        <InputLabel id="birim">Departman</InputLabel>
-                                        <Select
-                                            required
-                                            labelId='birim'
-                                            name='birim'
-                                            id='birim'
-                                            label='birim'
-                                            value={info.birim}
-                                            onChange={handleChange}
-                                            MenuProps={{
-                                                PaperProps: {
-                                                    style: {
-                                                        maxHeight: 300,
-                                                        overflow: 'auto'
-                                                    }
-                                                }
-                                            }}
-                                        >
-                                            {
-                                                department.map((item, index) => (
-                                                    <MenuItem key={index} value={item.name}>{item.name}</MenuItem>
-                                                ))
-                                            }
-                                        </Select>
-                                    </FormControl>
-                                    <FormControl fullWidth>
-                                        <InputLabel id="location">Lokasyon</InputLabel>
-                                        <Select
-                                            required
-                                            labelId='location'
-                                            name='location'
-                                            id='location'
-                                            label='location'
-                                            value={info.location}
-                                            onChange={handleChange}
-                                        >
-                                            {
-                                                location.map((item, index) => (
-                                                    <MenuItem key={index} value={item}>{item}</MenuItem>
-                                                ))
-                                            }
-                                        </Select>
-                                    </FormControl>
-                                </Box>
-                            )
-                        }
-
-                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-
-                            <TextField
-                                fullWidth
-                                required
-                                multiline
-                                rows={4}
-                                label='Tehlikeli Durum / Ramak Kala Olayı'
-                                name='ramakkaladetay'
-                                id='ramakkaladetay'
-                                type='text'
-                                value={info.detail}
-                                inputProps={{
-                                    maxLength: 250
-                                }}
-                                onChange={handleChange}
-                            />
-                            <TextField
-                                fullWidth
-                                multiline
-                                rows={4}
-                                label='Öneri'
-                                name='oneri'
-                                id='oneri'
-                                type='text'
-                                value={info.detail}
-                                inputProps={{
-                                    maxLength: 250
-                                }}
-                                onChange={handleChange}
-                            />
-                        </Box>
-
-
-
-                        <Button variant='contained' type='submit' sx={{ letterSpacing: 3, textTransform: 'none' }}>
-                            Gönder
-                        </Button>
-
-                    </Box>
-
-                </form>
-
-            </Box>
-
-        </div>
-    )
+    </div>
+  )
 }
 
 export default RamakKala

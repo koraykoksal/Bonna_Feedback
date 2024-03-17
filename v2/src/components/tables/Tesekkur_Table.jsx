@@ -13,9 +13,9 @@ import { MdDeleteForever } from "react-icons/md";
 import Delete_Modal from '../modals/Delete_Modal';
 
 
-const Tesekkur_Table = ({ tesekkurData, handleOpen_tesekkur, handleClose_tesekkur, open_tesekkur, handleOpen_action, handleClose_action, open_action, handleOpen_delete, handleClose_delete, open_delete }) => {
+const Tesekkur_Table = ({ tesekkur, handleOpen_tesekkur, handleClose_tesekkur, open_tesekkur, handleOpen_action, handleClose_action, open_action, handleOpen_delete, handleClose_delete, open_delete }) => {
 
-  const [tesekkur, settesekkur] = useState([])
+
 
   const [info, setInfo] = useState({
     name: "",
@@ -216,18 +216,6 @@ const Tesekkur_Table = ({ tesekkurData, handleOpen_tesekkur, handleClose_tesekku
   ];
 
 
-
-
-  useEffect(() => {
-
-    const dizi = Object.keys(tesekkurData).map(key => { return { id: key, ...tesekkurData[key] } })
-    settesekkur(dizi)
-
-  }, [tesekkurData])
-
-
-
-
   return (
     <Box p={3}>
 
@@ -249,7 +237,6 @@ const Tesekkur_Table = ({ tesekkurData, handleOpen_tesekkur, handleClose_tesekku
         }}
       />
 
-      <Tesekkur_View handleClose_tesekkur={handleClose_tesekkur} open_tesekkur={open_tesekkur} info={info} />
       <ActionType_Modal handleClose_action={handleClose_action} open_action={open_action} info={info} setInfo={setInfo} />
       <Delete_Modal info={info} setInfo={setInfo} open_delete={open_delete} handleClose_delete={handleClose_delete} handleOpen_delete={handleOpen_delete} />
 

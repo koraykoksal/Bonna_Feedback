@@ -12,10 +12,8 @@ import Delete_Modal from '../modals/Delete_Modal';
 
 
 
-const Sikayet_Table = ({ sikayetData, handleClose_sikayet, handleOpen_sikayet, open_sikayet, handleOpen_action, handleClose_action, open_action, handleOpen_delete, handleClose_delete, open_delete }) => {
+const Sikayet_Table = ({ sikayet, handleClose_sikayet, handleOpen_sikayet, open_sikayet, handleOpen_action, handleClose_action, open_action, handleOpen_delete, handleClose_delete, open_delete }) => {
 
-
-    const [sikayet, setSikayet] = useState([])
 
     const [info, setInfo] = useState({
         name: "",
@@ -223,14 +221,6 @@ const Sikayet_Table = ({ sikayetData, handleClose_sikayet, handleOpen_sikayet, o
 
 
 
-    useEffect(() => {
-
-        const dizi = Object.keys(sikayetData).map(key => { return { id: key, ...sikayetData[key] } })
-        setSikayet(dizi)
-
-    }, [sikayetData])
-
-
 
     return (
 
@@ -258,7 +248,6 @@ const Sikayet_Table = ({ sikayetData, handleClose_sikayet, handleOpen_sikayet, o
                 }}
             />
 
-            <Sikayet_View info={info} handleClose_sikayet={handleClose_sikayet} open_sikayet={open_sikayet} />
             <ActionType_Modal handleClose_action={handleClose_action} open_action={open_action} info={info} setInfo={setInfo} />
             <Delete_Modal info={info} setInfo={setInfo} open_delete={open_delete} handleClose_delete={handleClose_delete} handleOpen_delete={handleOpen_delete} />
         </Box>

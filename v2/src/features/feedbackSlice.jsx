@@ -10,7 +10,8 @@ const initialState = {
     error:false,
     tesekkurData:[],
     oneriTalepData:[],
-    sikayetData:[]
+    sikayetData:[],
+    feedbackData:[]
 
 }
 
@@ -41,6 +42,10 @@ const feedbackSlice = createSlice({
             state.loading=false
             state.sikayetData=payload
         },
+        fetchFeedBackData:(state,{payload})=>{
+            state.loading=false
+            state.feedbackData=payload
+        }
 
 
 
@@ -58,6 +63,7 @@ export const {
     fetchTesekkurData,
     fetchOneriTalepData,
     fetchSikayetData,
+    fetchFeedBackData
 
 } = feedbackSlice.actions
 

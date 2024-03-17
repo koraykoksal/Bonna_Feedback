@@ -7,6 +7,7 @@ import {
     fetchTesekkurData,
     fetchOneriTalepData,
     fetchSikayetData,
+    fetchFeedBackData,
 
 } from '../features/feedbackSlice'
 import { useDispatch, useSelector } from 'react-redux'
@@ -144,6 +145,38 @@ const useFeedbackCall = () => {
     }
 
 
+    const getFireData = async (address) => {
+
+        dispatch(fetchStart())
+
+        try {
+
+            const db = getDatabase();
+            const starCountRef = ref(db, `${address}/`);
+            onValue(starCountRef, (snapshot) => {
+                const data = snapshot.val();
+
+                console.log(data)
+                if (data == null || data == undefined) {
+                    console.log("firebase data null geliyor:", data)
+                    dispatch(fetchFeedBackData({}))
+                }
+                else {
+                    dispatch(fetchFeedBackData(data))
+                }
+
+
+            });
+
+        } catch (error) {
+            toastErrorNotify('No Get Data')
+        }
+
+
+
+    }
+
+
     const putFireData_Sikayet=async (address,info)=>{
 
 
@@ -174,11 +207,12 @@ const useFeedbackCall = () => {
 
     return {
 
+        getFireData,
         postFireData,
-        getFireData_Tesekkur,
+        // getFireData_Tesekkur,
         removeFirebaseData,
-        getFireData_OneriTalep,
-        getFireData_Sikayet,
+        // getFireData_OneriTalep,
+        // getFireData_Sikayet,
         putFireData_Sikayet
 
     }

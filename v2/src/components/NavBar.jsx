@@ -31,10 +31,26 @@ const pages = [
     title: "Rapor",
     url: "/reports"
   },
-
 ];
 
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const reporPages = [
+  {
+    title: "Teşekkür",
+    url: '/tesekkur'
+  },
+  {
+    title: "Öneri Talep",
+    url: '/oneritalep'
+  },
+  {
+    title: "Şikayet",
+    url: '/sikayet'
+  },
+  {
+    title: "Ramak Kala",
+    url: '/ramakkala'
+  }
+];
 
 const NavBar = () => {
 
@@ -62,6 +78,15 @@ const NavBar = () => {
     setAnchorElUser(null);
   };
 
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
 
   return (
@@ -115,15 +140,15 @@ const NavBar = () => {
                 >
                   {
                     pages.map((page, index) => (
-                      <Box sx={{display:'flex',flexDirection:'column',gap:2}}>
-                        <Button sx={{textTransform:'none',color:'black'}} key={index} onClick={() => {
+                      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                        <Button sx={{ textTransform: 'none', color: 'black' }} key={index} onClick={() => {
                           navigate(page.url)
                           handleCloseNavMenu()
                         }}>{page.title}</Button>
                       </Box>
                     ))
                   }
-                  <Button onClick={() => logout()} sx={{width:'100%',textTransform:'none',color:'red'}}>Çıkış</Button>
+                  <Button onClick={() => logout()} sx={{ width: '100%', textTransform: 'none', color: 'red' }}>Çıkış</Button>
                 </Menu>
               </Box>
             )
@@ -136,7 +161,7 @@ const NavBar = () => {
             currentUser &&
             (
               <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                {pages.map((page, index) => (
+                {/* {pages.map((page, index) => (
                   <Button
                     key={index}
                     onClick={() => {
@@ -147,23 +172,47 @@ const NavBar = () => {
                   >
                     {page.title}
                   </Button>
-                ))}
+                ))} */}
+                <Box sx={{ display: 'flex', justifyContent: 'center', gap: 3 }}>
+                  <Button onClick={() => navigate('/')} sx={{ my: 2, color: 'white', display: 'block', textTransform: 'none' }}>
+                    Ana Sayfa
+                  </Button>
+                  <Button
+                    sx={{ my: 2, color: 'white', display: 'block', textTransform: 'none' }}
+                    id="fade-button"
+                    aria-controls={open ? 'fade-menu' : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? 'true' : undefined}
+                    onClick={handleClick}
+                  >
+                    Rapor
+                  </Button>
+                  <Menu
+                    id="fade-menu"
+                    MenuListProps={{
+                      'aria-labelledby': 'fade-button',
+                    }}
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleClose}
+                  >
+                    {
+                      reporPages.map((item, index) => (
+                        <MenuItem key={index} 
+                        onClick={() => {
+                          navigate(item.url)
+                          handleClose()
+                        }}>{item.title}</MenuItem>
+                      ))
+                    }
+                  </Menu>
+                </Box>
+
               </Box>
+
             )
           }
 
-
-          {/* <Box sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'center', gap: 1, mr: 1 }}>
-
-            {
-              currentUser && (<Box sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'center', gap: 3, mr: 1 }}>
-                <Typography>{currentUser || null}</Typography>
-                <IoIosLogOut size={25} color='#B31312' cursor='pointer' onClick={() => logout()} />
-
-              </Box>)
-            }
-
-          </Box> */}
 
           {
             currentUser ? (<Box sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'center', gap: 3, mr: 1 }}>

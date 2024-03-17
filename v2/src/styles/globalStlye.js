@@ -21,7 +21,8 @@ export const modalStyles = {
     height: '90%',
     overflow: 'scroll',
     bgcolor: 'background.paper',
-    border: '2px solid #000',
+    // border: '2px solid #000',
+    borderRadius:3,
     boxShadow: 24,
     p: 5,
 }
