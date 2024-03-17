@@ -41,10 +41,12 @@ export const homePageStyle={
     width: "100%",
     height: "100vh",
     overflow:'auto',
-    backgroundImage: `url(${pattern4})`,
-    backgroundPosition: "center",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
+    // #F5F5FF
+    backgroundColor:'#F5F5FF'
+    // backgroundImage: `url(${pattern4})`,
+    // backgroundPosition: "center",
+    // backgroundSize: "cover",
+    // backgroundRepeat: "no-repeat",
 }
 
 export const loginPageStyle={

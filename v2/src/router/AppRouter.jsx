@@ -9,6 +9,7 @@ import Tesekkur from '../pages/Tesekkur'
 import OneriTalep from '../pages/OneriTalep'
 import Sikayet from '../pages/Sikayet'
 import Reports from '../pages/Reports'
+import RamakKala from '../pages/RamakKala'
 
 
 
@@ -27,6 +28,7 @@ export const AppRouter = () => {
           <Route path='tesekkur' element={<Tesekkur/>}/>
           <Route path='oneritalep' element={<OneriTalep/>}/>
           <Route path='sikayet' element={<Sikayet/>}/>
+          <Route path='ramakkala' element={<RamakKala/>}/>
           <Route element={<PrivateRouter />}>
             <Route path='reports' element={<Reports/>}/>
           </Route>

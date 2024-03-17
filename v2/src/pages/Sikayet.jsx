@@ -72,7 +72,7 @@ const Sikayet = () => {
     <div>
 
 
-      <Typography align='center' color='#FFB534' p={3} fontWeight={700} fontSize={22}>Bonna Şikayet</Typography>
+      <Typography align='center' color='#FFB534' p={3} fontWeight={700} fontSize={22}>Şikayet</Typography>
 
       <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 5, p: 2 }}>
 

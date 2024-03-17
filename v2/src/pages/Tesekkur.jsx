@@ -73,7 +73,7 @@ const Tesekkur = () => {
     <div>
 
 
-      <Typography align='center' color='#FFB534' p={3} fontWeight={700} fontSize={22}>Bonna Teşekkür</Typography>
+      <Typography align='center' color='#FFB534' p={3} fontWeight={700} fontSize={22}>Teşekkür</Typography>
 
       <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 5, p: 2 }}>
 
