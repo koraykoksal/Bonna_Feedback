@@ -5,7 +5,6 @@ import { NotFound } from '../pages/NotFound'
 import NavBar from '../components/NavBar'
 import PrivateRouter from './PrivateRoute'
 import Login from '../pages/Login'
-import Reports from '../pages/Reports'
 import Tesekkur from '../pages/Tesekkur'
 import Sikayet from '../pages/Sikayet'
 import OneriTalep from '../pages/OneriTalep'
@@ -25,12 +24,12 @@ export const AppRouter = () => {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='login' element={<Login />} />
-          <Route path='tesekkur' element={<Tesekkur/>}/>
-          <Route path='sikayet' element={<Sikayet/>}/>
-          <Route path='oneritalep' element={<OneriTalep/>}/>
-          <Route path='ramakkala' element={<RamakKala/>}/>
+
           <Route element={<PrivateRouter />}>
-            <Route path='reports' element={<Reports/>}/>
+            <Route path='tesekkur' element={<Tesekkur />} />
+            <Route path='sikayet' element={<Sikayet />} />
+            <Route path='oneritalep' element={<OneriTalep />} />
+            <Route path='ramakkala' element={<RamakKala />} />
           </Route>
           <Route path='*' element={<NotFound />} />
         </Routes>
