@@ -138,8 +138,12 @@ const NavBar = () => {
                     display: { xs: 'block', md: 'none' },
                   }}
                 >
+                  <Button onClick={() => {
+                    navigate('/')
+                    handleCloseNavMenu()
+                  }} sx={{ width: '100%', textTransform: 'none' }}>Home</Button>
                   {
-                    pages.map((page, index) => (
+                    reporPages.map((page, index) => (
                       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                         <Button sx={{ textTransform: 'none', color: 'black' }} key={index} onClick={() => {
                           navigate(page.url)
@@ -161,18 +165,6 @@ const NavBar = () => {
             currentUser &&
             (
               <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                {/* {pages.map((page, index) => (
-                  <Button
-                    key={index}
-                    onClick={() => {
-                      navigate(page.url)
-                      handleCloseNavMenu()
-                    }}
-                    sx={{ my: 2, color: 'white', display: 'block', textTransform: 'none' }}
-                  >
-                    {page.title}
-                  </Button>
-                ))} */}
                 <Box sx={{ display: 'flex', justifyContent: 'center', gap: 3 }}>
                   <Button onClick={() => navigate('/')} sx={{ my: 2, color: 'white', display: 'block', textTransform: 'none' }}>
                     Ana Sayfa
@@ -198,11 +190,11 @@ const NavBar = () => {
                   >
                     {
                       reporPages.map((item, index) => (
-                        <MenuItem key={index} 
-                        onClick={() => {
-                          navigate(item.url)
-                          handleClose()
-                        }}>{item.title}</MenuItem>
+                        <MenuItem key={index}
+                          onClick={() => {
+                            navigate(item.url)
+                            handleClose()
+                          }}>{item.title}</MenuItem>
                       ))
                     }
                   </Menu>
