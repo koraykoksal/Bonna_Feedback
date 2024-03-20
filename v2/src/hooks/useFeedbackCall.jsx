@@ -212,7 +212,7 @@ const useFeedbackCall = () => {
         // getFireData_Tesekkur,
         removeFirebaseData,
         // getFireData_OneriTalep,
-        // getFireData_Sikayet,
+        getFireData_Sikayet,
         putFireData_Sikayet
 
     }

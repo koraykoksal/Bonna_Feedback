@@ -82,6 +82,7 @@ const Sikayet_View = () => {
 
                         <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3 }}>
                             <TextField
+                                required
                                 fullWidth
                                 label='İsim'
                                 name='name'
@@ -94,6 +95,7 @@ const Sikayet_View = () => {
                                 onChange={handleChange}
                             />
                             <TextField
+                                required
                                 fullWidth
                                 label='Soyisim'
                                 name='surname'
@@ -109,6 +111,7 @@ const Sikayet_View = () => {
 
                         <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3 }}>
                             <TextField
+                                required
                                 fullWidth
                                 label='Telefon'
                                 name='phone'

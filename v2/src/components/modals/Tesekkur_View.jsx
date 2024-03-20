@@ -82,8 +82,8 @@ const Tesekkur_View = () => {
 
                         <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3 }}>
                             <TextField
+                            required
                                 fullWidth
-                                required
                                 label='İsim'
                                 name='name'
                                 id='name'

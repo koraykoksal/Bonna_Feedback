@@ -64,7 +64,7 @@ const ActionType_Modal = ({ handleClose_action, open_action, info, setInfo }) =>
         handleClose_action()
     }
 
-
+    console.log(info)
 
     return (
         <div>
@@ -86,13 +86,13 @@ const ActionType_Modal = ({ handleClose_action, open_action, info, setInfo }) =>
 
                         <Box display={'flex'} justifyContent={'center'} gap={5} py={5}>
 
-                            <Typography align='center' fontWeight={700}>Konu : Ramak Kala</Typography>
+                            <Typography align='center' fontWeight={700}>Konu : {info?.topic}</Typography>
 
                             <Typography align='center' fontWeight={700}>Tarih : {info?.datetime}</Typography>
 
                         </Box>
 
-                        <Box display={'flex'} flexDirection={'column'} alignItems={'center'} gap={5} py={3}>
+                        <Box display={'flex'} flexDirection={'column'} alignItems={'center'} gap={3} py={3}>
 
                             <Typography align='center' fontWeight={700}>Ad Soyad : {info?.name} {info?.surname}</Typography>
                             <Typography align='center' fontWeight={700}>Telefon : {info?.phone}</Typography>
@@ -137,8 +137,10 @@ const ActionType_Modal = ({ handleClose_action, open_action, info, setInfo }) =>
 
                         <Container sx={{ display: 'flex', flexDirection: 'column', gap: 3, alignItems: 'center', mt: 10 }} component={'form'} onSubmit={handleSubmit}>
 
-                            <Box sx={{ display: 'flex', justifyContent: 'center', gap: 3, flexWrap: 'wrap' }}>
-                                <FormControl sx={{ width: '300px' }}>
+                            <Box sx={{ display: 'flex', justifyContent: 'center', gap: 3, flexWrap: 'wrap',alignItems:'center' }}>
+
+                                <Box sx={{display:'flex',justifyContent:'center',alignItems:'center',gap:1}}>
+                                <FormControl sx={{ width: '400px' }}>
                                     <InputLabel id="actionType">Aksiyon Tipi</InputLabel>
                                     <Select
                                         name='actionType'
@@ -155,9 +157,13 @@ const ActionType_Modal = ({ handleClose_action, open_action, info, setInfo }) =>
                                         }
                                     </Select>
                                 </FormControl>
+                                <Button color='error' onClick={()=>setInfo({...info,['actionType']:""})}>Reset</Button>
+                                </Box>
 
                                 <TextField
-                                    sx={{ width: '300px' }}
+                                    multiline
+                                    rows={8}
+                                    sx={{ width: '400px' }}
                                     name='actionResult'
                                     id='actionResult'
                                     label='Akçıklama'
