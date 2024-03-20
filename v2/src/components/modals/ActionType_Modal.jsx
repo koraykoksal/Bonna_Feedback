@@ -166,7 +166,7 @@ const ActionType_Modal = ({ handleClose_action, open_action, info, setInfo }) =>
                                     sx={{ width: '400px' }}
                                     name='actionResult'
                                     id='actionResult'
-                                    label='Akçıklama'
+                                    label='Açıklama'
                                     onChange={handleChange}
                                     value={info.actionResult}
                                 >
