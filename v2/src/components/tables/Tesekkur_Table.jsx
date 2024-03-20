@@ -40,7 +40,102 @@ const Tesekkur_Table = ({ tesekkur, handleOpen_tesekkur, handleClose_tesekkur, o
     //   align: "center",
     //   flex: 1,
     // },
+    {
+      field: "actions",
+      headerName: "Aksiyon",
+      minWidth: 120,
+      headerAlign: "center",
+      align: "center",
+      flex: 1,
+      renderCell: ({
+        id,
+        row: {
+          name,
+          surname,
+          phone,
+          email,
+          topic,
+          detail,
+          datetime,
+          actionType,
+          actionResult,
+          location
 
+        }
+      }) => {
+        return [
+
+          // <GridActionsCellItem
+          //   key={'show'}
+          //   label='Show'
+          //   icon={<FaEye size={23} style={{ cursor: 'pointer', color: 'darkblue' }} />}
+          //   onClick={() => {
+          //     handleOpen_tesekkur()
+          //     setInfo({
+          //       id,
+          //       name,
+          //       surname,
+          //       phone,
+          //       email,
+          //       topic,
+          //       detail,
+          //       datetime,
+          //       actionType,
+          //       actionResult,
+          //       location
+          //     })
+
+          //   }}
+          // />,
+          <GridActionsCellItem
+            key={'edit'}
+            label='Edit'
+            icon={<MdEdit size={23} style={{ cursor: 'pointer', color: '#E8C872' }} onClick={() => {
+              handleOpen_action()
+              setInfo({
+                id,
+                name,
+                surname,
+                phone,
+                email,
+                topic,
+                detail,
+                datetime,
+                actionType,
+                actionResult,
+                location,
+                type: "tesekkur"
+              })
+            }} />}
+
+          />,
+          <GridActionsCellItem
+            key={'delete'}
+            label='Delete'
+            icon={<MdDeleteForever size={23} style={{ cursor: 'pointer', color: 'red' }} onClick={() => {
+              handleOpen_delete()
+              setInfo({
+                id,
+                name,
+                surname,
+                phone,
+                email,
+                topic,
+                detail,
+                datetime,
+                actionType,
+                actionResult,
+                location,
+                type: "tesekkur"
+              })
+            }} />}
+
+          />
+
+
+        ]
+      },
+    },
     {
       field: "name",
       headerName: "İsim",
@@ -115,102 +210,7 @@ const Tesekkur_Table = ({ tesekkur, handleOpen_tesekkur, handleClose_tesekkur, o
       align: "center",
       flex: 1,
     },
-    {
-      field: "actions",
-      headerName: "Aksiyon",
-      minWidth: 120,
-      headerAlign: "center",
-      align: "center",
-      flex: 1,
-      renderCell: ({
-        id,
-        row: {
-          name,
-          surname,
-          phone,
-          email,
-          topic,
-          detail,
-          datetime,
-          actionType,
-          actionResult,
-          location
-
-        }
-      }) => {
-        return [
-
-          <GridActionsCellItem
-            key={'show'}
-            label='Show'
-            icon={<FaEye size={23} style={{ cursor: 'pointer', color: 'darkblue' }} />}
-            onClick={() => {
-              handleOpen_tesekkur()
-              setInfo({
-                id,
-                name,
-                surname,
-                phone,
-                email,
-                topic,
-                detail,
-                datetime,
-                actionType,
-                actionResult,
-                location
-              })
-
-            }}
-          />,
-          <GridActionsCellItem
-            key={'edit'}
-            label='Edit'
-            icon={<MdEdit size={23} style={{ cursor: 'pointer', color: '#E8C872' }} onClick={() => {
-              handleOpen_action()
-              setInfo({
-                id,
-                name,
-                surname,
-                phone,
-                email,
-                topic,
-                detail,
-                datetime,
-                actionType,
-                actionResult,
-                location,
-                type: "tesekkur"
-              })
-            }} />}
-
-          />,
-          <GridActionsCellItem
-            key={'delete'}
-            label='Delete'
-            icon={<MdDeleteForever size={23} style={{ cursor: 'pointer', color: 'red' }} onClick={() => {
-              handleOpen_delete()
-              setInfo({
-                id,
-                name,
-                surname,
-                phone,
-                email,
-                topic,
-                detail,
-                datetime,
-                actionType,
-                actionResult,
-                location,
-                type: "tesekkur"
-              })
-            }} />}
-
-          />
-
-
-        ]
-      },
-    },
+   
 
 
   ];

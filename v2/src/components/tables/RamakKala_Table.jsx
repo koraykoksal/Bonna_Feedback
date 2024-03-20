@@ -36,7 +36,105 @@ const RamakKala_Table = ({ ramakkala, handleClose_ramakkala, handleOpen_ramakkal
         //   align: "center",
         //   flex: 1,
         // },
+        {
+            field: "actions",
+            headerName: "Aksiyon",
+            minWidth: 100,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+            renderCell: ({
+                id,
+                row: {
+                    name,
+                    surname,
+                    gorev,
+                    birim,
+                    location,
+                    ramakkaladetay,
+                    oneri,
+                    actionType,
+                    actionResult,
+                    bonnaUser,
+                    datetime
 
+                }
+            }) => {
+                return [
+
+                    // <GridActionsCellItem
+                    //     key={'show'}
+                    //     label='Show'
+                    //     icon={<FaEye size={23} style={{ cursor: 'pointer', color: 'darkblue' }} />}
+                    //     onClick={() => {
+                    //         handleOpen_ramakkala()
+                    //         setInfo({
+                    //             id,
+                    //             name,
+                    //             surname,
+                    //             gorev,
+                    //             birim,
+                    //             location,
+                    //             ramakkaladetay,
+                    //             oneri,
+                    //             actionType,
+                    //             actionResult,
+                    //             bonnaUser,
+                    //             datetime
+                    //         })
+
+                    //     }}
+                    // />,
+                    <GridActionsCellItem
+                        key={'edit'}
+                        label='Edit'
+                        icon={<MdEdit size={23} style={{ cursor: 'pointer', color: '#E8C872' }} onClick={() => {
+                            handleOpen_action()
+                            setInfo({
+                                id,
+                                name,
+                                surname,
+                                gorev,
+                                birim,
+                                location,
+                                ramakkaladetay,
+                                oneri,
+                                actionType,
+                                actionResult,
+                                bonnaUser,
+                                datetime,
+                                type: "ramakkala"
+                            })
+                        }} />}
+
+                    />,
+                    // <GridActionsCellItem
+                    //     key={'delete'}
+                    //     label='Delete'
+                    //     icon={<MdDeleteForever size={23} style={{ cursor: 'pointer', color: 'red' }} onClick={() => {
+                    //         handleOpen_delete()
+                    //         setInfo({
+                    //             id,
+                    //             name,
+                    //             surname,
+                    //             phone,
+                    //             email,
+                    //             topic,
+                    //             detail,
+                    //             datetime,
+                    //             actionType,
+                    //             actionResult,
+                    //             location,
+                    //             type: "sikayet"
+                    //         })
+                    //     }} />}
+
+                    // />
+
+
+                ]
+            },
+        },
         {
             field: "name",
             headerName: "İsim",
@@ -126,105 +224,7 @@ const RamakKala_Table = ({ ramakkala, handleClose_ramakkala, handleOpen_ramakkal
             align: "center",
             flex: 1,
         },
-        {
-            field: "actions",
-            headerName: "Aksiyon",
-            minWidth: 100,
-            headerAlign: "center",
-            align: "center",
-            flex: 1,
-            renderCell: ({
-                id,
-                row: {
-                    name,
-                    surname,
-                    gorev,
-                    birim,
-                    location,
-                    ramakkaladetay,
-                    oneri,
-                    actionType,
-                    actionResult,
-                    bonnaUser,
-                    datetime
-
-                }
-            }) => {
-                return [
-
-                    <GridActionsCellItem
-                        key={'show'}
-                        label='Show'
-                        icon={<FaEye size={23} style={{ cursor: 'pointer', color: 'darkblue' }} />}
-                        onClick={() => {
-                            handleOpen_ramakkala()
-                            setInfo({
-                                id,
-                                name,
-                                surname,
-                                gorev,
-                                birim,
-                                location,
-                                ramakkaladetay,
-                                oneri,
-                                actionType,
-                                actionResult,
-                                bonnaUser,
-                                datetime
-                            })
-
-                        }}
-                    />,
-                    <GridActionsCellItem
-                        key={'edit'}
-                        label='Edit'
-                        icon={<MdEdit size={23} style={{ cursor: 'pointer', color: '#E8C872' }} onClick={() => {
-                            handleOpen_action()
-                            setInfo({
-                                id,
-                                name,
-                                surname,
-                                gorev,
-                                birim,
-                                location,
-                                ramakkaladetay,
-                                oneri,
-                                actionType,
-                                actionResult,
-                                bonnaUser,
-                                datetime,
-                                type: "ramakkala"
-                            })
-                        }} />}
-
-                    />,
-                    // <GridActionsCellItem
-                    //     key={'delete'}
-                    //     label='Delete'
-                    //     icon={<MdDeleteForever size={23} style={{ cursor: 'pointer', color: 'red' }} onClick={() => {
-                    //         handleOpen_delete()
-                    //         setInfo({
-                    //             id,
-                    //             name,
-                    //             surname,
-                    //             phone,
-                    //             email,
-                    //             topic,
-                    //             detail,
-                    //             datetime,
-                    //             actionType,
-                    //             actionResult,
-                    //             location,
-                    //             type: "sikayet"
-                    //         })
-                    //     }} />}
-
-                    // />
-
-
-                ]
-            },
-        },
+       
 
     ];
 
