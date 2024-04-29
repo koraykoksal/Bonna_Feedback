@@ -28,14 +28,14 @@ const RamakKala_Table = ({ ramakkala, handleClose_ramakkala, handleOpen_ramakkal
     })
 
     const dataGrid_Columns = [
-        // {
-        //   field: "id",
-        //   headerName: "ID",
-        //   minWidth: 150,
-        //   headerAlign: "center",
-        //   align: "center",
-        //   flex: 1,
-        // },
+        {
+          field: "id",
+          headerName: "ID",
+          minWidth: 150,
+          headerAlign: "center",
+          align: "center",
+          flex: 1,
+        },
         {
             field: "actions",
             headerName: "Aksiyon",
