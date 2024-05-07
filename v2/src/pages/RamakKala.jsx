@@ -2,8 +2,9 @@ import React from 'react'
 import useFeedbackCall from '../hooks/useFeedbackCall'
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { Typography } from '@mui/material'
+import { Box, FormControlLabel, Typography } from '@mui/material'
 import RamakKala_Table from '../components/tables/RamakKala_Table'
+import Checkbox from '@mui/material/Checkbox';
 
 const RamakKala = () => {
 
@@ -57,12 +58,41 @@ const RamakKala = () => {
 
   }, [feedbackData])
 
+
+  // aksiyonları göster
+  const handleIsCheck = (e) => {
+    const { checked } = e.target
+    // feedbackData'yı map ederek ve actionType'a göre filtreleyerek setSikayet'e gönderiyoruz
+    const filterData = checked
+      ? Object.keys(feedbackData)
+        .map(key => ({ id: key, ...feedbackData[key] }))
+        .filter((item) => item.actionType === "")
+      : Object.keys(feedbackData).map(key => ({ id: key, ...feedbackData[key] }));
+
+    setramakkala(filterData);
+  }
+
+
   return (
     <div>
 
       <Typography py={5} align='center' letterSpacing={3} fontWeight={700}>Ramak Kala</Typography>
 
-      <RamakKala_Table handleClose_ramakkala={handleClose_ramakkala} handleOpen_ramakkala={handleOpen_ramakkala} open_ramakkala={open_ramakkala} ramakkala={ramakkala} open_action={open_action} handleClose_action={handleClose_action} handleOpen_action={handleOpen_action} open_delete={open_delete} handleClose_delete={handleClose_delete} handleOpen_delete={handleOpen_delete} />
+      <Box sx={{ flexDirection: 'column', display: 'flex', gap: 3, p: 3 }}>
+
+        <Box>
+          <FormControlLabel
+            control={
+              <Checkbox onChange={handleIsCheck} name="gilad" />
+            }
+            label="Aksiyon alınmamış olanları göster"
+          />
+        </Box>
+
+        <RamakKala_Table handleClose_ramakkala={handleClose_ramakkala} handleOpen_ramakkala={handleOpen_ramakkala} open_ramakkala={open_ramakkala} ramakkala={ramakkala} open_action={open_action} handleClose_action={handleClose_action} handleOpen_action={handleOpen_action} open_delete={open_delete} handleClose_delete={handleClose_delete} handleOpen_delete={handleOpen_delete} />
+
+      </Box>
+
 
     </div>
   )

@@ -33,14 +33,16 @@ const RamakKala_View = () => {
   const [info, setInfo] = useState({
     name: "",
     surname: "",
+    phone: "",
     gorev: "",
+    topic: "Ramak Kala",
     birim: "",
     location: "",
     ramakkaladetay: "",
     oneri: "",
     actionType: "",
     actionResult: "",
-    bonnaUser:bonnaUser ? 'Bonna Çalışanı':'Misafir',
+    bonnaUser: bonnaUser ? 'Bonna Çalışanı' : 'Misafir',
     datetime: formattedDate
   })
 
@@ -62,6 +64,7 @@ const RamakKala_View = () => {
     setInfo({
       name: "",
       surname: "",
+      phone: "",
       gorev: "",
       birim: "",
       location: "",
@@ -69,7 +72,7 @@ const RamakKala_View = () => {
       oneri: "",
       actionType: "",
       actionResult: "",
-      bonnaUser:bonnaUser ? 'Bonna Çalışanı':'Misafir',
+      bonnaUser: bonnaUser ? 'Bonna Çalışanı' : 'Misafir',
       datetime: formattedDate
     })
 
@@ -80,6 +83,10 @@ const RamakKala_View = () => {
     <div>
 
       <Typography align='center' color='#FFB534' p={3} fontWeight={700} fontSize={22}>Ramak Kala</Typography>
+
+      <Typography variant='subtitle2' align='center' color={'error'}>
+        Geri bildirimlerinizin takibi ve durumunu öğrenmek için telefon numarası doğruluğu önemlidir !
+      </Typography>
 
       <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 5, p: 2 }}>
 
@@ -112,6 +119,20 @@ const RamakKala_View = () => {
                 inputProps={{
                   maxLength: 50
                 }}
+                onChange={handleChange}
+              />
+
+              <TextField
+                required
+                fullWidth
+                label='Telefon (0xxx-xxx-xxxx)'
+                name='phone'
+                id='phone'
+                type='text'
+                inputProps={{
+                  maxLength: 11
+                }}
+                value={info.phone}
                 onChange={handleChange}
               />
             </Box>

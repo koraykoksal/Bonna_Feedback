@@ -53,7 +53,7 @@ const FeedBacks = ({ open, handleClose, info }) => {
             >
                 <Box sx={modalStyles}>
 
-                    <IconButton onClick={() => handleClose()}>
+                    <IconButton onClick={() => handleClose()} >
                         <HighlightOffIcon sx={{ color: '#C70039', fontSize: '28px' }} />
                     </IconButton>
 

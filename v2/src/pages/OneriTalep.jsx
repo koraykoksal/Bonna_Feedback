@@ -3,8 +3,8 @@ import useFeedbackCall from '../hooks/useFeedbackCall'
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import OneriTalep_Table from '../components/tables/OneriTalep_Table'
-import { Typography } from '@mui/material'
-
+import { Box, Typography, FormControlLabel } from '@mui/material'
+import Checkbox from '@mui/material/Checkbox';
 
 const OneriTalep = () => {
 
@@ -59,12 +59,39 @@ const OneriTalep = () => {
   }, [feedbackData])
 
 
+
+  // aksiyonları göster
+  const handleIsCheck = (e) => {
+    const { checked } = e.target
+    // feedbackData'yı map ederek ve actionType'a göre filtreleyerek setSikayet'e gönderiyoruz
+    const filterData = checked
+      ? Object.keys(feedbackData)
+        .map(key => ({ id: key, ...feedbackData[key] }))
+        .filter((item) => item.actionType === "")
+      : Object.keys(feedbackData).map(key => ({ id: key, ...feedbackData[key] }));
+
+    setoneritalep(filterData);
+  }
+
   return (
     <div>
 
       <Typography py={5} align='center' letterSpacing={3} fontWeight={700}>Öneri ve Talep</Typography>
 
-      <OneriTalep_Table handleClose_oneritalep={handleClose_oneritalep} handleOpen_oneritalep={handleOpen_oneritalep} oneritalep={oneritalep} open_action={open_action} handleClose_action={handleClose_action} handleOpen_action={handleOpen_action} open_delete={open_delete} handleClose_delete={handleClose_delete} handleOpen_delete={handleOpen_delete} />
+      <Box sx={{ flexDirection: 'column', display: 'flex', gap: 3, p: 3 }}>
+
+        <Box>
+          <FormControlLabel
+            control={
+              <Checkbox onChange={handleIsCheck} name="gilad" />
+            }
+            label="Aksiyon alınmamış olanları göster"
+          />
+        </Box>
+
+        <OneriTalep_Table handleClose_oneritalep={handleClose_oneritalep} handleOpen_oneritalep={handleOpen_oneritalep} oneritalep={oneritalep} open_action={open_action} handleClose_action={handleClose_action} handleOpen_action={handleOpen_action} open_delete={open_delete} handleClose_delete={handleClose_delete} handleOpen_delete={handleOpen_delete} />
+
+      </Box>
 
     </div>
   )

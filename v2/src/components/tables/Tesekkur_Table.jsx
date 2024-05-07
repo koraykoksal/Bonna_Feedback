@@ -64,29 +64,6 @@ const Tesekkur_Table = ({ tesekkur, handleOpen_tesekkur, handleClose_tesekkur, o
         }
       }) => {
         return [
-
-          // <GridActionsCellItem
-          //   key={'show'}
-          //   label='Show'
-          //   icon={<FaEye size={23} style={{ cursor: 'pointer', color: 'darkblue' }} />}
-          //   onClick={() => {
-          //     handleOpen_tesekkur()
-          //     setInfo({
-          //       id,
-          //       name,
-          //       surname,
-          //       phone,
-          //       email,
-          //       topic,
-          //       detail,
-          //       datetime,
-          //       actionType,
-          //       actionResult,
-          //       location
-          //     })
-
-          //   }}
-          // />,
           <GridActionsCellItem
             key={'edit'}
             label='Edit'
@@ -109,29 +86,29 @@ const Tesekkur_Table = ({ tesekkur, handleOpen_tesekkur, handleClose_tesekkur, o
             }} />}
 
           />,
-          <GridActionsCellItem
-            key={'delete'}
-            label='Delete'
-            icon={<MdDeleteForever size={23} style={{ cursor: 'pointer', color: 'red' }} onClick={() => {
-              handleOpen_delete()
-              setInfo({
-                id,
-                name,
-                surname,
-                phone,
-                email,
-                topic,
-                detail,
-                datetime,
-                actionType,
-                actionResult,
-                location,
-                type: "tesekkur"
-              })
-            }} />}
 
-          />
+          // <GridActionsCellItem
+          //   key={'delete'}
+          //   label='Delete'
+          //   icon={<MdDeleteForever size={23} style={{ cursor: 'pointer', color: 'red' }} onClick={() => {
+          //     handleOpen_delete()
+          //     setInfo({
+          //       id,
+          //       name,
+          //       surname,
+          //       phone,
+          //       email,
+          //       topic,
+          //       detail,
+          //       datetime,
+          //       actionType,
+          //       actionResult,
+          //       location,
+          //       type: "tesekkur"
+          //     })
+          //   }} />}
 
+          // />
 
         ]
       },
@@ -217,7 +194,7 @@ const Tesekkur_Table = ({ tesekkur, handleOpen_tesekkur, handleClose_tesekkur, o
 
 
   return (
-    <Box p={3}>
+    <Box>
 
       <DataGrid
         columns={dataGrid_Columns}

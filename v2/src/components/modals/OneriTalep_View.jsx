@@ -58,7 +58,7 @@ const OneriTalep_View = () => {
       surname: "",
       phone: "",
       email: "",
-      topic: "",
+      topic: "Öneri Talep",
       katkiKonusu: "",
       detail: "",
       actionType: "",
@@ -74,6 +74,10 @@ const OneriTalep_View = () => {
     <div>
 
       <Typography align='center' color='#FFB534' p={3} fontWeight={700} fontSize={22}>Öneri & Talep</Typography>
+
+      <Typography variant='subtitle2' align='center' color={'error'}>
+        Geri bildirimlerinizin takibi ve durumunu öğrenmek için telefon numarası doğruluğu önemlidir !
+      </Typography>
 
       <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 5, p: 2 }}>
 
@@ -112,15 +116,16 @@ const OneriTalep_View = () => {
 
             <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3 }}>
               <TextField
+                required
                 fullWidth
-                label='Telefon'
+                label='Telefon (0xxx-xxx-xxxx)'
                 name='phone'
                 id='phone'
                 type='text'
-                value={info.phone}
                 inputProps={{
-                  maxLength: 35
+                  maxLength: 11
                 }}
+                value={info.phone}
                 onChange={handleChange}
               />
               <TextField
@@ -137,7 +142,7 @@ const OneriTalep_View = () => {
               />
             </Box>
 
-            <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3 }}>
+            {/* <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3 }}>
 
               <FormControl fullWidth>
                 <InputLabel id="topic">Öneri & Talep Konusu</InputLabel>
@@ -179,7 +184,7 @@ const OneriTalep_View = () => {
                 </Select>
               </FormControl>
 
-            </Box>
+            </Box> */}
 
             <Box>
               <FormControl fullWidth>

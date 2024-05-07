@@ -34,7 +34,7 @@ const Tesekkur_View = () => {
         surname: "",
         phone: "",
         email: "",
-        topic: "",
+        topic: "Teşekkür",
         detail: "",
         actionType: "",
         actionResult: "",
@@ -74,7 +74,12 @@ const Tesekkur_View = () => {
 
             <Typography align='center' color='#FFB534' p={3} fontWeight={700} fontSize={22}>Teşekkür</Typography>
 
+            <Typography variant='subtitle2' align='center' color={'error'}>
+                Geri bildirimlerinizin takibi ve durumunu öğrenmek için telefon numarası doğruluğu önemlidir !
+            </Typography>
+
             <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 5, p: 2 }}>
+
 
                 <form onSubmit={handleSubmit}>
 
@@ -82,7 +87,7 @@ const Tesekkur_View = () => {
 
                         <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3 }}>
                             <TextField
-                            required
+                                required
                                 fullWidth
                                 label='İsim'
                                 name='name'
@@ -111,15 +116,16 @@ const Tesekkur_View = () => {
 
                         <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3 }}>
                             <TextField
+                                required
                                 fullWidth
-                                label='Telefon'
+                                label='Telefon (0xxx-xxx-xxxx)'
                                 name='phone'
                                 id='phone'
                                 type='text'
-                                value={info.phone}
                                 inputProps={{
-                                    maxLength: 35
+                                    maxLength: 11
                                 }}
+                                value={info.phone}
                                 onChange={handleChange}
                             />
                             <TextField

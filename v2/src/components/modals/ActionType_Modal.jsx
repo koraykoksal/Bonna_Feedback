@@ -64,7 +64,6 @@ const ActionType_Modal = ({ handleClose_action, open_action, info, setInfo }) =>
         handleClose_action()
     }
 
-    console.log(info)
 
     return (
         <div>
@@ -86,7 +85,7 @@ const ActionType_Modal = ({ handleClose_action, open_action, info, setInfo }) =>
 
                         <Box display={'flex'} justifyContent={'center'} gap={5} py={5}>
 
-                            <Typography align='center' fontWeight={700}>Konu : {info?.topic}</Typography>
+                            <Typography align='center' fontWeight={700}>Konu : {info?.type}</Typography>
 
                             <Typography align='center' fontWeight={700}>Tarih : {info?.datetime}</Typography>
 

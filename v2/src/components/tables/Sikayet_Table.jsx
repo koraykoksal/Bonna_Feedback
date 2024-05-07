@@ -12,7 +12,7 @@ import Delete_Modal from '../modals/Delete_Modal';
 
 
 
-const Sikayet_Table = ({ sikayet, handleClose_sikayet, handleOpen_sikayet, open_sikayet, handleOpen_action, handleClose_action, open_action, handleOpen_delete, handleClose_delete, open_delete }) => {
+const Sikayet_Table = ({ sikayet,handleClose_sikayet, handleOpen_sikayet, open_sikayet, handleOpen_action, handleClose_action, open_action, handleOpen_delete, handleClose_delete, open_delete }) => {
 
 
     const [info, setInfo] = useState({
@@ -107,28 +107,28 @@ const Sikayet_Table = ({ sikayet, handleClose_sikayet, handleOpen_sikayet, open_
                             }} />}
 
                         />,
-                        // <GridActionsCellItem
-                        //     key={'delete'}
-                        //     label='Delete'
-                        //     icon={<MdDeleteForever size={23} style={{ cursor: 'pointer', color: 'red' }} onClick={() => {
-                        //         handleOpen_delete()
-                        //         setInfo({
-                        //             id,
-                        //             name,
-                        //             surname,
-                        //             phone,
-                        //             email,
-                        //             topic,
-                        //             detail,
-                        //             datetime,
-                        //             actionType,
-                        //             actionResult,
-                        //             location,
-                        //             type: "sikayet"
-                        //         })
-                        //     }} />}
+                        <GridActionsCellItem
+                            key={'delete'}
+                            label='Delete'
+                            icon={<MdDeleteForever size={23} style={{ cursor: 'pointer', color: 'red' }} onClick={() => {
+                                handleOpen_delete()
+                                setInfo({
+                                    id,
+                                    name,
+                                    surname,
+                                    phone,
+                                    email,
+                                    topic,
+                                    detail,
+                                    datetime,
+                                    actionType,
+                                    actionResult,
+                                    location,
+                                    type: "sikayet"
+                                })
+                            }} />}
 
-                        // />
+                        />
                     
 
                 ]
@@ -224,12 +224,7 @@ const Sikayet_Table = ({ sikayet, handleClose_sikayet, handleOpen_sikayet, open_
 
     return (
 
-
-
-
-        <Box p={3}>
-
-
+        <Box>
             <DataGrid
                 columns={dataGrid_Columns}
                 rows={sikayet}

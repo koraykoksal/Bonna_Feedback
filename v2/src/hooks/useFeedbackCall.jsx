@@ -156,7 +156,6 @@ const useFeedbackCall = () => {
             onValue(starCountRef, (snapshot) => {
                 const data = snapshot.val();
 
-                console.log(data)
                 if (data == null || data == undefined) {
                     console.log("firebase data null geliyor:", data)
                     dispatch(fetchFeedBackData({}))

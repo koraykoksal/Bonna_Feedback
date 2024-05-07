@@ -3,7 +3,9 @@ import useFeedbackCall from '../hooks/useFeedbackCall'
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import Tesekkur_Table from '../components/tables/Tesekkur_Table'
-import { Typography } from '@mui/material'
+import { FormControlLabel, Typography } from '@mui/material'
+import Checkbox from '@mui/material/Checkbox';
+import Box from '@mui/material/Box';
 
 const Tesekkur = () => {
 
@@ -60,12 +62,37 @@ const Tesekkur = () => {
 
 
 
+    // aksiyonları göster
+    const handleIsCheck = (e) => {
+        const { checked } = e.target
+        // feedbackData'yı map ederek ve actionType'a göre filtreleyerek setSikayet'e gönderiyoruz
+        const filterData = checked
+            ? Object.keys(feedbackData)
+                .map(key => ({ id: key, ...feedbackData[key] }))
+                .filter((item) => item.actionType === "")
+            : Object.keys(feedbackData).map(key => ({ id: key, ...feedbackData[key] }));
+
+        settesekkur(filterData);
+    }
+
+
     return (
         <div>
 
             <Typography py={5} align='center' letterSpacing={3} fontWeight={700}>Teşekkür</Typography>
 
-            <Tesekkur_Table handleOpen_tesekkur={handleOpen_tesekkur} handleClose_tesekkur={handleClose_tesekkur} open_tesekkur={open_tesekkur} tesekkur={tesekkur} open_action={open_action} handleClose_action={handleClose_action} handleOpen_action={handleOpen_action} open_delete={open_delete} handleClose_delete={handleClose_delete} handleOpen_delete={handleOpen_delete} />
+            <Box sx={{ flexDirection: 'column', display: 'flex', gap: 3, p: 3 }}>
+                <Box>
+                    <FormControlLabel
+                        control={
+                            <Checkbox onChange={handleIsCheck} name="gilad" />
+                        }
+                        label="Aksiyon alınmamış olanları göster"
+                    />
+                </Box>
+
+                <Tesekkur_Table handleOpen_tesekkur={handleOpen_tesekkur} handleClose_tesekkur={handleClose_tesekkur} open_tesekkur={open_tesekkur} tesekkur={tesekkur} open_action={open_action} handleClose_action={handleClose_action} handleOpen_action={handleOpen_action} open_delete={open_delete} handleClose_delete={handleClose_delete} handleOpen_delete={handleOpen_delete} />
+            </Box>
 
         </div>
     )

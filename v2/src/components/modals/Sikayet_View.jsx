@@ -69,11 +69,16 @@ const Sikayet_View = () => {
 
     }
 
+
     return (
         <div>
 
             <Typography align='center' color='#FFB534' p={3} fontWeight={700} fontSize={22}>Şikayet</Typography>
 
+            <Typography variant='subtitle2' align='center' color={'error'}>
+                Geri bildirimlerinizin takibi ve durumunu öğrenmek için telefon numarası doğruluğu önemlidir !
+            </Typography>
+            
             <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 5, p: 2 }}>
 
                 <form onSubmit={handleSubmit}>
@@ -110,17 +115,17 @@ const Sikayet_View = () => {
                         </Box>
 
                         <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3 }}>
-                            <TextField
+                        <TextField
                                 required
                                 fullWidth
-                                label='Telefon'
+                                label='Telefon (0xxx-xxx-xxxx)'
                                 name='phone'
                                 id='phone'
                                 type='text'
-                                value={info.phone}
                                 inputProps={{
-                                    maxLength: 35
+                                    maxLength: 11
                                 }}
+                                value={info.phone}
                                 onChange={handleChange}
                             />
                             <TextField

@@ -234,7 +234,7 @@ const OneriTalep_Table = ({ oneritalep, handleClose_oneritalep, handleOpen_oneri
 
 
   return (
-    <Box p={3}>
+    <Box>
 
       <DataGrid
         columns={dataGrid_Columns}
