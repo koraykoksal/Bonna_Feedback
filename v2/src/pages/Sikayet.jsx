@@ -3,10 +3,11 @@ import Sikayet_Table from '../components/tables/Sikayet_Table'
 import useFeedbackCall from '../hooks/useFeedbackCall'
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { FormControlLabel, Typography } from '@mui/material'
+import { FormControlLabel, TextField, Typography } from '@mui/material'
 import Checkbox from '@mui/material/Checkbox';
 import Box from '@mui/material/Box';
-
+import { SlRefresh } from "react-icons/sl";
+import { HiOutlineSearch } from "react-icons/hi";
 
 const Sikayet = () => {
 
@@ -26,9 +27,20 @@ const Sikayet = () => {
   const handleOpen_delete = () => setOpen_delete(true);
   const handleClose_delete = () => { setOpen_delete(false) }
 
+
+  const [info, setInfo] = useState({
+    dateFrom: "",
+    dateTo: ""
+  })
+
+  //date bilgisini al
+  const handleChange = (e) => {
+    setInfo({ ...info, [e.target.name]: e.target.value })
+  }
+
   // sikayet datasını çek
   useEffect(() => {
-    getFireData('sikayet')
+    getFireData('sikayet', info.dateFrom,info.dateTo)
   }, [])
 
 
@@ -57,20 +69,59 @@ const Sikayet = () => {
   // aksiyonları göster
   const handleIsCheck = (e) => {
     const { checked } = e.target
-    // feedbackData'yı map ederek ve actionType'a göre filtreleyerek setSikayet'e gönderiyoruz
-    const filterData = checked
-      ? Object.keys(feedbackData)
-        .map(key => ({ id: key, ...feedbackData[key] }))
-        .filter((item) => item.actionType === "")
-      : Object.keys(feedbackData).map(key => ({ id: key, ...feedbackData[key] }));
+
+    const filterData = checked ? sikayet.filter((item) => item.actionType === "") : 
+    getFireData('sikayet', info.dateFrom,info.dateTo)
 
     setSikayet(filterData);
   }
 
 
+  //filtreyi temizle
+  const handleRefresh = () => {
+    setInfo({
+      dateFrom: "",
+      dateTo: ""
+    })
+    getFireData('sikayet', "","")
+  }
+
+
   return (
     <div>
-      <Typography py={5} align='center' letterSpacing={3} fontWeight={700}>Şikayet</Typography>
+      <Typography mt={12} align='center' letterSpacing={3} fontWeight={700}>Şikayet</Typography>
+
+      <Box display={'flex'} justifyContent={'space-between'} gap={2} alignItems={'center'} p={2}>
+
+        <SlRefresh size={22} color='green' cursor={'pointer'} onClick={handleRefresh} />
+
+
+        <Box sx={{ display: 'flex', justifyContent: 'flex-start', gap: 1, alignItems: 'center', p: 2 }}>
+          <Typography>From</Typography>
+          <TextField
+            required
+            size='small'
+            id='dateFrom'
+            name='dateFrom'
+            type='date'
+            value={info.dateFrom}
+            onChange={handleChange}
+          />
+
+          <Typography>To</Typography>
+          <TextField
+            required
+            size='small'
+            id='dateTo'
+            name='dateTo'
+            type='date'
+            value={info.dateTo}
+            onChange={handleChange}
+          />
+          <HiOutlineSearch size={25} color='black' cursor={'pointer'} style={{ marginLeft: 15 }} onClick={() => getFireData("sikayet", info.dateFrom,info.dateTo)} />
+        </Box>
+
+      </Box>
 
       <Box sx={{ flexDirection: 'column', display: 'flex', gap: 3, p: 3 }}>
 

@@ -3,14 +3,21 @@ import useFeedbackCall from '../hooks/useFeedbackCall'
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import OneriTalep_Table from '../components/tables/OneriTalep_Table'
-import { Box, Typography, FormControlLabel } from '@mui/material'
+import { Box, Typography, FormControlLabel, TextField } from '@mui/material'
 import Checkbox from '@mui/material/Checkbox';
+import { SlRefresh } from "react-icons/sl";
+import { HiOutlineSearch } from "react-icons/hi";
 
 const OneriTalep = () => {
 
   const { getFireData } = useFeedbackCall()
   const { feedbackData } = useSelector((state) => state.feedback)
   const [oneritalep, setoneritalep] = useState([])
+
+  const [info, setInfo] = useState({
+    dateFrom: "",
+    dateTo: ""
+  })
 
   const [open_oneritalep, setOpen_oneritalep] = useState(false)
   const handleOpen_oneritalep = () => setOpen_oneritalep(true);
@@ -34,9 +41,14 @@ const OneriTalep = () => {
   }
 
   useEffect(() => {
-    getFireData('oneri-talep')
+    getFireData('oneri-talep', info.dateFrom, info.dateTo)
   }, [])
 
+
+  //date bilgisini al
+  const handleChange = (e) => {
+    setInfo({ ...info, [e.target.name]: e.target.value })
+  }
 
   useEffect(() => {
 
@@ -63,20 +75,58 @@ const OneriTalep = () => {
   // aksiyonları göster
   const handleIsCheck = (e) => {
     const { checked } = e.target
-    // feedbackData'yı map ederek ve actionType'a göre filtreleyerek setSikayet'e gönderiyoruz
-    const filterData = checked
-      ? Object.keys(feedbackData)
-        .map(key => ({ id: key, ...feedbackData[key] }))
-        .filter((item) => item.actionType === "")
-      : Object.keys(feedbackData).map(key => ({ id: key, ...feedbackData[key] }));
-
+    const filterData = checked ? oneritalep.filter((item) => item.actionType === "") :
+      getFireData('oneri-talep', info.dateFrom, info.dateTo)
     setoneritalep(filterData);
+  }
+
+
+  //filtreyi temizle
+  const handleRefresh = () => {
+    setInfo({
+      dateFrom: "",
+      dateTo: ""
+    })
+    getFireData('oneri-talep', "", "")
   }
 
   return (
     <div>
 
-      <Typography py={5} align='center' letterSpacing={3} fontWeight={700}>Öneri ve Talep</Typography>
+      <Typography mt={12} align='center' letterSpacing={3} fontWeight={700}>Öneri ve Talep</Typography>
+
+      <Box display={'flex'} justifyContent={'space-between'} gap={2} alignItems={'center'} p={2}>
+
+        <SlRefresh size={22} color='green' cursor={'pointer'} onClick={handleRefresh} />
+
+
+        <Box sx={{ display: 'flex', justifyContent: 'flex-start', gap: 1, alignItems: 'center', p: 2 }}>
+          <Typography>From</Typography>
+          <TextField
+            required
+            size='small'
+            id='dateFrom'
+            name='dateFrom'
+            type='date'
+            value={info.dateFrom}
+            onChange={handleChange}
+          />
+
+          <Typography>To</Typography>
+          <TextField
+            required
+            size='small'
+            id='dateTo'
+            name='dateTo'
+            type='date'
+            value={info.dateTo}
+            onChange={handleChange}
+          />
+          <HiOutlineSearch size={25} color='black' cursor={'pointer'} style={{ marginLeft: 15 }}
+            onClick={() => getFireData('oneri-talep', info.dateFrom, info.dateTo)} />
+        </Box>
+
+      </Box>
 
       <Box sx={{ flexDirection: 'column', display: 'flex', gap: 3, p: 3 }}>
 

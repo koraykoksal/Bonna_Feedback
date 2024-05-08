@@ -21,7 +21,7 @@ const style = {
 
 const Delete_Modal = ({ handleOpen_delete, handleClose_delete, open_delete, info, setInfo }) => {
 
-    const { getFireData_Sikayet, removeFirebaseData } = useFeedbackCall()
+    const { getFireData, removeFirebaseData } = useFeedbackCall()
 
     const handleSubmit = (e) => {
 
@@ -31,21 +31,28 @@ const Delete_Modal = ({ handleOpen_delete, handleClose_delete, open_delete, info
 
             if (info.id) {
                 removeFirebaseData('sikayet', info.id)
-                getFireData_Sikayet('sikayet')
+                getFireData('sikayet',"","")
             }
         }
         else if (info.type == "oneriTalep") {
 
             if (info.id) {
                 removeFirebaseData('oneri-talep', info.id)
-                getFireData_Sikayet('oneri-talep')
+                getFireData('oneri-talep',"","")
             }
         }
         else if (info.type == "tesekkur") {
 
             if (info.id) {
                 removeFirebaseData('tesekkur', info.id)
-                getFireData_Sikayet('tesekkur')
+                getFireData('tesekkur',"","")
+            }
+        }
+        else if (info.type == "ramakkala") {
+
+            if (info.id) {
+                removeFirebaseData('ramakkala', info.id)
+                getFireData('ramakkala',"","")
             }
         }
 

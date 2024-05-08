@@ -51,7 +51,7 @@ export const Home = () => {
 
     <div style={homePageStyle}>
 
-      <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', py: 10, gap: 10 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', py: 15, gap: 10 }}>
 
 
         {

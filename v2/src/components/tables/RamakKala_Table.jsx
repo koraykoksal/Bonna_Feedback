@@ -29,12 +29,12 @@ const RamakKala_Table = ({ ramakkala, handleClose_ramakkala, handleOpen_ramakkal
 
     const dataGrid_Columns = [
         {
-          field: "id",
-          headerName: "ID",
-          minWidth: 150,
-          headerAlign: "center",
-          align: "center",
-          flex: 1,
+            field: "id",
+            headerName: "ID",
+            minWidth: 150,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
         },
         {
             field: "actions",
@@ -61,30 +61,6 @@ const RamakKala_Table = ({ ramakkala, handleClose_ramakkala, handleOpen_ramakkal
                 }
             }) => {
                 return [
-
-                    // <GridActionsCellItem
-                    //     key={'show'}
-                    //     label='Show'
-                    //     icon={<FaEye size={23} style={{ cursor: 'pointer', color: 'darkblue' }} />}
-                    //     onClick={() => {
-                    //         handleOpen_ramakkala()
-                    //         setInfo({
-                    //             id,
-                    //             name,
-                    //             surname,
-                    //             gorev,
-                    //             birim,
-                    //             location,
-                    //             ramakkaladetay,
-                    //             oneri,
-                    //             actionType,
-                    //             actionResult,
-                    //             bonnaUser,
-                    //             datetime
-                    //         })
-
-                    //     }}
-                    // />,
                     <GridActionsCellItem
                         key={'edit'}
                         label='Edit'
@@ -108,28 +84,29 @@ const RamakKala_Table = ({ ramakkala, handleClose_ramakkala, handleOpen_ramakkal
                         }} />}
 
                     />,
-                    // <GridActionsCellItem
-                    //     key={'delete'}
-                    //     label='Delete'
-                    //     icon={<MdDeleteForever size={23} style={{ cursor: 'pointer', color: 'red' }} onClick={() => {
-                    //         handleOpen_delete()
-                    //         setInfo({
-                    //             id,
-                    //             name,
-                    //             surname,
-                    //             phone,
-                    //             email,
-                    //             topic,
-                    //             detail,
-                    //             datetime,
-                    //             actionType,
-                    //             actionResult,
-                    //             location,
-                    //             type: "sikayet"
-                    //         })
-                    //     }} />}
+                    <GridActionsCellItem
+                        key={'delete'}
+                        label='Delete'
+                        icon={<MdDeleteForever size={23} style={{ cursor: 'pointer', color: 'red' }} onClick={() => {
+                            handleOpen_delete()
+                            setInfo({
+                                id,
+                                name,
+                                surname,
+                                gorev,
+                                birim,
+                                location,
+                                ramakkaladetay,
+                                oneri,
+                                actionType,
+                                actionResult,
+                                bonnaUser,
+                                datetime,
+                                type: "ramakkala"
+                            })
+                        }} />}
 
-                    // />
+                    />
 
 
                 ]
@@ -224,7 +201,7 @@ const RamakKala_Table = ({ ramakkala, handleClose_ramakkala, handleOpen_ramakkal
             align: "center",
             flex: 1,
         },
-       
+
 
     ];
 

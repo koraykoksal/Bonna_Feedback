@@ -12,7 +12,7 @@ import { useEffect } from 'react';
 
 const ActionType_Modal = ({ handleClose_action, open_action, info, setInfo }) => {
 
-    const { putFireData_Sikayet, getFireData_Sikayet } = useFeedbackCall()
+    const { putFireData,getFireData } = useFeedbackCall()
 
 
     useEffect(() => {
@@ -42,23 +42,23 @@ const ActionType_Modal = ({ handleClose_action, open_action, info, setInfo }) =>
 
         if (info.type == "sikayet") {
 
-            putFireData_Sikayet('sikayet', info)
-            getFireData_Sikayet('sikayet')
+            putFireData('sikayet', info)
+            getFireData('sikayet')
         }
         else if (info.type == "oneriTalep") {
 
-            putFireData_Sikayet('oneri-talep', info)
-            getFireData_Sikayet('oneri-talep')
+            putFireData('oneri-talep', info)
+            getFireData('oneri-talep')
         }
         else if (info.type == "tesekkur") {
 
-            putFireData_Sikayet('tesekkur', info)
-            getFireData_Sikayet('tesekkur')
+            putFireData('tesekkur', info)
+            getFireData('tesekkur')
         }
         else if (info.type == "ramakkala") {
 
-            putFireData_Sikayet('ramakkala', info)
-            getFireData_Sikayet('ramakkala')
+            putFireData('ramakkala', info)
+            getFireData('ramakkala')
         }
 
         handleClose_action()

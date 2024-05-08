@@ -2,15 +2,22 @@ import React from 'react'
 import useFeedbackCall from '../hooks/useFeedbackCall'
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { Box, FormControlLabel, Typography } from '@mui/material'
+import { Box, FormControlLabel, TextField, Typography } from '@mui/material'
 import RamakKala_Table from '../components/tables/RamakKala_Table'
 import Checkbox from '@mui/material/Checkbox';
+import { SlRefresh } from "react-icons/sl";
+import { HiOutlineSearch } from "react-icons/hi";
 
 const RamakKala = () => {
 
   const { getFireData } = useFeedbackCall()
   const { feedbackData } = useSelector((state) => state.feedback)
   const [ramakkala, setramakkala] = useState([])
+
+  const [info, setInfo] = useState({
+    dateFrom: "",
+    dateTo: ""
+  })
 
   const [open_ramakkala, setOpen_ramakkala] = useState(false)
   const handleOpen_ramakkala = () => setOpen_ramakkala(true);
@@ -33,9 +40,14 @@ const RamakKala = () => {
 
   }
 
+  //date bilgisini al
+  const handleChange = (e) => {
+    setInfo({ ...info, [e.target.name]: e.target.value })
+  }
+
 
   useEffect(() => {
-    getFireData('ramakkala')
+    getFireData('ramakkala',info.dateFrom,info.dateTo)
   }, [])
 
   useEffect(() => {
@@ -62,21 +74,58 @@ const RamakKala = () => {
   // aksiyonları göster
   const handleIsCheck = (e) => {
     const { checked } = e.target
-    // feedbackData'yı map ederek ve actionType'a göre filtreleyerek setSikayet'e gönderiyoruz
-    const filterData = checked
-      ? Object.keys(feedbackData)
-        .map(key => ({ id: key, ...feedbackData[key] }))
-        .filter((item) => item.actionType === "")
-      : Object.keys(feedbackData).map(key => ({ id: key, ...feedbackData[key] }));
-
+    const filterData = checked ? ramakkala.filter((item) => item.actionType === "") :
+      getFireData('ramakkala',info.dateFrom,info.dateTo)
     setramakkala(filterData);
+  }
+
+   //filtreyi temizle
+   const handleRefresh = () => {
+    setInfo({
+      dateFrom: "",
+      dateTo: ""
+    })
+    getFireData('ramakkala',info.dateFrom,info.dateTo)
   }
 
 
   return (
     <div>
 
-      <Typography py={5} align='center' letterSpacing={3} fontWeight={700}>Ramak Kala</Typography>
+      <Typography mt={12} align='center' letterSpacing={3} fontWeight={700}>Ramak Kala</Typography>
+
+      <Box display={'flex'} justifyContent={'space-between'} gap={2} alignItems={'center'} p={2}>
+
+        <SlRefresh size={22} color='green' cursor={'pointer'} onClick={handleRefresh} />
+
+
+        <Box sx={{ display: 'flex', justifyContent: 'flex-start', gap: 1, alignItems: 'center', p: 2 }}>
+          <Typography>From</Typography>
+          <TextField
+            required
+            size='small'
+            id='dateFrom'
+            name='dateFrom'
+            type='date'
+            value={info.dateFrom}
+            onChange={handleChange}
+          />
+
+          <Typography>To</Typography>
+          <TextField
+            required
+            size='small'
+            id='dateTo'
+            name='dateTo'
+            type='date'
+            value={info.dateTo}
+            onChange={handleChange}
+          />
+          <HiOutlineSearch size={25} color='black' cursor={'pointer'} style={{ marginLeft: 15 }}
+            onClick={() => getFireData('ramakkala', info.dateFrom, info.dateTo)} />
+        </Box>
+
+      </Box>
 
       <Box sx={{ flexDirection: 'column', display: 'flex', gap: 3, p: 3 }}>
 

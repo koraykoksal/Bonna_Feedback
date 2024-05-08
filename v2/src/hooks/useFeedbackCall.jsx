@@ -12,7 +12,7 @@ import {
 } from '../features/feedbackSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
-import { toastInfoNotify, toastSuccessNotify, toastErrorNotify } from '../helper/ToastNotify'
+import { toastInfoNotify, toastSuccessNotify, toastErrorNotify, toastWarnNotify } from '../helper/ToastNotify'
 import { doc, setDoc, Timestamp, collection, addDoc, getDocs, getDoc } from "firebase/firestore";
 import { db } from "../db/firebase_db"
 import { getDatabase, onValue, ref, remove, set, update } from "firebase/database";
@@ -26,6 +26,11 @@ const useFeedbackCall = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
+
+    function formatDate(dateStr) {
+        const parts = dateStr.split(' ')[0].split('-')
+        return `${parts[2]}-${parts[1]}-${parts[0]}`
+    }
 
     //! firebase data gönder
     const postFireData = async (address, info) => {
@@ -47,105 +52,7 @@ const useFeedbackCall = () => {
     }
 
 
-
-    //! firebase data çek
-    const getFireData_Tesekkur = async (address) => {
-
-        dispatch(fetchStart())
-
-        try {
-
-            const db = getDatabase();
-            const starCountRef = ref(db, `${address}/`);
-            onValue(starCountRef, (snapshot) => {
-                const data = snapshot.val();
-
-                // console.log(data)
-
-                if (data == null || data == undefined) {
-                    console.log("firebase data null geliyor:", data)
-                }
-                else {
-                    dispatch(fetchTesekkurData(data))
-                }
-
-
-            });
-
-        } catch (error) {
-            toastErrorNotify('No Get Izo Press Data ❌')
-        }
-
-
-
-    }
-
-
-
-    const getFireData_OneriTalep = async (address) => {
-
-        dispatch(fetchStart())
-
-        try {
-
-            const db = getDatabase();
-            const starCountRef = ref(db, `${address}/`);
-            onValue(starCountRef, (snapshot) => {
-                const data = snapshot.val();
-
-                // console.log(data)
-
-                if (data == null || data == undefined) {
-                    console.log("firebase data null geliyor:", data)
-                }
-                else {
-                    dispatch(fetchOneriTalepData(data))
-                }
-
-
-            });
-
-        } catch (error) {
-            toastErrorNotify('No Get Izo Press Data ❌')
-        }
-
-
-
-    }
-
-
-
-    const getFireData_Sikayet = async (address) => {
-
-        dispatch(fetchStart())
-
-        try {
-
-            const db = getDatabase();
-            const starCountRef = ref(db, `${address}/`);
-            onValue(starCountRef, (snapshot) => {
-                const data = snapshot.val();
-
-                if (data == null || data == undefined) {
-                    console.log("firebase data null geliyor:", data)
-                }
-                else {
-                    dispatch(fetchSikayetData(data))
-                }
-
-
-            });
-
-        } catch (error) {
-            toastErrorNotify('No Get Izo Press Data ❌')
-        }
-
-
-
-    }
-
-
-    const getFireData = async (address) => {
+    const getFireData = async (address, dateFrom,dateTo) => {
 
         dispatch(fetchStart())
 
@@ -161,7 +68,22 @@ const useFeedbackCall = () => {
                     dispatch(fetchFeedBackData({}))
                 }
                 else {
-                    dispatch(fetchFeedBackData(data))
+
+                    //db den gelen datayı array olarak çevir
+                    const dizi = Object.keys(data).map(key => { return { id: key, ...data[key] } })
+
+                    if (dateFrom && dateTo) {
+                        
+                        const result = dizi.filter((item) => {
+                            return formatDate(item.datetime) >= dateFrom && formatDate(item.datetime) <= dateTo
+                        })
+
+                        dispatch(fetchFeedBackData(result))
+                    }
+                    else {
+                        dispatch(fetchFeedBackData(data))
+                    }
+
                 }
 
 
@@ -176,21 +98,21 @@ const useFeedbackCall = () => {
     }
 
 
-    const putFireData_Sikayet=async (address,info)=>{
+    const putFireData = async (address, info) => {
 
 
         try {
 
             const db = getDatabase()
-            await update(ref(db,`${address}/${info.id}`),info)
+            await update(ref(db, `${address}/${info.id}`), info)
             toastSuccessNotify('Updated Data')
-            
+
         } catch (error) {
-            console.log("putFireData_Sikayet :",error)
+            console.log("putFireData_Sikayet :", error)
         }
     }
 
-    
+
     //! firebase data silme
     const removeFirebaseData = async (address, id) => {
 
@@ -211,8 +133,8 @@ const useFeedbackCall = () => {
         // getFireData_Tesekkur,
         removeFirebaseData,
         // getFireData_OneriTalep,
-        getFireData_Sikayet,
-        putFireData_Sikayet
+        // getFireData_Sikayet,
+        putFireData
 
     }
 

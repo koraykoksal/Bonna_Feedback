@@ -1,7 +1,6 @@
 import pattern1 from "../assets/img/bg1.png"
 import pattern2 from "../assets/img/bg2.png"
 import pattern3 from "../assets/img/bg3.png"
-import pattern4 from "../assets/img/bg4.png"
 
 
 
@@ -19,7 +18,6 @@ export const modalStyles = {
     transform: 'translate(-50%, -50%)',
     width: '90%',
     height: '90%',
-    overflow: 'scroll',
     bgcolor: 'background.paper',
     // border: '2px solid #000',
     borderRadius:3,
