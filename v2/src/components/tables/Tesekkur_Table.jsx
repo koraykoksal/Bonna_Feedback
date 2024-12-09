@@ -87,28 +87,28 @@ const Tesekkur_Table = ({ tesekkur, handleOpen_tesekkur, handleClose_tesekkur, o
 
           />,
 
-          <GridActionsCellItem
-            key={'delete'}
-            label='Delete'
-            icon={<MdDeleteForever size={23} style={{ cursor: 'pointer', color: 'red' }} onClick={() => {
-              handleOpen_delete()
-              setInfo({
-                id,
-                name,
-                surname,
-                phone,
-                email,
-                topic,
-                detail,
-                datetime,
-                actionType,
-                actionResult,
-                location,
-                type: "tesekkur"
-              })
-            }} />}
+          // <GridActionsCellItem
+          //   key={'delete'}
+          //   label='Delete'
+          //   icon={<MdDeleteForever size={23} style={{ cursor: 'pointer', color: 'red' }} onClick={() => {
+          //     handleOpen_delete()
+          //     setInfo({
+          //       id,
+          //       name,
+          //       surname,
+          //       phone,
+          //       email,
+          //       topic,
+          //       detail,
+          //       datetime,
+          //       actionType,
+          //       actionResult,
+          //       location,
+          //       type: "tesekkur"
+          //     })
+          //   }} />}
 
-          />
+          // />
 
         ]
       },

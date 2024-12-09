@@ -25,7 +25,7 @@ export const AppRouter = () => {
           <Route path='/' element={<Home />} />
           <Route path='login' element={<Login />} />
 
-          <Route element={<PrivateRouter />}>
+          <Route path='report' element={<PrivateRouter />}>
             <Route path='tesekkur' element={<Tesekkur />} />
             <Route path='sikayet' element={<Sikayet />} />
             <Route path='oneritalep' element={<OneriTalep />} />

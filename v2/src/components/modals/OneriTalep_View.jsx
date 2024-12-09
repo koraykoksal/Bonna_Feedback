@@ -94,9 +94,9 @@ const OneriTalep_View = () => {
                 id='name'
                 type='text'
                 value={info.name}
-                inputProps={{
-                  maxLength: 50
-                }}
+                // inputProps={{
+                //   maxLength: 50
+                // }}
                 onChange={handleChange}
               />
               <TextField
@@ -107,9 +107,9 @@ const OneriTalep_View = () => {
                 id='surname'
                 type='text'
                 value={info.surname}
-                inputProps={{
-                  maxLength: 50
-                }}
+                // inputProps={{
+                //   maxLength: 50
+                // }}
                 onChange={handleChange}
               />
             </Box>
@@ -122,9 +122,9 @@ const OneriTalep_View = () => {
                 name='phone'
                 id='phone'
                 type='text'
-                inputProps={{
-                  maxLength: 11
-                }}
+                // inputProps={{
+                //   maxLength: 11
+                // }}
                 value={info.phone}
                 onChange={handleChange}
               />
@@ -135,9 +135,9 @@ const OneriTalep_View = () => {
                 id='email'
                 type='text'
                 value={info.email}
-                inputProps={{
-                  maxLength: 35
-                }}
+                // inputProps={{
+                //   maxLength: 35
+                // }}
                 onChange={handleChange}
               />
             </Box>
@@ -219,9 +219,9 @@ const OneriTalep_View = () => {
                 id='detail'
                 type='text'
                 value={info.detail}
-                inputProps={{
-                  maxLength: 250
-                }}
+                // inputProps={{
+                //   maxLength: 250
+                // }}
                 onChange={handleChange}
               />
             </Box>

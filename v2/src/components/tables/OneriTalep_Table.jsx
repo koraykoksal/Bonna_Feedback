@@ -61,30 +61,6 @@ const OneriTalep_Table = ({ oneritalep, handleClose_oneritalep, handleOpen_oneri
         }
       }) => {
         return [
-
-          // <GridActionsCellItem
-          //   key={'show'}
-          //   label='Show'
-          //   icon={<FaEye size={23} style={{ cursor: 'pointer', color: 'darkblue' }} />}
-          //   onClick={() => {
-          //     handleOpen_oneritalep()
-          //     setInfo({
-          //       id,
-          //       name,
-          //       surname,
-          //       phone,
-          //       email,
-          //       topic,
-          //       katkiKonusu,
-          //       detail,
-          //       datetime,
-          //       actionType,
-          //       actionResult,
-          //       location
-          //     })
-
-          //   }}
-          // />,
           <GridActionsCellItem
             key={'edit'}
             label='Edit'
@@ -108,29 +84,29 @@ const OneriTalep_Table = ({ oneritalep, handleClose_oneritalep, handleOpen_oneri
             }} />}
 
           />,
-          <GridActionsCellItem
-            key={'delete'}
-            label='Delete'
-            icon={<MdDeleteForever size={23} style={{ cursor: 'pointer', color: 'red' }} onClick={() => {
-              handleOpen_delete()
-              setInfo({
-                id,
-                name,
-                surname,
-                phone,
-                email,
-                topic,
-                katkiKonusu,
-                detail,
-                datetime,
-                actionType,
-                actionResult,
-                location,
-                type: "oneriTalep"
-              })
-            }} />}
+          // <GridActionsCellItem
+          //   key={'delete'}
+          //   label='Delete'
+          //   icon={<MdDeleteForever size={23} style={{ cursor: 'pointer', color: 'red' }} onClick={() => {
+          //     handleOpen_delete()
+          //     setInfo({
+          //       id,
+          //       name,
+          //       surname,
+          //       phone,
+          //       email,
+          //       topic,
+          //       katkiKonusu,
+          //       detail,
+          //       datetime,
+          //       actionType,
+          //       actionResult,
+          //       location,
+          //       type: "oneriTalep"
+          //     })
+          //   }} />}
 
-          />
+          // />
 
 
         ]

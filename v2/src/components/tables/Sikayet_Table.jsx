@@ -63,28 +63,6 @@ const Sikayet_Table = ({ sikayet,handleClose_sikayet, handleOpen_sikayet, open_s
             }) => {
                 return [
          
-                        // <GridActionsCellItem
-                        //     key={'show'}
-                        //     label='Show'
-                        //     icon={<FaEye size={23} style={{ cursor: 'pointer', color: 'darkblue' }} />}
-                        //     onClick={() => {
-                        //         handleOpen_sikayet()
-                        //         setInfo({
-                        //             id,
-                        //             name,
-                        //             surname,
-                        //             phone,
-                        //             email,
-                        //             topic,
-                        //             detail,
-                        //             datetime,
-                        //             actionType,
-                        //             actionResult,
-                        //             location
-                        //         })
-
-                        //     }}
-                        // />,
                         <GridActionsCellItem
                             key={'edit'}
                             label='Edit'
@@ -107,28 +85,28 @@ const Sikayet_Table = ({ sikayet,handleClose_sikayet, handleOpen_sikayet, open_s
                             }} />}
 
                         />,
-                        <GridActionsCellItem
-                            key={'delete'}
-                            label='Delete'
-                            icon={<MdDeleteForever size={23} style={{ cursor: 'pointer', color: 'red' }} onClick={() => {
-                                handleOpen_delete()
-                                setInfo({
-                                    id,
-                                    name,
-                                    surname,
-                                    phone,
-                                    email,
-                                    topic,
-                                    detail,
-                                    datetime,
-                                    actionType,
-                                    actionResult,
-                                    location,
-                                    type: "sikayet"
-                                })
-                            }} />}
+                        // <GridActionsCellItem
+                        //     key={'delete'}
+                        //     label='Delete'
+                        //     icon={<MdDeleteForever size={23} style={{ cursor: 'pointer', color: 'red' }} onClick={() => {
+                        //         handleOpen_delete()
+                        //         setInfo({
+                        //             id,
+                        //             name,
+                        //             surname,
+                        //             phone,
+                        //             email,
+                        //             topic,
+                        //             detail,
+                        //             datetime,
+                        //             actionType,
+                        //             actionResult,
+                        //             location,
+                        //             type: "sikayet"
+                        //         })
+                        //     }} />}
 
-                        />
+                        // />
                     
 
                 ]

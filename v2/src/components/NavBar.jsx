@@ -36,19 +36,19 @@ const pages = [
 const reporPages = [
   {
     title: "Teşekkür",
-    url: '/tesekkur'
+    url: '/report/tesekkur'
   },
   {
     title: "Öneri Talep",
-    url: '/oneritalep'
+    url: '/report/oneritalep'
   },
   {
     title: "Şikayet",
-    url: '/sikayet'
+    url: '/report/sikayet'
   },
   {
     title: "Ramak Kala",
-    url: '/ramakkala'
+    url: '/report/ramakkala'
   }
 ];
 

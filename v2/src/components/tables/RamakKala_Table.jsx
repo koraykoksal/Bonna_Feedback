@@ -84,29 +84,29 @@ const RamakKala_Table = ({ ramakkala, handleClose_ramakkala, handleOpen_ramakkal
                         }} />}
 
                     />,
-                    <GridActionsCellItem
-                        key={'delete'}
-                        label='Delete'
-                        icon={<MdDeleteForever size={23} style={{ cursor: 'pointer', color: 'red' }} onClick={() => {
-                            handleOpen_delete()
-                            setInfo({
-                                id,
-                                name,
-                                surname,
-                                gorev,
-                                birim,
-                                location,
-                                ramakkaladetay,
-                                oneri,
-                                actionType,
-                                actionResult,
-                                bonnaUser,
-                                datetime,
-                                type: "ramakkala"
-                            })
-                        }} />}
+                    // <GridActionsCellItem
+                    //     key={'delete'}
+                    //     label='Delete'
+                    //     icon={<MdDeleteForever size={23} style={{ cursor: 'pointer', color: 'red' }} onClick={() => {
+                    //         handleOpen_delete()
+                    //         setInfo({
+                    //             id,
+                    //             name,
+                    //             surname,
+                    //             gorev,
+                    //             birim,
+                    //             location,
+                    //             ramakkaladetay,
+                    //             oneri,
+                    //             actionType,
+                    //             actionResult,
+                    //             bonnaUser,
+                    //             datetime,
+                    //             type: "ramakkala"
+                    //         })
+                    //     }} />}
 
-                    />
+                    // />
 
 
                 ]

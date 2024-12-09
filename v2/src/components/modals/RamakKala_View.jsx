@@ -103,9 +103,9 @@ const RamakKala_View = () => {
                 id='name'
                 type='text'
                 value={info.name}
-                inputProps={{
-                  maxLength: 50
-                }}
+                // inputProps={{
+                //   maxLength: 50
+                // }}
                 onChange={handleChange}
               />
               <TextField
@@ -116,9 +116,9 @@ const RamakKala_View = () => {
                 id='surname'
                 type='text'
                 value={info.surname}
-                inputProps={{
-                  maxLength: 50
-                }}
+                // inputProps={{
+                //   maxLength: 50
+                // }}
                 onChange={handleChange}
               />
 
@@ -129,9 +129,9 @@ const RamakKala_View = () => {
                 name='phone'
                 id='phone'
                 type='text'
-                inputProps={{
-                  maxLength: 11
-                }}
+                // inputProps={{
+                //   maxLength: 11
+                // }}
                 value={info.phone}
                 onChange={handleChange}
               />
@@ -159,9 +159,9 @@ const RamakKala_View = () => {
                     id='gorev'
                     type='text'
                     value={info.gorev}
-                    inputProps={{
-                      maxLength: 35
-                    }}
+                    // inputProps={{
+                    //   maxLength: 35
+                    // }}
                     onChange={handleChange}
                   />
                   <FormControl fullWidth>
@@ -224,9 +224,9 @@ const RamakKala_View = () => {
                 id='ramakkaladetay'
                 type='text'
                 value={info.detail}
-                inputProps={{
-                  maxLength: 250
-                }}
+                // inputProps={{
+                //   maxLength: 250
+                // }}
                 onChange={handleChange}
               />
               <TextField
@@ -238,9 +238,9 @@ const RamakKala_View = () => {
                 id='oneri'
                 type='text'
                 value={info.detail}
-                inputProps={{
-                  maxLength: 250
-                }}
+                // inputProps={{
+                //   maxLength: 250
+                // }}
                 onChange={handleChange}
               />
             </Box>

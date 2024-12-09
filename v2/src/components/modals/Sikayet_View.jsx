@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import useFeedbackCall from '../../hooks/useFeedbackCall';
-import { location } from '../../helper/data';
+import { location, sikayetKonusu } from '../../helper/data';
 import { FormControl, FormLabel, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 
 
@@ -36,6 +36,7 @@ const Sikayet_View = () => {
         phone: "",
         email: "",
         topic: "",
+        topicDetail: "",
         detail: "",
         actionType: "",
         actionResult: "",
@@ -70,6 +71,8 @@ const Sikayet_View = () => {
     }
 
 
+    console.log(info)
+
     return (
         <div>
 
@@ -78,7 +81,7 @@ const Sikayet_View = () => {
             <Typography variant='subtitle2' align='center' color={'error'}>
                 Geri bildirimlerinizin takibi ve durumunu öğrenmek için telefon numarası doğruluğu önemlidir !
             </Typography>
-            
+
             <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 5, p: 2 }}>
 
                 <form onSubmit={handleSubmit}>
@@ -94,9 +97,9 @@ const Sikayet_View = () => {
                                 id='name'
                                 type='text'
                                 value={info.name}
-                                inputProps={{
-                                    maxLength: 50
-                                }}
+                                // inputProps={{
+                                //     maxLength: 50
+                                // }}
                                 onChange={handleChange}
                             />
                             <TextField
@@ -107,24 +110,24 @@ const Sikayet_View = () => {
                                 id='surname'
                                 type='text'
                                 value={info.surname}
-                                inputProps={{
-                                    maxLength: 50
-                                }}
+                                // inputProps={{
+                                //     maxLength: 50
+                                // }}
                                 onChange={handleChange}
                             />
                         </Box>
 
                         <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3 }}>
-                        <TextField
+                            <TextField
                                 required
                                 fullWidth
                                 label='Telefon (0xxx-xxx-xxxx)'
                                 name='phone'
                                 id='phone'
                                 type='text'
-                                inputProps={{
-                                    maxLength: 11
-                                }}
+                                // inputProps={{
+                                //     maxLength: 11
+                                // }}
                                 value={info.phone}
                                 onChange={handleChange}
                             />
@@ -135,26 +138,51 @@ const Sikayet_View = () => {
                                 id='email'
                                 type='text'
                                 value={info.email}
-                                inputProps={{
-                                    maxLength: 35
-                                }}
+                                // inputProps={{
+                                //     maxLength: 35
+                                // }}
                                 onChange={handleChange}
                             />
                         </Box>
 
                         <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3 }}>
-                            <TextField
-                                fullWidth
-                                label='Şikayet Konusu'
-                                name='topic'
-                                id='topic'
-                                type='text'
-                                value={info.topic}
-                                inputProps={{
-                                    maxLength: 35
-                                }}
-                                onChange={handleChange}
-                            />
+
+                            <FormControl fullWidth>
+                                <InputLabel id="Şikayet Konusu">Şikayet Konusu</InputLabel>
+                                <Select
+                                    required
+                                    labelId='Şikayet Konusu'
+                                    name='topic'
+                                    id='topic'
+                                    label='Şikayet Konusu'
+                                    value={info.topic}
+                                    onChange={handleChange}
+                                >
+                                    {
+                                        sikayetKonusu.map((item, index) => (
+                                            <MenuItem key={index} value={item}>{item}</MenuItem>
+                                        ))
+                                    }
+                                </Select>
+                            </FormControl>
+
+                            {
+                                info.topic === "Diğer" &&
+                                <TextField
+                                    fullWidth
+                                    label='Şikayet Detayı'
+                                    name='topicDetail'
+                                    id='topicDetail'
+                                    type='text'
+                                    value={info.topicDetail}
+                                    // inputProps={{
+                                    //     maxLength: 35
+                                    // }}
+                                    sx={{backgroundColor:'#e9ecef'}}
+                                    onChange={handleChange}
+                                />
+                            }
+
                         </Box>
 
                         <Box>
@@ -190,9 +218,9 @@ const Sikayet_View = () => {
                                 id='detail'
                                 type='text'
                                 value={info.detail}
-                                inputProps={{
-                                    maxLength: 250
-                                }}
+                                // inputProps={{
+                                //     maxLength: 250
+                                // }}
                                 onChange={handleChange}
                             />
                         </Box>

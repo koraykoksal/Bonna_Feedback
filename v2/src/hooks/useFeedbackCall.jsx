@@ -64,7 +64,7 @@ const useFeedbackCall = () => {
                 const data = snapshot.val();
 
                 if (data == null || data == undefined) {
-                    console.log("firebase data null geliyor:", data)
+                  
                     dispatch(fetchFeedBackData({}))
                 }
                 else {
