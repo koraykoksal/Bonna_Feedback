@@ -19,7 +19,7 @@ import { getDatabase, onValue, ref, remove, set, update } from "firebase/databas
 import { uid } from "uid";
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom"
-import packagejson from "../../package.json"
+import package_json from "../../package.json"
 
 
 const useFeedbackCall = () => {
@@ -135,9 +135,9 @@ const useFeedbackCall = () => {
 
             const data = JSON.stringify({
                 "to": `${process.env.REACT_APP_MAIL_TO_ADDRESS}`,
-                "subject": `${packagejson?.name} Bilgilendirme`,
+                "subject": `${package_json?.name} Bilgilendirme`,
                 "message": info?.detail,
-                "digitalplatform": packagejson?.name || "Bonna Feedback",
+                "digitalplatform": package_json?.name || "Bonna Feedback",
             })
 
             const option = {
