@@ -19,6 +19,7 @@ import { getDatabase, onValue, ref, remove, set, update } from "firebase/databas
 import { uid } from "uid";
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom"
+import packagejson from "../../package.json"
 
 
 const useFeedbackCall = () => {
@@ -45,6 +46,8 @@ const useFeedbackCall = () => {
             toastSuccessNotify('Talebiniz alınmıştır teşekkür ederiz.')
             navigate('/')
 
+            await sendMail(info)
+
         } catch (error) {
             toastErrorNotify('❌ İşem başarısız, lütfen tekrar deneyiniz.')
         }
@@ -52,7 +55,7 @@ const useFeedbackCall = () => {
     }
 
 
-    const getFireData = async (address, dateFrom,dateTo) => {
+    const getFireData = async (address, dateFrom, dateTo) => {
 
         dispatch(fetchStart())
 
@@ -64,7 +67,7 @@ const useFeedbackCall = () => {
                 const data = snapshot.val();
 
                 if (data == null || data == undefined) {
-                  
+
                     dispatch(fetchFeedBackData({}))
                 }
                 else {
@@ -73,7 +76,7 @@ const useFeedbackCall = () => {
                     const dizi = Object.keys(data).map(key => { return { id: key, ...data[key] } })
 
                     if (dateFrom && dateTo) {
-                        
+
                         const result = dizi.filter((item) => {
                             return formatDate(item.datetime) >= dateFrom && formatDate(item.datetime) <= dateTo
                         })
@@ -125,6 +128,41 @@ const useFeedbackCall = () => {
         }
     }
 
+
+    const sendMail = async (info) => {
+
+        try {
+
+            const data = JSON.stringify({
+                "to": `${process.env.REACT_APP_MAIL_TO_ADDRESS}`,
+                "subject": `${packagejson?.name} Bilgilendirme`,
+                "message": info?.detail,
+                "digitalplatform": packagejson?.name || "Bonna Feedback",
+            })
+
+            const option = {
+                method: "post",
+                url: `${process.env.REACT_APP_MAIL_ENDPOINT}/api/sendmail`,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: data
+            }
+
+            const res = await axios(option)
+
+            if (res.status === 200) {
+                console.log(" 📨 mail bilgilendirme yapılmıştır. 📨")
+            }
+            else{
+                console.log(" ❌ mail gönderilemedi. ❌")
+            }
+
+        }
+        catch (error) {
+            console.log("sendMail Error: ", error)
+        }
+    }
 
     return {
 
