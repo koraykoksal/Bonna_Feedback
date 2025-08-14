@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { Box, Typography, FormControl, InputLabel, MenuItem, Select, Container, TextField, Button, Checkbox, FormControlLabel,CircularProgress } from '@mui/material'
 import { etiklik, location, department } from '../../helper/data';
 import useFeedbackCall from '../../hooks/useFeedbackCall';
+import { useSelector } from 'react-redux';
 
 const Etiklik = ({loading}) => {
+
 
   const now = new Date()
 

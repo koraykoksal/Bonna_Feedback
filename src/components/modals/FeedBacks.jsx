@@ -20,11 +20,12 @@ import Sikayet_View from './Sikayet_View';
 import RamakKala_View from './RamakKala_View';
 import Etiklik from './Etiklik';
 import useFeedbackCall from '../../hooks/useFeedbackCall';
+import { useSelector } from 'react-redux';
 
 const FeedBacks = ({ open, handleClose, info }) => {
 
     const [durum, setDurum] = useState(0)
-    const {loading} = useFeedbackCall()
+    const {loading} = useSelector((state)=>state.feedback)
 
     useEffect(() => {
       if(info === 'Teşekkür'){
