@@ -19,10 +19,12 @@ import OneriTalep_View from './OneriTalep_View';
 import Sikayet_View from './Sikayet_View';
 import RamakKala_View from './RamakKala_View';
 import Etiklik from './Etiklik';
+import useFeedbackCall from '../../hooks/useFeedbackCall';
 
 const FeedBacks = ({ open, handleClose, info }) => {
 
     const [durum, setDurum] = useState(0)
+    const {loading} = useFeedbackCall()
 
     useEffect(() => {
       if(info === 'Teşekkür'){
@@ -62,19 +64,19 @@ const FeedBacks = ({ open, handleClose, info }) => {
                     </IconButton>
 
                     {
-                        info == 'Teşekkür' && <Tesekkur_View/>
+                        info == 'Teşekkür' && <Tesekkur_View loading={loading}/>
                     }
                     {
-                        info == 'Öneri & Talep' && <OneriTalep_View/>
+                        info == 'Öneri & Talep' && <OneriTalep_View loading={loading}/>
                     }
                     {
-                        info == 'Şikayet' && <Sikayet_View/>
+                        info == 'Şikayet' && <Sikayet_View loading={loading}/>
                     }
                     {
-                        info == 'Ramak Kala' && <RamakKala_View/>
+                        info == 'Ramak Kala' && <RamakKala_View loading={loading}/>
                     }
                     {
-                        info == 'Etiklik' && <Etiklik/>
+                        info == 'Etiklik' && <Etiklik loading={loading}/>
                     }
 
                 </Box>

@@ -9,6 +9,7 @@ import Tesekkur from '../pages/Tesekkur'
 import Sikayet from '../pages/Sikayet'
 import OneriTalep from '../pages/OneriTalep'
 import RamakKala from '../pages/RamakKala'
+import Etiklik from '../pages/Etiklik'
 
 
 
@@ -30,6 +31,7 @@ export const AppRouter = () => {
             <Route path='sikayet' element={<Sikayet />} />
             <Route path='oneritalep' element={<OneriTalep />} />
             <Route path='ramakkala' element={<RamakKala />} />
+            <Route path='etiklik' element={<Etiklik />} />
           </Route>
           <Route path='*' element={<NotFound />} />
         </Routes>

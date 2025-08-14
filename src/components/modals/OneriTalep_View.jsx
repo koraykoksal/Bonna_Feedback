@@ -3,12 +3,12 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
-import { FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { FormControl, InputLabel, MenuItem, Select, TextField,CircularProgress } from '@mui/material';
 import { oneriKonusu, katkiKonusu, location } from '../../helper/data';
 import useFeedbackCall from '../../hooks/useFeedbackCall';
 
 
-const OneriTalep_View = () => {
+const OneriTalep_View = ({ loading }) => {
 
   const { postFireData } = useFeedbackCall()
 
@@ -226,9 +226,16 @@ const OneriTalep_View = () => {
               />
             </Box>
 
-            <Button variant='contained' type='submit'>
-              Kayıt
-            </Button>
+
+            {
+              loading ?
+                <CircularProgress size={20} color="inherit" />
+                :
+
+                <Button disabled={loading} variant='contained' type='submit'>
+                  Kayıt
+                </Button>
+            }
 
           </Box>
 

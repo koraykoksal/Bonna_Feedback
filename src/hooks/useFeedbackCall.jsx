@@ -8,6 +8,7 @@ import {
     fetchOneriTalepData,
     fetchSikayetData,
     fetchFeedBackData,
+    fetchEnd,
 
 } from '../features/feedbackSlice'
 import { useDispatch, useSelector } from 'react-redux'
@@ -102,7 +103,6 @@ const useFeedbackCall = () => {
 
             if (info?.topic === "Etiklik" && info?.document) {
                 const store = getStorage();
-                console.log("storatge : ", store)
                 const filePath = `images/${uID}_${info.document.name}`;
                 const fileRef = dbRef(store, filePath);
 
@@ -125,6 +125,9 @@ const useFeedbackCall = () => {
         } catch (error) {
             console.log("error:", error);
             toastErrorNotify('❌ İşlem başarısız, lütfen tekrar deneyiniz.');
+        }
+        finally{
+            dispatch(fetchEnd())
         }
     }
 

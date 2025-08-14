@@ -49,6 +49,10 @@ const reporPages = [
   {
     title: "Ramak Kala",
     url: '/report/ramakkala'
+  },
+  {
+    title: "Etiklik",
+    url: '/report/etiklik'
   }
 ];
 
@@ -213,9 +217,10 @@ const NavBar = () => {
 
             </Box>)
               :
-              (<Box sx={{ display: { xs: 'flex', md: 'flex' } }}>
-                <AiFillHome size={25} color='#527853' onClick={() => navigate('/')} cursor='pointer' />
-              </Box>)
+              ""
+              // (<Box sx={{ display: { xs: 'flex', md: 'flex' } }}>
+              //   <AiFillHome size={25} color='#527853' onClick={() => navigate('/')} cursor='pointer' />
+              // </Box>)
           }
 
 

@@ -3,12 +3,12 @@ import Box from '@mui/material/Box';
 import { Typography, Grid, Container } from "@mui/material"
 import Button from '@mui/material/Button';
 import { useState } from 'react';
-import { FormControl, FormLabel, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { FormControl, FormLabel, InputLabel, MenuItem, Select, TextField,CircularProgress } from '@mui/material';
 import { location } from '../../helper/data';
 import useFeedbackCall from '../../hooks/useFeedbackCall';
 
 
-const Tesekkur_View = () => {
+const Tesekkur_View = ({loading}) => {
 
 
     const { postFireData } = useFeedbackCall()
@@ -183,9 +183,15 @@ const Tesekkur_View = () => {
                             />
                         </Box>
 
-                        <Button variant='contained' type='submit' sx={{ letterSpacing: 3, textTransform: 'none' }}>
-                            Kayıt
-                        </Button>
+                        {
+                            loading ?
+                                <CircularProgress size={20} color="inherit" />
+                                :
+                                <Button disabled={loading} variant='contained' type='submit' sx={{ letterSpacing: 3, textTransform: 'none' }}>
+                                    Kayıt
+                                </Button>
+
+                        }
 
                     </Box>
 

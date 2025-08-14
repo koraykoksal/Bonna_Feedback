@@ -3,14 +3,14 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
-import { FormControl, FormControlLabel, FormLabel, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { FormControl, FormControlLabel, FormLabel, InputLabel, MenuItem, Select, TextField, CircularProgress } from '@mui/material';
 import useFeedbackCall from '../../hooks/useFeedbackCall';
 import { location } from '../../helper/data';
 import { department } from "../../helper/data"
 import Checkbox from '@mui/material/Checkbox';
 
 
-const RamakKala_View = () => {
+const RamakKala_View = ({ loading }) => {
 
   const { postFireData } = useFeedbackCall()
 
@@ -245,11 +245,15 @@ const RamakKala_View = () => {
               />
             </Box>
 
+            {
+              loading ?
+                <CircularProgress size={20} color="inherit" />
+                :
 
-
-            <Button variant='contained' type='submit' sx={{ letterSpacing: 3, textTransform: 'none' }}>
-              Kayıt
-            </Button>
+                <Button disabled={loading} variant='contained' type='submit' sx={{ letterSpacing: 3, textTransform: 'none' }}>
+                  Kayıt
+                </Button>
+            }
 
           </Box>
 

@@ -27,8 +27,6 @@ const authSlice = createSlice({
       state.isAdmin = false;
       state.token = payload?.accessToken;
       state.userID = payload?.uid
-
-
     },
     logoutSuccess: (state) => {
       state.loading = false;

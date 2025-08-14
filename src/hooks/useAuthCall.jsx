@@ -31,6 +31,7 @@ const useAuthCall = () => {
             toastSuccessNotify("Logged in successfully!");
 
         } catch (error) {
+            console.log("error:",error)
             toastErrorNotify(error.message);
         }
     }

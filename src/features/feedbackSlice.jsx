@@ -45,6 +45,9 @@ const feedbackSlice = createSlice({
         fetchFeedBackData:(state,{payload})=>{
             state.loading=false
             state.feedbackData=payload
+        },
+        fetchEnd:(state)=>{
+            state.loading=false
         }
 
 
@@ -59,6 +62,7 @@ const feedbackSlice = createSlice({
 export const {
     
     fetchStart,
+    fetchEnd,
     fetchFail,
     fetchTesekkurData,
     fetchOneriTalepData,

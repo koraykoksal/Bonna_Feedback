@@ -4,7 +4,7 @@ import Container from "@mui/material/Container"
 import Grid from "@mui/material/Grid"
 import Typography from "@mui/material/Typography"
 import LockIcon from "@mui/icons-material/Lock"
-import { Link, Outlet, useNavigate } from "react-router-dom"
+import { Outlet, useNavigate } from "react-router-dom"
 import Box from "@mui/material/Box"
 import TextField from "@mui/material/TextField"
 import Button from "@mui/material/Button"
@@ -15,16 +15,21 @@ import { useState } from 'react'
 import { IoHome } from "react-icons/io5";
 import image from "../assets/img/loginImg.png"
 import { loginPageStyle } from '../styles/globalStlye'
+import { IconButton, Link,CircularProgress } from '@mui/material'
+import { AiFillHome } from "react-icons/ai";
+import { useSelector } from 'react-redux'
 
 const Login = () => {
 
 
+  const navigate = useNavigate()
   const [info, setInfo] = useState({
     email: "",
     password: ""
   })
 
   const { login } = useAuthCall()
+  const { loading } = useSelector((state => state.auth))
 
   const handleChange = (e) => {
     setInfo({ ...info, [e.target.name]: e.target.value })
@@ -44,7 +49,7 @@ const Login = () => {
 
   return (
 
-    <div style={loginPageStyle}>
+    <div>
       <Container sx={{ mt: 15 }}>
 
         <Grid
@@ -76,7 +81,7 @@ const Login = () => {
               mb={4}
               color="secondary.light"
             >
-              Login
+              Giriş
             </Typography>
 
 
@@ -101,9 +106,22 @@ const Login = () => {
                 value={info.password}
                 onChange={handleChange}
               />
-              <Button variant="contained" type="submit" sx={{ letterSpacing: 5, textTransform: 'none' }}>
-                Giriş
-              </Button>
+
+
+              {
+                loading ?
+                  <CircularProgress size={20} color="inherit" />
+                  :
+                  <Button disabled={loading} variant="contained" type="submit" sx={{ letterSpacing: 5, textTransform: 'none' }}>
+                    Giriş
+                  </Button>
+              }
+
+              <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 1 }}>
+                <IconButton onClick={() => navigate('/')}>
+                  <AiFillHome size={25} color='#527853' />
+                </IconButton>
+              </Box>
 
             </Box>
 

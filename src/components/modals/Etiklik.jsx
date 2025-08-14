@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { Box, Typography, FormControl, InputLabel, MenuItem, Select, Container, TextField, Button } from '@mui/material'
-import { etiklik } from '../../helper/data';
+import { Box, Typography, FormControl, InputLabel, MenuItem, Select, Container, TextField, Button, Checkbox, FormControlLabel,CircularProgress } from '@mui/material'
+import { etiklik, location, department } from '../../helper/data';
 import useFeedbackCall from '../../hooks/useFeedbackCall';
 
-const Etiklik = () => {
+const Etiklik = ({loading}) => {
 
   const now = new Date()
 
@@ -21,6 +21,8 @@ const Etiklik = () => {
 
   const { postFireData } = useFeedbackCall()
 
+  const [bonnaUser, setBonnaUser] = useState(false)
+
   const [info, setInfo] = useState({
     name: "",
     surname: "",
@@ -31,6 +33,11 @@ const Etiklik = () => {
     subTitle: "",
     document: "",
     location: "",
+    gorev: "",
+    birim: "",
+    actionType: "",
+    actionResult: "",
+    bonnaUser: bonnaUser ? 'Bonna Çalışanı' : 'Misafir',
     datetime: formattedDate
   })
 
@@ -72,8 +79,19 @@ const Etiklik = () => {
       subTitle: "",
       document: "",
       location: "",
+      gorev: "",
+      birim: "",
+      actionType: "",
+      actionResult: "",
+      bonnaUser: bonnaUser ? 'Bonna Çalışanı' : 'Misafir',
       datetime: formattedDate
     })
+  }
+
+
+  const handleIsCheck = (e) => {
+    const { checked } = e.target
+    checked ? setBonnaUser(true) : setBonnaUser(false)
   }
 
 
@@ -202,6 +220,84 @@ const Etiklik = () => {
             // }}
             onChange={handleChange}
           />
+          <FormControl fullWidth>
+            <InputLabel id="location">Lokasyon</InputLabel>
+            <Select
+              required
+              labelId='location'
+              name='location'
+              id='location'
+              label='location'
+              value={info.location}
+              onChange={handleChange}
+            >
+              {
+                location?.map((item, index) => (
+                  <MenuItem key={index} value={item}>{item}</MenuItem>
+                ))
+              }
+            </Select>
+          </FormControl>
+
+
+
+          <Box width={'100%'}>
+            <FormControlLabel
+              control={
+                <Checkbox onChange={handleIsCheck} name="gilad" />
+              }
+              label="Bonna Çalışanı mısın ?"
+            />
+          </Box>
+
+          {/* bonna çalışanı ise burayı göster */}
+          {
+            bonnaUser &&
+            (
+              <Box width={'100%'} sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3, border: '1px solid #7487daed', borderRadius: 3, p: 2 }}>
+                <TextField
+                  fullWidth
+                  label='Görev'
+                  name='gorev'
+                  id='gorev'
+                  type='text'
+                  value={info.gorev}
+                  // inputProps={{
+                  //   maxLength: 35
+                  // }}
+                  onChange={handleChange}
+                />
+                <FormControl fullWidth>
+                  <InputLabel id="birim">Departman</InputLabel>
+                  <Select
+                    required
+                    labelId='birim'
+                    name='birim'
+                    id='birim'
+                    label='birim'
+                    value={info.birim}
+                    onChange={handleChange}
+                    MenuProps={{
+                      PaperProps: {
+                        style: {
+                          maxHeight: 300,
+                          overflow: 'auto'
+                        }
+                      }
+                    }}
+                  >
+                    {
+                      department?.map((item, index) => (
+                        <MenuItem key={index} value={item.name}>{item.name}</MenuItem>
+                      ))
+                    }
+                  </Select>
+                </FormControl>
+              </Box>
+            )
+          }
+
+
           <TextField
             fullWidth
             required
@@ -228,7 +324,14 @@ const Etiklik = () => {
             onChange={handleChangeFile}
           />
         </Box>
-        <Button variant='contained' fullWidth type='submit'>Kayıt</Button>
+
+        {
+          loading ? 
+          <CircularProgress size={20} color="inherit" />
+          :
+          <Button disabled={loading} variant='contained' fullWidth type='submit'>Kayıt</Button>
+
+        }
       </Container>
 
 

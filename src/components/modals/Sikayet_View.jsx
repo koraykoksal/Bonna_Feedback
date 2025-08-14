@@ -5,11 +5,11 @@ import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import useFeedbackCall from '../../hooks/useFeedbackCall';
 import { location, sikayetKonusu } from '../../helper/data';
-import { FormControl, FormLabel, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { FormControl, FormLabel, InputLabel, MenuItem, Select, TextField ,CircularProgress} from '@mui/material';
 
 
 
-const Sikayet_View = () => {
+const Sikayet_View = ({ loading }) => {
 
 
     const { postFireData } = useFeedbackCall()
@@ -178,7 +178,7 @@ const Sikayet_View = () => {
                                     // inputProps={{
                                     //     maxLength: 35
                                     // }}
-                                    sx={{backgroundColor:'#e9ecef'}}
+                                    sx={{ backgroundColor: '#e9ecef' }}
                                     onChange={handleChange}
                                 />
                             }
@@ -225,9 +225,18 @@ const Sikayet_View = () => {
                             />
                         </Box>
 
-                        <Button variant='contained' type='submit'>
-                            Kayıt
-                        </Button>
+
+                        {
+                            loading ?
+                                <CircularProgress size={20} color="inherit" />
+                                :
+                                <Button disabled={loading} variant='contained' type='submit'>
+                                    Kayıt
+                                </Button>
+
+                        }
+
+
 
                     </Box>
 
