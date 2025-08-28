@@ -84,10 +84,11 @@ const Etiklik_Table = ({ etiklik, handleOpen_etiklik, handleClose_etiklik, open_
                 <CircularProgress size={20} color="inherit" />
                 :
                 <Tooltip title="Dosya" placement="top" arrow interactive>
-                  <MdDownload
+                  <FaEye
                     size={23}
-                    style={{ cursor: 'pointer', color: '#e87272' }}
-                    onClick={() => handleDocumentDownload(imgUrl)} // burada params.row.imgUrl verisini alıyoruz
+                    style={{ cursor: 'pointer' }}
+                    // onClick={() => handleDocumentDownload(imgUrl)}
+                    onClick={() => window.open(imgUrl,'_blank')}
                   />
                 </Tooltip>
             }
@@ -250,13 +251,9 @@ const Etiklik_Table = ({ etiklik, handleOpen_etiklik, handleClose_etiklik, open_
         <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
           {
             params?.row?.imgUrl ?
-              <img
-                loading='lazy'
-                src={params?.row?.imgUrl}
-                style={{ width: '100%', objectFit: 'cover' }}
-              />
+              <Typography align='center'>✅</Typography>
               :
-              ""
+              <Typography align='center'>❌</Typography>
           }
         </div>
       )

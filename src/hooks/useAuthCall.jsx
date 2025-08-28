@@ -2,7 +2,7 @@ import axios from "axios";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
-import { fetchFail, fetchStart, loginSuccess, logoutSuccess, registerSuccess, fetchLoginData } from "../features/authSlice";
+import { fetchFail, fetchStart, loginSuccess, logoutSuccess, registerSuccess, fetchLoginData, fetchEnd } from "../features/authSlice";
 import { toastInfoNotify, toastSuccessNotify, toastErrorNotify } from '../helper/ToastNotify'
 import { auth } from "../auth/firebase";
 
@@ -31,8 +31,10 @@ const useAuthCall = () => {
             toastSuccessNotify("Logged in successfully!");
 
         } catch (error) {
+            dispatch(fetchEnd())
             console.log("error:",error)
             toastErrorNotify(error.message);
+            return
         }
     }
 

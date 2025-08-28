@@ -149,7 +149,7 @@ const Etiklik = () => {
     return (
         <div>
 
-            <Typography mt={12} align='center' letterSpacing={3} fontWeight={700}>Etiklik</Typography>
+            <Typography mt={12} align='center' letterSpacing={3} fontWeight={700}>Etik</Typography>
 
             <Box display={'flex'} justifyContent={'space-between'} gap={2} alignItems={'center'} p={2}>
                 <SlRefresh size={22} color='green' cursor={'pointer'} onClick={handleRefresh} />

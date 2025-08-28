@@ -51,7 +51,7 @@ const reporPages = [
     url: '/report/ramakkala'
   },
   {
-    title: "Etiklik",
+    title: "Etik",
     url: '/report/etiklik'
   }
 ];

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Box, Typography, FormControl, InputLabel, MenuItem, Select, Container, TextField, Button, Checkbox, FormControlLabel,CircularProgress } from '@mui/material'
+import { Box, Typography, FormControl, InputLabel, MenuItem, Select, Container, TextField, Button, Checkbox, FormControlLabel, CircularProgress, FormHelperText } from '@mui/material'
 import { etiklik, location, department } from '../../helper/data';
 import useFeedbackCall from '../../hooks/useFeedbackCall';
 import { useSelector } from 'react-redux';
 
-const Etiklik = ({loading}) => {
+const Etiklik = ({ loading }) => {
 
 
   const now = new Date()
@@ -101,7 +101,7 @@ const Etiklik = ({loading}) => {
     <div>
 
 
-      <Typography align='center' color='#FFB534' p={3} fontWeight={700} fontSize={22}>Etiklik</Typography>
+      <Typography align='center' color='#FFB534' p={3} fontWeight={700} fontSize={22}>Etik</Typography>
 
       <Box sx={{
         display: 'flex',
@@ -185,6 +185,7 @@ const Etiklik = ({loading}) => {
             //   maxLength: 50
             // }}
             onChange={handleChange}
+            helperText="Opsiyonel"
           />
           <TextField
             fullWidth
@@ -197,6 +198,7 @@ const Etiklik = ({loading}) => {
             //   maxLength: 50
             // }}
             onChange={handleChange}
+            helperText="Opsiyonel"
           />
           <TextField
             fullWidth
@@ -209,6 +211,7 @@ const Etiklik = ({loading}) => {
             //   maxLength: 50
             // }}
             onChange={handleChange}
+            helperText="Opsiyonel"
           />
           <TextField
             fullWidth
@@ -221,6 +224,7 @@ const Etiklik = ({loading}) => {
             //   maxLength: 50
             // }}
             onChange={handleChange}
+            helperText="Opsiyonel"
           />
           <FormControl fullWidth>
             <InputLabel id="location">Lokasyon</InputLabel>
@@ -239,6 +243,7 @@ const Etiklik = ({loading}) => {
                 ))
               }
             </Select>
+            <FormHelperText>Opsiyonel</FormHelperText>
           </FormControl>
 
 
@@ -268,6 +273,7 @@ const Etiklik = ({loading}) => {
                   //   maxLength: 35
                   // }}
                   onChange={handleChange}
+                  helperText="Opsiyonel"
                 />
                 <FormControl fullWidth>
                   <InputLabel id="birim">Departman</InputLabel>
@@ -294,6 +300,7 @@ const Etiklik = ({loading}) => {
                       ))
                     }
                   </Select>
+                  <FormHelperText>Opsiyonel</FormHelperText>
                 </FormControl>
               </Box>
             )
@@ -328,10 +335,10 @@ const Etiklik = ({loading}) => {
         </Box>
 
         {
-          loading ? 
-          <CircularProgress size={20} color="inherit" />
-          :
-          <Button disabled={loading} variant='contained' fullWidth type='submit'>Kayıt</Button>
+          loading ?
+            <CircularProgress size={20} color="inherit" />
+            :
+            <Button disabled={loading} variant='contained' fullWidth type='submit'>Kayıt</Button>
 
         }
       </Container>

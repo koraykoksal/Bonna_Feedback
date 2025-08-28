@@ -21,6 +21,10 @@ const authSlice = createSlice({
       state.loading = true;
       state.error = false;
     },
+    fetchEnd: (state) => {
+      state.loading = false;
+      state.error = false;
+    },
     loginSuccess: (state, { payload }) => {
       state.loading = false;
       state.currentUser = payload?.email;
@@ -57,6 +61,7 @@ const authSlice = createSlice({
 export const {
   fetchFail,
   fetchStart,
+  fetchEnd,
   loginSuccess,
   logoutSuccess,
   registerSuccess,
