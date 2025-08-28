@@ -243,7 +243,6 @@ const Etiklik = ({ loading }) => {
                 ))
               }
             </Select>
-            <FormHelperText>Opsiyonel</FormHelperText>
           </FormControl>
 
 
