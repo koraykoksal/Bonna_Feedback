@@ -40,7 +40,7 @@ const FeedBacks = ({ open, handleClose, info }) => {
       else if(info === 'Ramak Kala'){
         setDurum(4)
       }
-      else if(info === 'Etiklik'){
+      else if(info === 'Etik'){
         setDurum(5)
       }
     }, [info])
@@ -77,7 +77,7 @@ const FeedBacks = ({ open, handleClose, info }) => {
                         info == 'Ramak Kala' && <RamakKala_View loading={loading}/>
                     }
                     {
-                        info == 'Etiklik' && <Etiklik loading={loading}/>
+                        info == 'Etik' && <Etiklik loading={loading}/>
                     }
 
                 </Box>

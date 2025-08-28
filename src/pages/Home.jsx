@@ -31,7 +31,7 @@ const urlData = [
     icon: complaint,
   },
   {
-    title: "Etiklik",
+    title: "Etik",
     url: "/etiklik",
     icon: justice,
   },
